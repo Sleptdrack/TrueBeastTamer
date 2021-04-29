@@ -68,7 +68,7 @@ namespace GameModel {
 	public:
 		property int SpawnRate;
 	public:
-		Grass(float x,float y);
+		Grass();
 	};
 	public ref class Garden {
 	public:
@@ -76,7 +76,9 @@ namespace GameModel {
 		property float X;
 		property float Y;
 		property int Size;
+		property List<Grass^>^ Grass;
 	public:
 		Garden(float x, float y, int size);
+		void Draw(RenderTarget& rt);
 	};
 }
