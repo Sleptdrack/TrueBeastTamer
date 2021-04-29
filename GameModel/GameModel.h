@@ -20,6 +20,14 @@ namespace GameModel {
 	public ref class Arena : public GameObject {
 
 	};
+	public ref class Power {
+	public:
+		property int Type;//Water->Fire->Air->Ligthing->Earth->water; Neutral
+		property int Range;
+		property String* Name;
+	public:
+		Power();
+	};
 	public ref class Beast : public GameObject {
 	public:
 		property String* Name; // usaremos el String de la libreria SFML
@@ -79,6 +87,25 @@ namespace GameModel {
 		property List<Grass^>^ Grass;
 	public:
 		Garden(float x, float y, int size);
+		void Draw(RenderTarget& rt);
+	};
+	public ref class Obstacle :public GameObject {
+	public:
+		property bool Breakeable;
+		property bool Harmful;
+	};
+	public ref class Map {
+	public:
+		property int NumGarden;
+		property int NumNPC;
+		property List<Obstacle^>^ Obstacle;
+		property List<Garden^>^ Garden;
+		property List<NPC^>^ NPC;
+		property Hospital^ Hospital;
+		property Store^ Store;
+		property Tamer^ Player;
+	public:
+		Map(int ng, int nn);
 		void Draw(RenderTarget& rt);
 	};
 }

@@ -16,6 +16,13 @@ void GameModel::GameObject::Move(float x, float y)
     Y = y;
 }
 
+//espacio cuando se implemente Arena
+
+GameModel::Power::Power()
+{
+    throw gcnew System::NotImplementedException();
+}
+
 GameModel::Beast::Beast(){
     Name = new sf::String();
 }
@@ -75,3 +82,20 @@ void GameModel::Garden::Draw(RenderTarget& rt)
         Grass[i]->Draw(rt);
     }
 }
+
+//Espacio cuando se implemente obstaculos
+//Espacios para los distintos obstaculos
+
+GameModel::Map::Map(int ng, int nn)
+{
+    NumGarden = ng;
+    NumNPC = nn;
+    Obstacle = gcnew List<GameModel::Obstacle^>();
+    Garden = gcnew List<GameModel::Garden^>();
+    NPC = gcnew List<GameModel::NPC^>();
+    Hospital = gcnew GameModel::Hospital(0, 0);//actualizar valores despues
+    Store = gcnew GameModel::Store(0, 0);//actualizar valores
+    Player = gcnew Tamer(0, 0);//actualizar valores
+}
+
+
