@@ -53,7 +53,7 @@ GameModel::Grass::Grass()
 {
     Height = TileSize;
     Length = TileSize;
-    Texture->loadFromFile("Imagenes/Grass.png");//verificar ubicacion
+    Texture->loadFromFile("../Imagenes/Grass.png");
     Sprite->setTexture(*Texture, true);
     Sprite->setScale(Length / 500, Height / 500);
     X = 0;
