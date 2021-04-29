@@ -97,5 +97,9 @@ GameModel::Map::Map(int ng, int nn)
     Store = gcnew GameModel::Store(0, 0);//actualizar valores
     Player = gcnew Tamer(0, 0);//actualizar valores
 }
+void GameModel::Map::Draw(RenderTarget& rt)
+{
+    throw gcnew System::NotImplementedException();
+}
 
 
