@@ -16,7 +16,7 @@ namespace GameModel {
 		GameObject();
 		void Draw(RenderTarget& rt);
 		void Move(float x, float y);
-		//crear metodo para colisiones
+		bool Contains(float x, float y, float h, float l);
 	};
 	public ref class Arena : public GameObject {
 
@@ -89,7 +89,7 @@ namespace GameModel {
 	public:
 		Garden(float x, float y, int size);
 		void Draw(RenderTarget& rt);
-		//metodo colision
+		bool Contains(float x, float y, float l, float h);
 	};
 	public ref class Obstacle :public GameObject {
 	public:
