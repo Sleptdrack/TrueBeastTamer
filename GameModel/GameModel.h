@@ -89,6 +89,7 @@ namespace GameModel {
 	public:
 		Garden(float x, float y, int size);
 		void Draw(RenderTarget& rt);
+		//metodo colision
 	};
 	public ref class Obstacle :public GameObject {
 	public:
