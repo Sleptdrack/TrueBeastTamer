@@ -94,6 +94,7 @@ namespace GameModel {
 		property bool Breakeable;
 		property bool Harmful;
 	};
+	//aqui crear clases de obtaculos
 	public ref class Map {
 	public:
 		property int NumGarden;
