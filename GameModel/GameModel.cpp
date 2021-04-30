@@ -53,7 +53,7 @@ GameModel::Grass::Grass()
 {
     Height = TileSize;
     Length = TileSize;
-    Texture->loadFromFile("../Imagenes/Grass.png");
+    Texture->loadFromFile("../Imagenes/Grass.png");//imagen es 500X500px
     Sprite->setTexture(*Texture, true);
     Sprite->setScale(Length / 500, Height / 500);
     X = 0;
@@ -96,6 +96,7 @@ GameModel::Map::Map(int ng, int nn)
     Hospital = gcnew GameModel::Hospital(0, 0);//actualizar valores despues
     Store = gcnew GameModel::Store(0, 0);//actualizar valores
     Player = gcnew Tamer(0, 0);//actualizar valores
+    //crear diagrama de aparicion
 }
 void GameModel::Map::Draw(RenderTarget& rt)
 {

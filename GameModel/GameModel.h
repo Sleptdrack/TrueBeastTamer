@@ -16,6 +16,7 @@ namespace GameModel {
 		GameObject();
 		void Draw(RenderTarget& rt);
 		void Move(float x, float y);
+		//crear metodo para colisiones
 	};
 	public ref class Arena : public GameObject {
 
@@ -60,13 +61,13 @@ namespace GameModel {
 	public:
 		property int Enemy;
 	};
-	public ref class Store : public GameObject {
+	public ref class Store : public GameObject {//crear ventana
 	public:
 		property NPC^ Salesman;
 	public:
 		Store(float x, float y);
 	};
-	public ref class Hospital : public GameObject {
+	public ref class Hospital : public GameObject {//crear ventana
 	public:
 		property NPC^ Nurse;
 	public:
