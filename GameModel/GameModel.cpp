@@ -14,8 +14,8 @@ void GameModel::GameObject::Move(float x, float y){
     X = x;
     Y = y;
 }
-bool GameModel::GameObject::Contains(float x, float y, float l, float h){
-    FloatRect T = { x,y,l,h };
+bool GameModel::GameObject::Contains(GameObject^ G) {
+    FloatRect T = { G->X,G->Y,G->Length,G->Height };
     bool f;
     if (Sprite->getGlobalBounds().intersects(T))f = true;
     else f = false;
@@ -77,17 +77,18 @@ GameModel::Garden::Garden(float x, float y, int size){
             Grass->Add(gr);
         }
     }
-
+    Length = Size * TileSize;
+    Height = Size * TileSize;
 }
 void GameModel::Garden::Draw(RenderTarget& rt){
     for (int i = 0; i < Grass->Count; i++) {
         Grass[i]->Draw(rt);
     }
 }
-bool GameModel::Garden::Contains(float x, float y, float l, float h){
+bool GameModel::Garden::Contains(GameObject^ G){
     bool f=false;
     for (int i = 0; i < Grass->Count; i++) {
-        if (Grass[i]->Contains(x, y, l, h)) {
+        if (Grass[i]->Contains(G)) {
             f =true;
         }
     }
@@ -104,31 +105,23 @@ GameModel::Map::Map(int ng, int nn){
     Garden = gcnew List<GameModel::Garden^>();
     //Algoritmo para ubicar garden
     for (int i = 0; i < NumGarden; i++) {
-        int p = rand() % 3 + 3;//un tamaño de 3-5
-        int x = rand() % (1920 - (int)(p * TileSize));//1920px
-        int y = rand()% (1080 - (int)(p * TileSize));//1080
-        int F = 1;
-        if (i == 0) {
-            GameModel::Garden^ gr = gcnew GameModel::Garden(x, y, p);
-            Garden->Add(gr);
-        }
-        else {
-            while (F) {
-                int G = 0;
-                //evaluamos si el garden a crear sobreescribiria algun otro elemento
-                for (int u = 1; u <= i; u++) {
-                    if (Garden[i - u]->Contains(x, y, p * TileSize, p * TileSize)) {
-                        x = rand() % (1920 - (int)(p * TileSize));
-                        y = rand() % (1080 - (int)(p * TileSize));
-                        G += 1;
-                    }
+        int F;
+        int p = rand() % 3 + 3;//Tamaño de garden
+        int x, y;
+        do {
+            F = 0;
+            x = rand() % (1920 - (int)(p * TileSize));//posicion X
+            y = rand() % (1080 - (int)(p * TileSize));//posicion Y
+            GameModel::Garden^ gr = gcnew GameModel::Garden((float)x, (float)y, p);
+            for (int u = 0; u < Garden->Count; u++) {
+                if (Garden[u]->Contains(gr)) {
+                    F += 1;
                 }
-                if (G == 0)F = 0;
             }
-            //Si no interfiere con ningun garden
-            GameModel::Garden^ gr = gcnew GameModel::Garden(x, y, p);
-            Garden->Add(gr);
-        }
+            if (F == 0) {
+                Garden->Add(gr);
+            }
+        } while (F > 0);
     }
     NPC = gcnew List<GameModel::NPC^>();
     Hospital = gcnew GameModel::Hospital(0, 0);//actualizar valores despues

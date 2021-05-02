@@ -16,7 +16,7 @@ namespace GameModel {
 		GameObject();
 		void Draw(RenderTarget& rt);
 		void Move(float x, float y);
-		bool Contains(float x, float y, float h, float l);
+		bool Contains(GameObject^ G);
 	};
 	public ref class Arena : public GameObject {
 
@@ -79,17 +79,15 @@ namespace GameModel {
 	public:
 		Grass();
 	};
-	public ref class Garden {
+	public ref class Garden : public GameObject{
 	public:
 		property float GrassSize;
-		property float X;
-		property float Y;
 		property int Size;
 		property List<Grass^>^ Grass;
 	public:
 		Garden(float x, float y, int size);
 		void Draw(RenderTarget& rt);
-		bool Contains(float x, float y, float l, float h);
+		bool Contains(GameObject^ G);
 	};
 	public ref class Obstacle :public GameObject {
 	public:
