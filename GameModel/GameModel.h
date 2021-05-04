@@ -12,6 +12,7 @@ namespace GameModel {
 		property float Length;
 		property float X;
 		property float Y;
+		property float Speed;
 	public:
 		GameObject();
 		void Draw(RenderTarget& rt);
@@ -29,6 +30,11 @@ namespace GameModel {
 	public:
 		Power();
 	};
+	public ref class Behavior {
+	public:
+	public:
+		Behavior();
+	};
 	public ref class Beast : public GameObject {
 	public:
 		property String* Name; // usaremos el String de la libreria SFML
@@ -36,9 +42,9 @@ namespace GameModel {
 		property int Health;
 		property int Defense;
 		property int Attack;
-		property int Speed;
 		property int Level;
 		property int Exp;
+		property Behavior^ Mind;
 	public:
 		Beast();
 	};

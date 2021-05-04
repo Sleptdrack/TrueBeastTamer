@@ -27,9 +27,15 @@ bool GameModel::GameObject::Contains(GameObject^ G) {
 GameModel::Power::Power(){
     throw gcnew System::NotImplementedException();
 }
+//adaptar constructor behavior cuando se implemente
+GameModel::Behavior::Behavior()
+{
+    throw gcnew System::NotImplementedException();
+}
 
 GameModel::Beast::Beast(){
     Name = new sf::String();
+    Mind = gcnew Behavior();
 }
 
 GameModel::Tamer::Tamer(float x, float y){
