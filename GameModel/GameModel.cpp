@@ -1,7 +1,6 @@
 #include "pch.h"
 
 #include "GameModel.h"
-
 GameModel::GameObject::GameObject(){
     Sprite = new sf::Sprite();
     Texture = new sf::Texture();
@@ -34,6 +33,8 @@ GameModel::Behavior::Behavior()
 }
 
 GameModel::Beast::Beast(){
+    Texture = new sf::Texture();
+    Sprite = new sf::Sprite();
     Name = new sf::String();
     Mind = gcnew Behavior();
 }
@@ -42,6 +43,16 @@ GameModel::Tamer::Tamer(float x, float y){
     Username = new String();
     Password = new String();
     Bag = gcnew GameModel::Bag();
+    X = x;
+    Y = y;
+    Texture = new sf::Texture();
+    Sprite = new sf::Sprite();
+    Texture->loadFromFile("../Imagenes/Tamer.png");
+    Sprite->setTexture(*Texture, true);
+    Sprite->setScale(TileSize / 555, TileSize / 898);
+    Sprite->setPosition(X, Y);
+    Length = TileSize;
+    Height = TileSize;
 }
 
 GameModel::Bag::Bag(){
@@ -49,18 +60,24 @@ GameModel::Bag::Bag(){
 }
 
 GameModel::Store::Store(float x, float y){
+    Texture = new sf::Texture();
+    Sprite = new sf::Sprite();
     X = x;
     Y = y;
     Salesman = gcnew NPC();
 }
 
 GameModel::Hospital::Hospital(float x, float y) {
+    Texture = new sf::Texture();
+    Sprite = new sf::Sprite();
     X = x;
     Y = y;
     Nurse = gcnew NPC();
 }
 
 GameModel::Grass::Grass(){
+    Texture = new sf::Texture();
+    Sprite = new sf::Sprite();
     Height = TileSize;
     Length = TileSize;
     Texture->loadFromFile("../Imagenes/Grass.png");//imagen es 500X500px
@@ -136,7 +153,12 @@ GameModel::Map::Map(int ng, int nn){
     //crear diagrama de aparicion
 }
 void GameModel::Map::Draw(RenderTarget& rt){
-    throw gcnew System::NotImplementedException();
+    for (int i = 0; i < Garden->Count; i++) {
+        Garden[i]->Draw(rt);
+    }
+    Hospital->Draw(rt);
+    Store->Draw(rt);
+    Player->Draw(rt);
 }
 
 

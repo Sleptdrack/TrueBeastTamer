@@ -1,5 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <stdio.h>
+#include <stdlib.h>
+#include<time.h>
 const float TileSize = 50;
 using namespace System::Collections::Generic;
 using namespace sf;

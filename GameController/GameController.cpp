@@ -1,7 +1,6 @@
 #include "pch.h"
 
 #include "GameController.h"
-
 void GameController::Movement::Move(GameObject^ G, Time t){
 	if (Keyboard::isKeyPressed(Keyboard::W)) {
 		G->Y -= G->Speed * G->Height * t.asSeconds();
