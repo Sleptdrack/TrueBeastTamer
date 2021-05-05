@@ -1,5 +1,5 @@
 #include "pch.h"
-
+#include <SFML/Graphics.hpp>
 #include "GameModel.h"
 GameModel::GameObject::GameObject(){
     Sprite = new sf::Sprite();
