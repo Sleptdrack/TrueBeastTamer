@@ -27,9 +27,9 @@ int main(array<System::String^>^ args) {
         if (Keyboard::isKeyPressed(Keyboard::Enter)) {
             window.close();
         }
-        Movement::Move(P->Player, t);
+        //Movement::Move(P->Player, t);
         window.clear();
-        P->Draw(window);
+        //P->Draw(window);
         window.display();
     }
 
