@@ -13,13 +13,11 @@ int main(array<System::String^>^ args) {
     Map^ P = gcnew Map(10, 0);
     Time t;
     Clock clk;
-    Garden^ G = gcnew Garden(100, 100, 3);
-    sf::RenderWindow window(sf::VideoMode(600, 200), "TrueBeastTamer"/*, sf::Style::Fullscreen*/);
+    sf::RenderWindow window(sf::VideoMode(400, 200), "TrueBeastTamer"/*, sf::Style::Fullscreen*/);
     while (window.isOpen())
     {
         t = clk.getElapsedTime();
         clk.restart();
-        //window.setView(View);
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -29,9 +27,9 @@ int main(array<System::String^>^ args) {
         if (Keyboard::isKeyPressed(Keyboard::Enter)) {
             window.close();
         }
-        //Movement::Move(P->Player, t);
+        Movement::Move(P->Player, t);
         window.clear();
-        //P->Draw(window);
+        P->Draw(window);
         window.display();
     }
 
