@@ -4,8 +4,10 @@
 #include <stdlib.h>
 #include<time.h>
 #include "Map.h"
+#include "Movement.h"
 using namespace sf;
 using namespace System;
+using namespace GameModel;
 int main() {
     float x = 50, y = 0;
     View View;

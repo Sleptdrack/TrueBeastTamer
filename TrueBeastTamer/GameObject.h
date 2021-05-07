@@ -5,19 +5,22 @@
 #include<time.h>
 const float TileSize = 50;
 using namespace sf;
-public ref class GameObject{
-public:
-	property Sprite* Sprite;
-	property Texture* Texture;
-	property float Height;
-	property float Length;
-	property float X;
-	property float Y;
-	property float Speed;
-public:
-	GameObject();
-	void Draw(RenderTarget& rt);
-	void Move(float x, float y);
-	bool Contains(GameObject^ G);
-};
+namespace GameModel {
+	public ref class GameObject {
+	public:
+		property Sprite* Sprite;
+		property Texture* Texture;
+		property float Height;
+		property float Length;
+		property float X;
+		property float Y;
+		property float Speed;
+	public:
+		GameObject();
+		void Draw(RenderTarget& rt);
+		void Move(float x, float y);
+		bool Contains(GameObject^ G);
+	};
+}
+
 

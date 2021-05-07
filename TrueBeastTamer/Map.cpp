@@ -1,11 +1,11 @@
 #include "pch.h"
 #include "Map.h"
 
-Map::Map(int ng, int nn){
+GameModel::Map::Map(int ng, int nn){
     NumGarden = ng;
     NumNPC = nn;
     //Obstacle = gcnew List<Obstacle^>();
-    LGarden = gcnew List<Garden^>();
+    Garden = gcnew List<GameModel::Garden^>();
     //Algoritmo para ubicar garden
     for (int i = 0; i < NumGarden; i++) {
         int F;
@@ -15,14 +15,14 @@ Map::Map(int ng, int nn){
             F = 0;
             x = rand() % (1920 - (int)(p * TileSize));//posicion X
             y = rand() % (1080 - (int)(p * TileSize));//posicion Y
-            Garden^ gr = gcnew Garden((float)x, (float)y, p);
-            for (int u = 0; u < LGarden->Count; u++) {
-                if (LGarden[u]->Contains(gr)) {
+            GameModel::Garden^ gr = gcnew GameModel::Garden((float)x, (float)y, p);
+            for (int u = 0; u < Garden->Count; u++) {
+                if (Garden[u]->Contains(gr)) {
                     F += 1;
                 }
             }
             if (F == 0) {
-                LGarden->Add(gr);
+                Garden->Add(gr);
             }
         } while (F > 0);
     }
@@ -33,9 +33,9 @@ Map::Map(int ng, int nn){
     //crear diagrama de aparicion
 }
 
-void Map::Draw(RenderTarget& rt){
-    for (int i = 0; i < LGarden->Count; i++) {
-        LGarden[i]->Draw(rt);
+void GameModel::Map::Draw(RenderTarget& rt){
+    for (int i = 0; i < Garden->Count; i++) {
+        Garden[i]->Draw(rt);
     }
     //Hospital->Draw(rt);
     //Store->Draw(rt);

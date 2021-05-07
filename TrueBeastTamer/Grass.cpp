@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Grass.h"
 
-Grass::Grass(){
+GameModel::Grass::Grass(){
     SpawnRate = 0;
     Texture = new sf::Texture();
     Sprite = new sf::Sprite();
