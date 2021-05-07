@@ -63,15 +63,21 @@ GameModel::Store::Store(float x, float y){
     Texture = new sf::Texture();
     Sprite = new sf::Sprite();
     X = x;
-    Y = y;
+    Y = y;    
     Salesman = gcnew NPC();
 }
 
 GameModel::Hospital::Hospital(float x, float y) {
     Texture = new sf::Texture();
     Sprite = new sf::Sprite();
+    Texture->loadFromFile("../Imagenes/Hospital.png"); //Esta imagen es de 160 * 140
+    Sprite->setTexture(*Texture, true);
     X = x;
     Y = y;
+    Length = 100;
+    Height = 100;
+    Sprite->setScale(Length / 160, Height / 140);
+    Sprite->setPosition(X, Y);
     Nurse = gcnew NPC();
 }
 
