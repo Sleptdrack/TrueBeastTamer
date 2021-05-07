@@ -3,17 +3,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include<time.h>
-#include "GameObject.h"
+#include "Map.h"
 using namespace sf;
 using namespace System;
 int main() {
     float x = 50, y = 0;
-    //Map^ P = gcnew Map(10, 0);
     View View;
     Time t;
     Clock clk;
     Texture T;
-    GameObject^ P = gcnew GameObject();
+    Map^ P = gcnew Map(10,0);
     sf::RenderWindow window(sf::VideoMode(1000, 800), "SFML works!"/*,sf::Style::Fullscreen*/);
     while (window.isOpen())
     {

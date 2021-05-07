@@ -1,6 +1,9 @@
 #pragma once
 #include "GameObject.h"
-ref class Grass : public GameObject{
-
+public ref class Grass : public GameObject{
+public:
+	property int SpawnRate;
+public:
+	Grass();
 };
 

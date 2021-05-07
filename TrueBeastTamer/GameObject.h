@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include<time.h>
+const float TileSize = 50;
 using namespace sf;
 public ref class GameObject{
 public:
