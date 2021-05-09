@@ -23,9 +23,13 @@ int main() {
     Map^ M = gcnew Map(10,0);
     //Log in screen
     LogInSc^ LI = gcnew LogInSc();
+    bool ready = false;
     //
-
-    sf::RenderWindow window(sf::VideoMode(800,800), "TrueBeastTamer"/*,sf::Style::Fullscreen*/);
+    LI->Log(&ready);
+    sf::RenderWindow window;
+    if (ready) {
+        window.create(sf::VideoMode(800, 800), "TrueBeastTamer", sf::Style::Fullscreen);
+    }
     while (window.isOpen())
     {
 
@@ -36,15 +40,13 @@ int main() {
         {
             if (event.type == sf::Event::Closed) {
                 window.close();
-            }                
-            LI->Fill(event, window);
+            }
         }
         if (Keyboard::isKeyPressed(Keyboard::Enter)) {
             window.close();
         }
         //Movement::Move(P->Player, t);
         window.clear();
-        //LI->Draw(window);
         M->Draw(window);
         window.display();
     }

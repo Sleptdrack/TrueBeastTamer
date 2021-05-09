@@ -24,15 +24,16 @@ GameView::LogInSc::LogInSc(){
     Screen->Add(U1);
     Screen->Add(P);
     Screen->Add(P1);
+    W = new sf::RenderWindow(sf::VideoMode(400, 400), "Log In");
 }
 
-void GameView::LogInSc::Fill(sf::Event e,sf::RenderWindow& w)
+void GameView::LogInSc::Fill(sf::Event e)
 {
-    if (Screen->Word[2]->Click(w)) {
+    if (Screen->Word[2]->Click(*W)) {
         Screen->Word[2]->on = true;
         Screen->Word[4]->on = false;
     }
-    if (Screen->Word[4]->Click(w)) {
+    if (Screen->Word[4]->Click(*W)) {
         Screen->Word[4]->on = true;
         Screen->Word[2]->on = false;
     }
@@ -61,7 +62,32 @@ void GameView::LogInSc::Fill(sf::Event e,sf::RenderWindow& w)
 
 }
 
-void GameView::LogInSc::Draw(sf::RenderTarget& r)
+void GameView::LogInSc::Draw()
 {
-    Screen->Draw(r);
+    Screen->Draw(*W);
+}
+
+void GameView::LogInSc::Log(bool *r)
+{
+    while (W->isOpen())
+    {
+        sf::Event event;
+        while (W->pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed) {
+                W->close();
+            }
+            Fill(event);
+        }
+        if (Keyboard::isKeyPressed(Keyboard::Enter)) {
+            W->close();
+        }
+        if (Screen->Word[0]->Click(*W)) {
+            *r = true;
+            W->close();
+        }
+        W->clear();
+        Draw();
+        W->display();
+    }
 }
