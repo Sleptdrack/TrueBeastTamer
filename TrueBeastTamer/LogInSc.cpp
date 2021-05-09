@@ -69,6 +69,9 @@ void GameView::LogInSc::Draw()
 
 void GameView::LogInSc::Log(bool *r)
 {
+    sf::RenderWindow error;
+    sf::String* e1 = new sf::String("Player not found");
+    GameView::Word^ E1 = gcnew GameView::Word(50, 50, e1, 24, sf::Color::Red);
     while (W->isOpen())
     {
         sf::Event event;
@@ -83,8 +86,23 @@ void GameView::LogInSc::Log(bool *r)
             W->close();
         }
         if (Screen->Word[0]->Click(*W)) {
-            *r = true;
-            W->close();
+            if (*U == (sf::String)"Hola" && *P == (sf::String)"password") {
+                *r = true;
+                W->close();
+            }
+            else {
+                W->setActive(false);
+                error.create(sf::VideoMode(400, 200), "ERROR");
+                while (error.isOpen()) {
+                    if (E1->Click(error)) {
+                        error.close();
+                        W->setActive(true);
+                    }
+                    error.clear();
+                    E1->Draw(error);
+                    error.display();
+                }
+            }
         }
         W->clear();
         Draw();
