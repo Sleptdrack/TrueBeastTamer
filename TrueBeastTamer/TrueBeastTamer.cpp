@@ -6,7 +6,8 @@
 #include<time.h>
 #include "Map.h"
 #include "Movement.h"
-#include "Word.h"
+#include "Screen.h"
+#include "LogInSc.h"
 #include <iostream>
 using namespace sf;
 using namespace System;
@@ -19,30 +20,32 @@ int main() {
     View View;
     Time t;
     Clock clk;
-    Map^ P = gcnew Map(10,0);
-    sf::String* tst = new sf::String("Hola");
-    Word^ T = gcnew Word(50,50,tst, 24, sf::Color::Red);
-    sf::RenderWindow window(sf::VideoMode(1000, 800), "SFML works!"/*,sf::Style::Fullscreen*/);
+    Map^ M = gcnew Map(10,0);
+    //Log in screen
+    LogInSc^ LI = gcnew LogInSc();
+    //
+
+    sf::RenderWindow window(sf::VideoMode(800,800), "TrueBeastTamer"/*,sf::Style::Fullscreen*/);
     while (window.isOpen())
     {
+
         t = clk.getElapsedTime();
         clk.restart();
         sf::Event event;
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
+            if (event.type == sf::Event::Closed) {
                 window.close();
+            }                
+            LI->Fill(event, window);
         }
         if (Keyboard::isKeyPressed(Keyboard::Enter)) {
             window.close();
         }
         //Movement::Move(P->Player, t);
-        if (T->Click(window)) {
-            T->Move(T->X + 50, T->Y + 50);
-        }
         window.clear();
-        P->Draw(window);
-        T->Draw(window);
+        //LI->Draw(window);
+        M->Draw(window);
         window.display();
     }
 

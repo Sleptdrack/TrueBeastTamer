@@ -138,10 +138,12 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Garden.h" />
     <ClInclude Include="Grass.h" />
+    <ClInclude Include="LogInSc.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Movement.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Screen.h" />
     <ClInclude Include="Word.h" />
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +152,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Garden.cpp" />
     <ClCompile Include="Grass.cpp" />
+    <ClCompile Include="LogInSc.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Movement.cpp" />
     <ClCompile Include="pch.cpp">
@@ -158,6 +161,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Screen.cpp" />
     <ClCompile Include="TrueBeastTamer.cpp" />
     <ClCompile Include="Word.cpp" />
   </ItemGroup>

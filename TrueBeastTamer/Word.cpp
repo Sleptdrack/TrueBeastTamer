@@ -7,6 +7,7 @@ GameView::Word::Word(float x, float y, String* T, int size, sf::Color c){
     Color = new sf::Color(c);
     SB = new sf::SoundBuffer();
     S = new sf::Sound();
+    on = false;
     Size = size;
     X = x;
     Y = y;
@@ -44,4 +45,9 @@ bool GameView::Word::Click(sf::RenderWindow& rt){
         Text->setFillColor(*Color);
     }
     return false;
+}
+
+void GameView::Word::UpdateString(sf::String* T)
+{
+    Text->setString(*T);
 }
