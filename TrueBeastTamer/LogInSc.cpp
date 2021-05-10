@@ -71,7 +71,9 @@ void GameView::LogInSc::Log(bool *r)
 {
     sf::RenderWindow error;
     sf::String* e1 = new sf::String("Player not found");
-    GameView::Word^ E1 = gcnew GameView::Word(50, 50, e1, 24, sf::Color::Red);
+    sf::String* e2 = new sf::String("close");
+    GameView::Word^ E1 = gcnew GameView::Word(60, 30, e1, 24, sf::Color::Red);
+    GameView::Word^ E2 = gcnew GameView::Word(140, 80, e2, 24, sf::Color::Red);
     while (W->isOpen())
     {
         sf::Event event;
@@ -92,14 +94,15 @@ void GameView::LogInSc::Log(bool *r)
             }
             else {
                 W->setActive(false);
-                error.create(sf::VideoMode(400, 200), "ERROR");
+                error.create(sf::VideoMode(350, 150),"", sf::Style::None);
                 while (error.isOpen()) {
-                    if (E1->Click(error)) {
+                    if (E2->Click(error)) {
                         error.close();
                         W->setActive(true);
                     }
                     error.clear();
                     E1->Draw(error);
+                    E2->Draw(error);
                     error.display();
                 }
             }
