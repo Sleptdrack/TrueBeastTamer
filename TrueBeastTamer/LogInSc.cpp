@@ -107,6 +107,10 @@ void GameView::LogInSc::Log(bool *r)
                 }
             }
         }
+        if (Screen->Word[1]->Click(*W)) {
+            //check if username already taken
+            //create new user
+        }
         W->clear();
         Draw();
         W->display();
