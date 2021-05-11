@@ -104,12 +104,16 @@ void GameView::LogInSc::Log(bool *r)
                         if (event.type == sf::Event::Closed) {
                             *U = (sf::String)"";
                             *P = (sf::String)"";
+                            Screen->Word[3]->UpdateString(U);
+                            Screen->Word[5]->UpdateString(P);
                            error.close();
                         }
                     }
                     if (E2->Click(error)) {
                         *U = (sf::String)"";
                         *P = (sf::String)"";
+                        Screen->Word[3]->UpdateString(U);
+                        Screen->Word[5]->UpdateString(P);
                         error.close();
                         W->setActive(true);
                     }

@@ -27,7 +27,19 @@ GameModel::Map::Map(int ng, int nn){
         } while (F > 0);
     }
     //NPC = gcnew List<NPC^>();
-    //Hospital = gcnew Hospital(0, 0);//actualizar valores despues
+    //Algoritmo para Hospital
+    Hospital = gcnew GameModel::Hospital(0,0);
+    int FH;
+    do {
+        FH = 0;
+        int Hx, Hy;
+        Hx= rand() % (1920 - (int)Hospital->Length);
+        Hy = rand() % (1080 - (int)Hospital->Height);
+        Hospital->Move(Hx, Hy);
+        for (int i = 0; i < Garden->Count; i++) {
+            if (Garden[i]->Contains(Hospital))FH += 1;
+        }
+    }while(FH > 0);
     //Store = gcnew Store(0, 0);//actualizar valores
     //Player = gcnew Tamer(200, 200);//actualizar valores
     //crear diagrama de aparicion
@@ -37,7 +49,7 @@ void GameModel::Map::Draw(RenderTarget& rt){
     for (int i = 0; i < Garden->Count; i++) {
         Garden[i]->Draw(rt);
     }
-    //Hospital->Draw(rt);
+    Hospital->Draw(rt);
     //Store->Draw(rt);
     //Player->Draw(rt);
 }

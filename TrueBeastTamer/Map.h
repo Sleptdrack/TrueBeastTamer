@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include<time.h>
 #include "Garden.h"
+#include "Hospital.h"
 using namespace System::Collections::Generic;
 using namespace sf;
 namespace GameModel {
@@ -14,7 +15,7 @@ namespace GameModel {
 		//property List<Obstacle^>^ Obstacle;
 		property List<Garden^>^ Garden;
 		//property List<NPC^>^ NPC;
-		//property Hospital^ Hospital;
+		property Hospital^ Hospital;
 		//property Store^ Store;
 		//property Tamer^ Player;
 	public:
