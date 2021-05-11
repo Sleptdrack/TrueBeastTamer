@@ -85,7 +85,7 @@ void GameView::LogInSc::Log(bool *r)
             }
             Fill(event);
         }
-        if (Screen->Word[0]->Click(*W)|| Keyboard::isKeyPressed(Keyboard::Enter)) {
+        if (Screen->Word[0]->Click(*W)) {
             if (*U == (sf::String)"Hola" && *P == (sf::String)"password") {
                 *r = true;
                 W->close();
