@@ -102,10 +102,14 @@ void GameView::LogInSc::Log(bool *r)
                 while (error.isOpen()) {
                     while (error.pollEvent(event)) {
                         if (event.type == sf::Event::Closed) {
+                            *U = (sf::String)"";
+                            *P = (sf::String)"";
                            error.close();
                         }
                     }
                     if (E2->Click(error)) {
+                        *U = (sf::String)"";
+                        *P = (sf::String)"";
                         error.close();
                         W->setActive(true);
                     }
