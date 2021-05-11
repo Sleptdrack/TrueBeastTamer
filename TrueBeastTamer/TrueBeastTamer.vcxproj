@@ -142,6 +142,7 @@
     <ClInclude Include="LogInSc.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Movement.h" />
+    <ClInclude Include="NPC.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Screen.h" />
@@ -157,6 +158,7 @@
     <ClCompile Include="LogInSc.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Movement.cpp" />
+    <ClCompile Include="NPC.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
