@@ -14,6 +14,7 @@ namespace GameView {
 		property float Length;
 		property float Height;
 		property sf::RectangleShape* Rect;
+		property sf::Texture* Texture;
 		property float X;
 		property float Y;
 	public:

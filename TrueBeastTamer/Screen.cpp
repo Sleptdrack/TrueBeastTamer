@@ -3,12 +3,15 @@
 
 GameView::Screen::Screen(float x, float y, float l, float h){
     Word = gcnew List<GameView::Word^>();
+    Texture = new sf::Texture();
+    //Texture->loadFromFile("../Imagenes/Wood.JPG");
     X = x;
     Y = y;
     Length = l;
     Height = h;
     Rect = new sf::RectangleShape(sf::Vector2f(Length, Height));
-    Rect->setFillColor(sf::Color::Green);
+    //Rect->setTexture(Texture);
+    Rect->setFillColor(sf::Color::Transparent);
 }
 
 void GameView::Screen::Add(GameView::Word^ w)

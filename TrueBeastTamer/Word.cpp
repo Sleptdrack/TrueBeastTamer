@@ -17,12 +17,17 @@ GameView::Word::Word(float x, float y, String* T, int size, sf::Color c){
     Text->setCharacterSize(size);
     Text->setFillColor(*Color);
     Text->setPosition(X, Y);
+    Rect = new RectangleShape();
+    Rect->setSize(sf::Vector2f(Text->getGlobalBounds().width+5, Text->getGlobalBounds().height+7));
+    Rect->setPosition(X, Y);
+    Rect->setFillColor(sf::Color::Transparent);
     SB->loadFromFile("../Sound/Click.WAV");
     S->setBuffer(*SB);
     S->setVolume(50);
 }
 
 void GameView::Word::Draw(sf::RenderTarget& rt){
+    rt.draw(*Rect);
     rt.draw(*Text);
 }
 
@@ -50,4 +55,10 @@ bool GameView::Word::Click(sf::RenderWindow& rt){
 void GameView::Word::UpdateString(sf::String* T)
 {
     Text->setString(*T);
+    Rect->setSize(sf::Vector2f(Text->getGlobalBounds().width+5, Text->getGlobalBounds().height+7));
+}
+
+void GameView::Word::RectColor(sf::Color c)
+{
+    Rect->setFillColor(c);
 }

@@ -2,7 +2,7 @@
 #include "LogInSc.h"
 
 GameView::LogInSc::LogInSc(){
-    Screen = gcnew GameView::Screen(0,0,400,400);
+    Screen = gcnew GameView::Screen(0,0,400,200);
     bool slog = true;
     U = new sf::String("");
     P = new sf::String("");
@@ -12,19 +12,19 @@ GameView::LogInSc::LogInSc(){
     sf::String* w4 = new sf::String("");
     sf::String* w5 = new sf::String("Password");
     sf::String* w6 = new sf::String("");
-    GameView::Word^ Login = gcnew GameView::Word(50, 300, w1, 24, sf::Color::Red);
-    GameView::Word^ SignUp = gcnew GameView::Word(250, 300, w2, 24, sf::Color::Red);
-    GameView::Word^ U = gcnew GameView::Word(50, 100, w3, 24, sf::Color::Red);
-    GameView::Word^ U1 = gcnew GameView::Word(100, 150, w4, 24, sf::Color::Blue);
-    GameView::Word^ P = gcnew GameView::Word(50, 200, w5, 24, sf::Color::Red);
-    GameView::Word^ P1 = gcnew GameView::Word(100, 250, w6, 24, sf::Color::Blue);
+    GameView::Word^ Login = gcnew GameView::Word(50, 125, w1, 24, sf::Color::Red);
+    GameView::Word^ SignUp = gcnew GameView::Word(250, 125, w2, 24, sf::Color::Red);
+    GameView::Word^ U = gcnew GameView::Word(50, 25, w3, 24, sf::Color::Red);
+    GameView::Word^ U1 = gcnew GameView::Word(U->Rect->getGlobalBounds().width+50+20, 25, w4, 24, sf::Color::Blue);
+    GameView::Word^ P = gcnew GameView::Word(50, 75, w5, 24, sf::Color::Red);
+    GameView::Word^ P1 = gcnew GameView::Word(P->Rect->getGlobalBounds().width+50+20, 75, w6, 24, sf::Color::Blue);
     Screen->Add(Login);
     Screen->Add(SignUp);
     Screen->Add(U);
     Screen->Add(U1);
     Screen->Add(P);
     Screen->Add(P1);
-    W = new sf::RenderWindow(sf::VideoMode(400, 400), "Log In");
+    W = new sf::RenderWindow(sf::VideoMode(Screen->Length, Screen->Height), "Log In");
 }
 
 void GameView::LogInSc::Fill(sf::Event e)
@@ -71,6 +71,7 @@ void GameView::LogInSc::Log(bool *r)
 {
     sf::RenderWindow error;
     sf::String* e1 = new sf::String("Player not found");
+    sf::String* e3 = new sf::String("Wrong Password");
     sf::String* e2 = new sf::String("close");
     GameView::Word^ E1 = gcnew GameView::Word(60, 30, e1, 24, sf::Color::Red);
     GameView::Word^ E2 = gcnew GameView::Word(140, 80, e2, 24, sf::Color::Red);
@@ -84,18 +85,26 @@ void GameView::LogInSc::Log(bool *r)
             }
             Fill(event);
         }
-        if (Keyboard::isKeyPressed(Keyboard::Enter)) {
-            W->close();
-        }
-        if (Screen->Word[0]->Click(*W)) {
+        if (Screen->Word[0]->Click(*W)|| Keyboard::isKeyPressed(Keyboard::Enter)) {
             if (*U == (sf::String)"Hola" && *P == (sf::String)"password") {
                 *r = true;
                 W->close();
             }
             else {
+                if (*U == (sf::String)"Hola") {
+                    E1->UpdateString(e3);
+                }
+                else {
+                    E1->UpdateString(e1);
+                }
                 W->setActive(false);
-                error.create(sf::VideoMode(350, 150),"", sf::Style::None);
+                error.create(sf::VideoMode(350, 150),"", sf::Style::Close);
                 while (error.isOpen()) {
+                    while (error.pollEvent(event)) {
+                        if (event.type == sf::Event::Closed) {
+                           error.close();
+                        }
+                    }
                     if (E2->Click(error)) {
                         error.close();
                         W->setActive(true);

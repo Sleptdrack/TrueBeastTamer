@@ -11,6 +11,7 @@ namespace GameView {
 	public:
 		property Font* Font;
 		property sf::Text* Text;
+		property sf::RectangleShape* Rect;
 		property int Size;
 		property Color* Color;
 		property float X;
@@ -24,6 +25,7 @@ namespace GameView {
 		void Move(float x, float y);
 		bool Click(sf::RenderWindow& rt);
 		void UpdateString(sf::String* T);
+		void RectColor(sf::Color c);
 	};
 }
 
