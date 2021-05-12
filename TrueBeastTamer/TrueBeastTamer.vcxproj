@@ -135,6 +135,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena.h" />
+    <ClInclude Include="Beast.h" />
+    <ClInclude Include="Behavior.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Garden.h" />
     <ClInclude Include="Grass.h" />
@@ -143,7 +145,9 @@
     <ClInclude Include="Map.h" />
     <ClInclude Include="Movement.h" />
     <ClInclude Include="NPC.h" />
+    <ClInclude Include="Obstacle.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Power.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="Word.h" />
@@ -151,6 +155,8 @@
   <ItemGroup>
     <ClCompile Include="Arena.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="Beast.cpp" />
+    <ClCompile Include="Behavior.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Garden.cpp" />
     <ClCompile Include="Grass.cpp" />
@@ -159,12 +165,14 @@
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Movement.cpp" />
     <ClCompile Include="NPC.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Power.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="TrueBeastTamer.cpp" />
     <ClCompile Include="Word.cpp" />
