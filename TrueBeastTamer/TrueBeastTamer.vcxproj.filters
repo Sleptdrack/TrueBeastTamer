@@ -77,6 +77,9 @@
     <ClInclude Include="Tamer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Bag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TrueBeastTamer.cpp">
@@ -137,6 +140,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Tamer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bag.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
