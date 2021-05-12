@@ -3,11 +3,10 @@
 
 #include "GameObject.h"
 namespace GameModel {
-	ref class Obstacle : public GameObject
-	{
+	public ref class Obstacle : public GameObject{
 		public:
-			bool Breakeable;
-			bool Harmful;
+			property bool Breakeable;
+			property bool Harmful;
 	};
 
 }

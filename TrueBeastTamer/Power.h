@@ -1,13 +1,14 @@
 #pragma once
-using namespace System;
+#include "pch.h"
+#include <SFML/Graphics.hpp>
 namespace GameModel {
 	public ref class Power
 	{
 
 		public:
-			int Type;
-			int Range;
-			String^ Name;
+			property int Type;
+			property int Range;
+			property sf::String* Name;
 
 	};
 }
