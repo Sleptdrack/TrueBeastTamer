@@ -20,11 +20,12 @@ namespace GameView {
 		property sf::Sound* S;
 		property bool on;
 	public:
-		Word(float x,float y,sf::String* T, int size,sf::Color c);
+		Word(float x,float y,sf::String T, int size,sf::Color c);
 		void Draw(sf::RenderTarget& rt);
 		void Move(float x, float y);
 		bool Click(sf::RenderWindow& rt);
-		void UpdateString(sf::String* T);
+		void UpdateString(sf::String T);
+		void Fill(sf::Event e, sf::String *U);
 		void RectColor(sf::Color c);
 	};
 }

@@ -6,18 +6,13 @@ GameView::LogInSc::LogInSc(){
     bool slog = true;
     U = new sf::String("");
     P = new sf::String("");
-    sf::String* w1 = new sf::String("Log in");
-    sf::String* w2 = new sf::String("Sign Up");
-    sf::String* w3 = new sf::String("Username");
-    sf::String* w4 = new sf::String("");
-    sf::String* w5 = new sf::String("Password");
-    sf::String* w6 = new sf::String("");
-    GameView::Word^ Login = gcnew GameView::Word(50, 125, w1, 24, sf::Color::Red);
-    GameView::Word^ SignUp = gcnew GameView::Word(250, 125, w2, 24, sf::Color::Red);
-    GameView::Word^ U = gcnew GameView::Word(50, 25, w3, 24, sf::Color::Red);
-    GameView::Word^ U1 = gcnew GameView::Word(U->Rect->getGlobalBounds().width+50+20, 25, w4, 24, sf::Color::Blue);
-    GameView::Word^ P = gcnew GameView::Word(50, 75, w5, 24, sf::Color::Red);
-    GameView::Word^ P1 = gcnew GameView::Word(P->Rect->getGlobalBounds().width+50+20, 75, w6, 24, sf::Color::Blue);
+
+    GameView::Word^ Login = gcnew GameView::Word(50, 125, (sf::String)"Log in", 24, sf::Color::Red);
+    GameView::Word^ SignUp = gcnew GameView::Word(250, 125, (sf::String)"Sign Up", 24, sf::Color::Red);
+    GameView::Word^ U = gcnew GameView::Word(50, 25, (sf::String)"Username", 24, sf::Color::Red);
+    GameView::Word^ U1 = gcnew GameView::Word(U->Rect->getGlobalBounds().width+50+20, 25, (sf::String)"", 24, sf::Color::Blue);
+    GameView::Word^ P = gcnew GameView::Word(50, 75, (sf::String)"Password", 24, sf::Color::Red);
+    GameView::Word^ P1 = gcnew GameView::Word(P->Rect->getGlobalBounds().width+50+20, 75, (sf::String)"", 24, sf::Color::Blue);
     Screen->Add(Login);
     Screen->Add(SignUp);
     Screen->Add(U);
@@ -38,26 +33,10 @@ void GameView::LogInSc::Fill(sf::Event e)
         Screen->Word[2]->on = false;
     }
     if (Screen->Word[2]->on) {
-        if (e.type == sf::Event::TextEntered) {
-            if (e.text.unicode == 8) {
-                *U = (sf::String)U->substring(0,U->getSize()-1);
-            }
-            else {
-                *U += e.text.unicode;
-            }
-            Screen->Word[3]->UpdateString(U);
-        }
+        Screen->Word[3]->Fill(e,U);
     }
     if (Screen->Word[4]->on) {
-        if (e.type == sf::Event::TextEntered) {
-            if (e.text.unicode == 8) {
-                *P = (sf::String)P->substring(0, P->getSize() - 1);
-            }
-            else {
-                *P += e.text.unicode;
-            }
-            Screen->Word[5]->UpdateString(P);
-        }
+        Screen->Word[5]->Fill(e, P);
     }
 
 }
@@ -72,9 +51,8 @@ void GameView::LogInSc::Log(bool *r)
     sf::RenderWindow error;
     sf::String* e1 = new sf::String("Player not found");
     sf::String* e3 = new sf::String("Wrong Password");
-    sf::String* e2 = new sf::String("close");
-    GameView::Word^ E1 = gcnew GameView::Word(60, 30, e1, 24, sf::Color::Red);
-    GameView::Word^ E2 = gcnew GameView::Word(140, 80, e2, 24, sf::Color::Red);
+    GameView::Word^ E1 = gcnew GameView::Word(60, 30, (sf::String)"", 24, sf::Color::Red);
+    GameView::Word^ E2 = gcnew GameView::Word(140, 80, (sf::String)"Close", 24, sf::Color::Red);
     while (W->isOpen())
     {
         sf::Event event;
@@ -92,28 +70,19 @@ void GameView::LogInSc::Log(bool *r)
             }
             else {
                 if (*U == (sf::String)"Hola") {
-                    E1->UpdateString(e3);
+                    E1->UpdateString(*e3);
                 }
                 else {
-                    E1->UpdateString(e1);
+                    E1->UpdateString(*e1);
                 }
                 W->setActive(false);
-                error.create(sf::VideoMode(350, 150),"", sf::Style::Close);
+                error.create(sf::VideoMode(350, 150),"", sf::Style::None);
                 while (error.isOpen()) {
-                    while (error.pollEvent(event)) {
-                        if (event.type == sf::Event::Closed) {
-                            *U = (sf::String)"";
-                            *P = (sf::String)"";
-                            Screen->Word[3]->UpdateString(U);
-                            Screen->Word[5]->UpdateString(P);
-                           error.close();
-                        }
-                    }
                     if (E2->Click(error)) {
                         *U = (sf::String)"";
                         *P = (sf::String)"";
-                        Screen->Word[3]->UpdateString(U);
-                        Screen->Word[5]->UpdateString(P);
+                        Screen->Word[3]->UpdateString(*U);
+                        Screen->Word[5]->UpdateString(*P);
                         error.close();
                         W->setActive(true);
                     }

@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Word.h"
 
-GameView::Word::Word(float x, float y, String* T, int size, sf::Color c){
+GameView::Word::Word(float x, float y, String T, int size, sf::Color c){
     Font = new sf::Font();
     Text = new sf::Text();
     Color = new sf::Color(c);
@@ -13,7 +13,7 @@ GameView::Word::Word(float x, float y, String* T, int size, sf::Color c){
     Y = y;
     Font->loadFromFile("../Font/Bullpen3D.ttf");
     Text->setFont(*Font);
-    Text->setString(*T);
+    Text->setString(T);
     Text->setCharacterSize(size);
     Text->setFillColor(*Color);
     Text->setPosition(X, Y);
@@ -52,10 +52,25 @@ bool GameView::Word::Click(sf::RenderWindow& rt){
     return false;
 }
 
-void GameView::Word::UpdateString(sf::String* T)
+void GameView::Word::UpdateString(sf::String T)
 {
-    Text->setString(*T);
+    Text->setString(T);
     Rect->setSize(sf::Vector2f(Text->getGlobalBounds().width+5, Text->getGlobalBounds().height+7));
+}
+
+void GameView::Word::Fill(sf::Event e,sf::String *U)
+{
+    if (e.type == sf::Event::TextEntered) {
+        if (e.text.unicode == 8) {
+            *U = (sf::String)U->substring(0, U->getSize() - 1);
+        }
+        else {
+            if (e.key.code != Keyboard::Enter) {
+                *U += e.text.unicode;
+            }
+        }
+        UpdateString(*U);
+    }
 }
 
 void GameView::Word::RectColor(sf::Color c)
