@@ -115,9 +115,6 @@
     <ClCompile Include="NPC.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Beast.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="Power.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -125,6 +122,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Behavior.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Beast.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
