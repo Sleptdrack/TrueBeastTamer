@@ -14,7 +14,7 @@ namespace GameModel {
         property int Exp;
     public:
         Beast();//falta implementar
-        void Leam();
+        void Learn();
 
 
     };

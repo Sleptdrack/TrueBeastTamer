@@ -6,7 +6,7 @@ GameModel::Beast::Beast()
 	throw gcnew System::NotImplementedException();
 }
 
-void GameModel::Beast::Leam()
+void GameModel::Beast::Learn()
 {
 	throw gcnew System::NotImplementedException();
 }
