@@ -135,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena.h" />
+    <ClInclude Include="Bag.h" />
     <ClInclude Include="Beast.h" />
     <ClInclude Include="Behavior.h" />
     <ClInclude Include="GameObject.h" />
@@ -151,11 +152,13 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="Store.h" />
+    <ClInclude Include="Tamer.h" />
     <ClInclude Include="Word.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Arena.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="Bag.cpp" />
     <ClCompile Include="Beast.cpp" />
     <ClCompile Include="Behavior.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -176,6 +179,7 @@
     <ClCompile Include="Power.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="Store.cpp" />
+    <ClCompile Include="Tamer.cpp" />
     <ClCompile Include="TrueBeastTamer.cpp" />
     <ClCompile Include="Word.cpp" />
   </ItemGroup>
