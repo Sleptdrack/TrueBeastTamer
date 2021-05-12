@@ -74,6 +74,9 @@
     <ClInclude Include="Store.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Tamer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TrueBeastTamer.cpp">
@@ -131,6 +134,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Store.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tamer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
