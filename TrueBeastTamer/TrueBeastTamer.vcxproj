@@ -150,6 +150,7 @@
     <ClInclude Include="Power.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Screen.h" />
+    <ClInclude Include="Store.h" />
     <ClInclude Include="Word.h" />
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +175,7 @@
     </ClCompile>
     <ClCompile Include="Power.cpp" />
     <ClCompile Include="Screen.cpp" />
+    <ClCompile Include="Store.cpp" />
     <ClCompile Include="TrueBeastTamer.cpp" />
     <ClCompile Include="Word.cpp" />
   </ItemGroup>
