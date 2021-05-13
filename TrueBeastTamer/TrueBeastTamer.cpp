@@ -18,8 +18,9 @@ int main() {
     srand(time(NULL));
     float x = 50, y = 0;
     View View;
-    Time t;
+    Time t,t1;
     Clock clk;
+    Clock c1;
     //Log in screen
     LogInSc^ LI = gcnew LogInSc();
     bool ready = false;
@@ -32,7 +33,7 @@ int main() {
     }
     while (window.isOpen())
     {
-
+        t1 = c1.getElapsedTime();
         t = clk.getElapsedTime();
         clk.restart();
         sf::Event event;
@@ -46,6 +47,10 @@ int main() {
             window.close();
         }
         Movement::Move(M->Player, t);
+        if (t1.asSeconds() > 1) {
+            Movement::Hunt(M);
+            c1.restart();
+        }
         window.clear();
         M->Draw(window);
         window.display();

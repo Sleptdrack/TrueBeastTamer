@@ -2,6 +2,7 @@
 #include "Garden.h"
 GameModel::Garden::Garden(float x, float y, int size){
     Grass = gcnew List<GameModel::Grass^>();
+    LBeast = gcnew List<Beast^>();
     X = x;
     Y = y;
     Size = size;
@@ -19,6 +20,9 @@ void GameModel::Garden::Draw(RenderTarget& rt){
     for (int i = 0; i < Grass->Count; i++) {
         Grass[i]->Draw(rt);
     }
+    for (int i = 0; i < LBeast->Count; i++) {
+        LBeast[i]->Draw(rt);
+    }
 }
 bool GameModel::Garden::Contains(GameObject^ G){
     bool f = false;
@@ -28,4 +32,22 @@ bool GameModel::Garden::Contains(GameObject^ G){
         }
     }
     return f;
+}
+void GameModel::Garden::Spawn(Tamer^ T){
+    int r = rand() % 100;
+    int v = 0;
+    for (int i = 0; i < Grass->Count; i++) {
+        v = 0;
+        if (Grass[i]->Contains(T) && r<= Grass[i]->SpawnRate) {
+            Beast^ b = gcnew Beast(Grass[i]->X, Grass[i]->Y);
+            for (int j = 0; j < LBeast->Count; j++) {
+                if (LBeast[j]->X == b->X && LBeast[j]->Y == b->Y) {
+                    v += 1;
+                }
+            }
+            if (v == 0) {
+                LBeast->Add(b);
+            }
+        }
+    }
 }

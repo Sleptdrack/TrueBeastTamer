@@ -4,16 +4,17 @@ namespace GameModel {
     public ref class Beast : public GameObject
     {
     public:
-        property sf::String* lName;
+        property sf::String* Name;
+        property sf::String* TagName;
         property int Type;
         property int Health;
-        property int Defence;
+        property int Defense;
         property int Attack;
         property int Speed;
         property int Level;
         property int Exp;
     public:
-        Beast();//falta implementar
+        Beast(float x, float y);//falta implementar
         void Learn();
 
 
