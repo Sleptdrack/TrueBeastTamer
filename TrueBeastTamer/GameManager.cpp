@@ -7,6 +7,9 @@ Tamer^ GameController::GameManager::ValidatePlayer(sf::String u, sf::String p)
     if (u == "cigreda" && p == "password") {
         T = gcnew Tamer(u, p);
     }
+    if (u == "GC" && p == "password") {
+        T = gcnew Tamer(u, p);
+    }
     // agregen sus usuarios
     return T;
 }
