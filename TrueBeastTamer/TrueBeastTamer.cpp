@@ -20,12 +20,12 @@ int main() {
     View View;
     Time t;
     Clock clk;
-    Map^ M = gcnew Map(10,0);
     //Log in screen
     LogInSc^ LI = gcnew LogInSc();
     bool ready = false;
-    //
     LI->Log(&ready);
+    //
+    Map^ M = gcnew Map(10, 0, LI->T);    
     sf::RenderWindow window;
     if (ready) {
         window.create(sf::VideoMode(800, 800), "TrueBeastTamer", sf::Style::Fullscreen);
@@ -45,7 +45,7 @@ int main() {
         if (Keyboard::isKeyPressed(Keyboard::Enter)) {
             window.close();
         }
-        //Movement::Move(P->Player, t);
+        Movement::Move(M->Player, t);
         window.clear();
         M->Draw(window);
         window.display();

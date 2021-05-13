@@ -2,11 +2,10 @@
 #include "LogInSc.h"
 
 GameView::LogInSc::LogInSc(){
-    Screen = gcnew GameView::Screen(0,0,400,200);
+    Screen = gcnew GameView::Screen(0,0,400,200,"Log in");
     bool slog = true;
     U = new sf::String("");
     P = new sf::String("");
-
     GameView::Word^ Login = gcnew GameView::Word(50, 125, (sf::String)"Log in", 24, sf::Color::Red);
     GameView::Word^ SignUp = gcnew GameView::Word(250, 125, (sf::String)"Sign Up", 24, sf::Color::Red);
     GameView::Word^ U = gcnew GameView::Word(50, 25, (sf::String)"Username", 24, sf::Color::Red);
@@ -19,31 +18,31 @@ GameView::LogInSc::LogInSc(){
     Screen->Add(U1);
     Screen->Add(P);
     Screen->Add(P1);
-    W = new sf::RenderWindow(sf::VideoMode(Screen->Length, Screen->Height), "Log In");
+    
 }
 
 void GameView::LogInSc::Fill(sf::Event e)
 {
-    if (Screen->Word[2]->Click(*W)) {
-        Screen->Word[2]->on = true;
-        Screen->Word[4]->on = false;
+    if (Screen->Word[3]->Click(*Screen->W)) {
+        Screen->Word[3]->on = true;
+        Screen->Word[5]->on = false;
     }
-    if (Screen->Word[4]->Click(*W)) {
-        Screen->Word[4]->on = true;
-        Screen->Word[2]->on = false;
+    if (Screen->Word[5]->Click(*Screen->W)) {
+        Screen->Word[5]->on = true;
+        Screen->Word[3]->on = false;
     }
-    if (Screen->Word[2]->on) {
-        Screen->Word[3]->Fill(e,U);
+    if (Screen->Word[3]->on) {
+        Screen->Word[4]->Fill(e,U);
     }
-    if (Screen->Word[4]->on) {
-        Screen->Word[5]->Fill(e, P);
+    if (Screen->Word[5]->on) {
+        Screen->Word[6]->Fill(e, P);
     }
 
 }
 
 void GameView::LogInSc::Draw()
 {
-    Screen->Draw(*W);
+    Screen->Draw(*Screen->W);
 }
 
 void GameView::LogInSc::Log(bool *r)
@@ -53,38 +52,32 @@ void GameView::LogInSc::Log(bool *r)
     sf::String* e3 = new sf::String("Wrong Password");
     GameView::Word^ E1 = gcnew GameView::Word(60, 30, (sf::String)"", 24, sf::Color::Red);
     GameView::Word^ E2 = gcnew GameView::Word(140, 80, (sf::String)"Close", 24, sf::Color::Red);
-    while (W->isOpen())
+    while (Screen->W->isOpen())
     {
         sf::Event event;
-        while (W->pollEvent(event))
+        while (Screen->W->pollEvent(event))
         {
-            if (event.type == sf::Event::Closed) {
-                W->close();
-            }
+            if (Screen->Word[0]->Click(*Screen->W))Screen->W->close();
             Fill(event);
         }
-        if (Screen->Word[0]->Click(*W)) {
-            if (*U == (sf::String)"Hola" && *P == (sf::String)"password") {
+        if (Screen->Word[1]->Click(*Screen->W)) {
+            T = GameController::GameManager::ValidatePlayer(*U, *P);
+            if (T!=nullptr) {
                 *r = true;
-                W->close();
+                Screen->W->close();
             }
             else {
-                if (*U == (sf::String)"Hola") {
-                    E1->UpdateString(*e3);
-                }
-                else {
-                    E1->UpdateString(*e1);
-                }
-                W->setActive(false);
+                E1->UpdateString(*e1);
+                Screen->W->setActive(false);
                 error.create(sf::VideoMode(350, 150),"", sf::Style::None);
                 while (error.isOpen()) {
                     if (E2->Click(error)) {
                         *U = (sf::String)"";
                         *P = (sf::String)"";
-                        Screen->Word[3]->UpdateString(*U);
-                        Screen->Word[5]->UpdateString(*P);
+                        Screen->Word[4]->UpdateString(*U);
+                        Screen->Word[6]->UpdateString(*P);
                         error.close();
-                        W->setActive(true);
+                        Screen->W->setActive(true);
                     }
                     error.clear();
                     E1->Draw(error);
@@ -93,12 +86,12 @@ void GameView::LogInSc::Log(bool *r)
                 }
             }
         }
-        if (Screen->Word[1]->Click(*W)) {
+        if (Screen->Word[2]->Click(*Screen->W)) {
             //check if username already taken
             //create new user
         }
-        W->clear();
+        Screen->W->clear();
         Draw();
-        W->display();
+        Screen->W->display();
     }
 }

@@ -1,7 +1,8 @@
 #include "pch.h"
 #include "Map.h"
 
-GameModel::Map::Map(int ng, int nn){
+GameModel::Map::Map(int ng, int nn,Tamer^ p){
+    Player = p;
     NumGarden = ng;
     NumNPC = nn;
     //Obstacle = gcnew List<Obstacle^>();
@@ -41,7 +42,16 @@ GameModel::Map::Map(int ng, int nn){
         }
     }while(FH > 0);
     //Store = gcnew Store(0, 0);//actualizar valores
-    //Player = gcnew Tamer(200, 200);//actualizar valores
+    int FP;
+    do {
+        FP = 0;
+        Player->Move(rand() % (1920 - (int)Player->Length), rand() % (1080 - (int)Player->Height));
+        for (int i = 0; i < Garden->Count; i++) {
+            if (Garden[i]->Contains(Player))FP += 1;
+        }
+        if (Hospital->Contains(Player))FP += 1;
+    } while (FP > 0);
+    
     //crear diagrama de aparicion
 }
 
@@ -51,5 +61,5 @@ void GameModel::Map::Draw(RenderTarget& rt){
     }
     Hospital->Draw(rt);
     //Store->Draw(rt);
-    //Player->Draw(rt);
+    Player->Draw(rt);
 }

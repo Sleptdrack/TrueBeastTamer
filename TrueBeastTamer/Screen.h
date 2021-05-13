@@ -10,6 +10,7 @@ using namespace System::Collections::Generic;
 namespace GameView {
 	public ref class Screen{
 	public:
+		property sf::RenderWindow* W;
 		property List<Word^>^ Word;
 		property float Length;
 		property float Height;
@@ -18,7 +19,7 @@ namespace GameView {
 		property float X;
 		property float Y;
 	public:
-		Screen(float x,float y,float l,float h);
+		Screen(float x,float y,float l,float h,sf::String n);
 		void Add(GameView::Word^ w);
 		void Draw(RenderTarget& rt);
 	};

@@ -5,6 +5,7 @@
 #include<time.h>
 #include "Garden.h"
 #include "Hospital.h"
+#include "Tamer.h"
 using namespace System::Collections::Generic;
 using namespace sf;
 namespace GameModel {
@@ -17,9 +18,9 @@ namespace GameModel {
 		//property List<NPC^>^ NPC;
 		property Hospital^ Hospital;
 		//property Store^ Store;
-		//property Tamer^ Player;
+		property Tamer^ Player;
 	public:
-		Map(int ng, int nn);
+		Map(int ng, int nn,Tamer^ p);
 		void Draw(RenderTarget& rt);
 	};
 }
