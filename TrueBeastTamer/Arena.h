@@ -4,8 +4,21 @@
 #include <stdlib.h>
 #include<time.h>
 #include "GameObject.h"
+#include "Screen.h"
+#include "Map.h"
+#include "Beast.h"
+#include "Movement.h"
+using namespace GameController;
+using namespace GameView;
 namespace GameModel {
 	public ref class Arena: public GameObject{
+	public:
+		property Screen^ Screen;
+		property Beast^ B;
+	public:
+		Arena(Beast^ b);
+		void Draw();
+		void Show(Map^ M);
 	};
 }
 

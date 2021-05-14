@@ -17,11 +17,4 @@ void GameController::Movement::Move(GameObject^ G, Time t){
 	G->Move(G->X, G->Y);
 }
 
-void GameController::Movement::Hunt(Map^ M)
-{
-	for (int i = 0; i < M->Garden->Count; i++) {
-		M->Garden[i]->Spawn(M->Player);
-			//activar arena
-		
-	}
-}
+

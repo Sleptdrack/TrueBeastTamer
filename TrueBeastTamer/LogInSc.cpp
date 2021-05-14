@@ -52,8 +52,7 @@ void GameView::LogInSc::Log(bool *r)
     sf::String* e3 = new sf::String("Wrong Password");
     GameView::Word^ E1 = gcnew GameView::Word(60, 30, (sf::String)"", 24, sf::Color::Red);
     GameView::Word^ E2 = gcnew GameView::Word(140, 80, (sf::String)"Close", 24, sf::Color::Red);
-    while (Screen->W->isOpen())
-    {
+    while (Screen->W->isOpen()){
         sf::Event event;
         while (Screen->W->pollEvent(event))
         {

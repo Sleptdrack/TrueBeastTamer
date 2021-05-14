@@ -2,7 +2,7 @@
 #include "Grass.h"
 
 GameModel::Grass::Grass(){
-    SpawnRate = 25;
+    SpawnRate = 10;
     Texture = new sf::Texture();
     Sprite = new sf::Sprite();
     Height = TileSize;

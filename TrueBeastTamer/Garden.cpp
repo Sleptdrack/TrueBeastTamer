@@ -33,12 +33,13 @@ bool GameModel::Garden::Contains(GameObject^ G){
     }
     return f;
 }
-void GameModel::Garden::Spawn(Tamer^ T){
+void GameModel::Garden::Spawn(Tamer^ T,bool *t){
     int r = rand() % 100;
     int v = 0;
     for (int i = 0; i < Grass->Count; i++) {
         v = 0;
-        if (Grass[i]->Contains(T) && r<= Grass[i]->SpawnRate) {
+        if (Grass[i]->Contains(T) && r<= Grass[i]->SpawnRate && *t==false) {
+            *t = true;
             Beast^ b = gcnew Beast(Grass[i]->X, Grass[i]->Y);
             for (int j = 0; j < LBeast->Count; j++) {
                 if (LBeast[j]->X == b->X && LBeast[j]->Y == b->Y) {

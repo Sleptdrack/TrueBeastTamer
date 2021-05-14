@@ -6,6 +6,7 @@
 #include<time.h>
 #include "Map.h"
 #include "Movement.h"
+#include "Fight.h"
 #include "Screen.h"
 #include "LogInSc.h"
 #include <iostream>
@@ -26,7 +27,8 @@ int main() {
     bool ready = false;
     LI->Log(&ready);
     //
-    Map^ M = gcnew Map(10, 0, LI->T);    
+    Map^ M = gcnew Map(10, 0, LI->T);
+    Arena^ A = nullptr;
     sf::RenderWindow window;
     if (ready) {
         window.create(sf::VideoMode(800, 800), "TrueBeastTamer", sf::Style::Fullscreen);
@@ -48,7 +50,7 @@ int main() {
         }
         Movement::Move(M->Player, t);
         if (t1.asSeconds() > 1) {
-            Movement::Hunt(M);
+            Fight::Hunt(M,A,window);
             c1.restart();
         }
         window.clear();

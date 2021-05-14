@@ -15,7 +15,7 @@ namespace GameModel {
 		Garden(float x, float y, int size);
 		void Draw(RenderTarget& rt);
 		bool Contains(GameObject^ G);
-		void Spawn(Tamer^ T);
+		void Spawn(Tamer^ T,bool *t);
 	};
 
 }
