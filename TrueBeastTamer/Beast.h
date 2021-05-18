@@ -10,8 +10,8 @@ namespace GameModel {
     public ref class Beast : public GameObject
     {
     public:
-        property sf::String* Name;
-        property sf::String* TagName;
+        property System::String^ Name;
+        property System::String^ TagName;
         property Element Type;//eliminar y reemplazar por element
         property List<float>^ Health;
         property List<float>^ Defense;

@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "GameManager.h"
 #include <iostream>
-Tamer^ GameController::GameManager::ValidatePlayer(sf::String u, sf::String p)
+Tamer^ GameController::GameManager::ValidatePlayer(System::String^ u, System::String^ p)
 {
     Tamer^ T = nullptr;
     List<Tamer^>^ P = QueryPlayers();
@@ -25,7 +25,7 @@ List<Tamer^>^ GameController::GameManager::QueryPlayers()
     return Player;
 }
 
-Tamer^ GameController::GameManager::CreateTamer(sf::String u, sf::String p){
+Tamer^ GameController::GameManager::CreateTamer(System::String^ u, System::String^ p){
     Tamer^ T = nullptr;
     List<Tamer^>^ P = QueryPlayers();
     bool exist = false;

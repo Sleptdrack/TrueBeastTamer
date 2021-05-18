@@ -7,8 +7,8 @@ namespace GameView {
 	public ref class LogInSc {
 	public:
 		property Screen^ Screen;
-		property sf::String* U;
-		property sf::String* P;
+		property System::String^ U;
+		property System::String^ P;
 		property Tamer^ T;
 	public:
 		LogInSc();

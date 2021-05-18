@@ -12,10 +12,10 @@ namespace GameController {
 		static List<Tamer^>^ Player = gcnew List<Tamer^>();
 	public:
 		//autentificacion
-		static Tamer^ ValidatePlayer(sf::String u, sf::String p);
+		static Tamer^ ValidatePlayer(System::String^ u, System::String^ p);
 
 		static List<Tamer^>^ QueryPlayers();
-		static Tamer^ CreateTamer(sf::String u, sf::String p);
+		static Tamer^ CreateTamer(System::String u, System::String p);
 		static void AddPlayer(Tamer^ T);
 		static void SavePlayers();
 		static void LoadPlayers();

@@ -4,14 +4,14 @@
 GameView::LogInSc::LogInSc(){
     Screen = gcnew GameView::Screen(0,0,400,200,"Log in");
     bool slog = true;
-    U = new sf::String("");
-    P = new sf::String("");
-    GameView::Word^ Login = gcnew GameView::Word(50, 125, (sf::String)"Log in", 24, sf::Color::Red);
-    GameView::Word^ SignUp = gcnew GameView::Word(250, 125, (sf::String)"Sign Up", 24, sf::Color::Red);
-    GameView::Word^ U = gcnew GameView::Word(50, 25, (sf::String)"Username", 24, sf::Color::Red);
-    GameView::Word^ U1 = gcnew GameView::Word(U->Rect->getGlobalBounds().width+50+20, 25, (sf::String)"", 24, sf::Color::Blue);
-    GameView::Word^ P = gcnew GameView::Word(50, 75, (sf::String)"Password", 24, sf::Color::Red);
-    GameView::Word^ P1 = gcnew GameView::Word(P->Rect->getGlobalBounds().width+50+20, 75, (sf::String)"", 24, sf::Color::Blue);
+    U = gcnew System::String("");
+    P = gcnew System::String("");
+    GameView::Word^ Login = gcnew GameView::Word(50, 125, (System::String)"Log in", 24, sf::Color::Red);
+    GameView::Word^ SignUp = gcnew GameView::Word(250, 125, (System::String)"Sign Up", 24, sf::Color::Red);
+    GameView::Word^ U = gcnew GameView::Word(50, 25, (System::String)"Username", 24, sf::Color::Red);
+    GameView::Word^ U1 = gcnew GameView::Word(U->Rect->getGlobalBounds().width+50+20, 25, (System::String)"", 24, sf::Color::Blue);
+    GameView::Word^ P = gcnew GameView::Word(50, 75, (System::String)"Password", 24, sf::Color::Red);
+    GameView::Word^ P1 = gcnew GameView::Word(P->Rect->getGlobalBounds().width+50+20, 75, (System::String)"", 24, sf::Color::Blue);
     Screen->Add(Login);
     Screen->Add(SignUp);
     Screen->Add(U);
@@ -48,8 +48,8 @@ void GameView::LogInSc::Draw()
 void GameView::LogInSc::Log(bool *r)
 {
     sf::RenderWindow error;
-    sf::String* e1 = new sf::String("Player not found");
-    sf::String* e3 = new sf::String("Wrong Password");
+    System::String^ e1 = new System::String("Player not found");
+    System::String^ e3 = new System::String("Wrong Password");
     GameView::Word^ E1 = gcnew GameView::Word(60, 30, (sf::String)"", 24, sf::Color::Red);
     GameView::Word^ E2 = gcnew GameView::Word(140, 80, (sf::String)"Close", 24, sf::Color::Red);
     while (Screen->W->isOpen()){

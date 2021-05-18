@@ -3,8 +3,8 @@
 
 GameModel::Beast::Beast()
 {
-	TagName = new sf::String();
-	Name = new sf::String();
+	TagName = gcnew System::String();
+	Name = gcnew System::String();
 	Type = Element::Neutral;
 	Health = gcnew List<float>();
 	Defense = gcnew List<float>();
