@@ -40,7 +40,7 @@ void GameModel::Garden::Spawn(Tamer^ T,bool *t){
         v = 0;
         if (Grass[i]->Contains(T) && r<= Grass[i]->SpawnRate && *t==false) {
             *t = true;
-            Beast^ b = gcnew Beast(Grass[i]->X, Grass[i]->Y);
+            Beast^ b = gcnew Trululu(Grass[i]->X, Grass[i]->Y);//provisionalmente Trululu
             for (int j = 0; j < LBeast->Count; j++) {
                 if (LBeast[j]->X == b->X && LBeast[j]->Y == b->Y) {
                     v += 1;

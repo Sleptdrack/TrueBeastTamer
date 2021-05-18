@@ -30,7 +30,7 @@ void GameModel::Arena::Show(Map^ M){
 		while (Screen->W->pollEvent(event)){
 			if (Screen->Word[0]->Click(*Screen->W)) {
 				Screen->W->close();
-				B->Health = -10;//adaptar luego
+				B->Health[3] = 0;
 			}
 		}
 		Movement::Move(M->Player, t);

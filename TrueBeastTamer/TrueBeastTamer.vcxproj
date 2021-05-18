@@ -155,6 +155,7 @@
     <ClInclude Include="Screen.h" />
     <ClInclude Include="Store.h" />
     <ClInclude Include="Tamer.h" />
+    <ClInclude Include="Trululu.h" />
     <ClInclude Include="Word.h" />
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +186,7 @@
     <ClCompile Include="Store.cpp" />
     <ClCompile Include="Tamer.cpp" />
     <ClCompile Include="TrueBeastTamer.cpp" />
+    <ClCompile Include="Trululu.cpp" />
     <ClCompile Include="Word.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,7 @@
 #include "Grass.h"
 #include "Beast.h"
 #include "Tamer.h"
+#include "Trululu.h"
 using namespace System::Collections::Generic;
 namespace GameModel {
 	public ref class Garden : public GameObject {

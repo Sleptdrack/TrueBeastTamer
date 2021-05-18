@@ -1,32 +1,48 @@
 #include "pch.h"
 #include "Beast.h"
 
-GameModel::Beast::Beast(float x,float y)
+GameModel::Beast::Beast()
 {
 	TagName = new sf::String();
 	Name = new sf::String();
+	Type = new sf::String();
 	//Type =1 to be determend
-	Health = 100;
-	Defense = 10;
-	Attack = 20;
+	Health = gcnew List<float>();
+	Defense = gcnew List<float>();
+	Attack = gcnew List<float>();
+	Cooldown = gcnew List<float>();
 	Speed = 2;
 	Level = 1;
 	Exp = 0;
-	X = x;
-	Y = y;
+	X = 0;
+	Y = 0;
 	//esta parte debe ser borrada cuando se creen las subclases
 	Sprite = new sf::Sprite();
 	Texture = new sf::Texture();
-	Texture->loadFromFile("../Imagenes/tipoagua1.png");//cambiar nombres 192X192
-	Sprite->setTexture(*Texture, true);
-	Sprite->setScale(TileSize / 192, TileSize / 192);
-	Sprite->setPosition(X, Y);
+	//Sprite->setPosition(X, Y);
 	Length = TileSize;
 	Height = TileSize;
-
 }
+
 
 void GameModel::Beast::Learn()
 {
 	throw gcnew System::NotImplementedException();
+}
+
+void GameModel::Beast::LevelUp()
+{
+	if (Exp > 100) {
+		Level += 1;
+		Exp -= 100;
+		UpdateStats(Health, Level);
+		UpdateStats(Defense, Level);
+		UpdateStats(Attack, Level);
+		UpdateStats(Cooldown, Level);
+	}
+}
+
+void GameModel::Beast::UpdateStats(List<float>^ T,int L)
+{
+	T[2] = (T[0] + T[1]) * (1 - pow(T[4], L)) / (1 - T[4]);
 }

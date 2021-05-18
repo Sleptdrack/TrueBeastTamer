@@ -36,7 +36,7 @@ GameModel::Map::Map(int ng, int nn,Tamer^ p){
         int Hx, Hy;
         Hx= rand() % (1920 - (int)Hospital->Length);
         Hy = rand() % (1080 - (int)Hospital->Height);
-        Hospital->Move(Hx, Hy);
+        Hospital->Move((float)Hx, (float)Hy);
         for (int i = 0; i < Garden->Count; i++) {
             if (Garden[i]->Contains(Hospital))FH += 1;
         }
