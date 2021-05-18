@@ -1,8 +1,9 @@
 #include "pch.h"
 #include "Tamer.h"
 
-GameModel::Tamer::Tamer(String U, String P)
+GameModel::Tamer::Tamer(String U, String P, int id)
 {
+    Id = id;
     Username = new String(U);
     Password = new String(P);
     Bag = gcnew GameModel::Bag();
