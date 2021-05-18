@@ -4,6 +4,7 @@
 GameModel::Hospital::Hospital(float x, float y) {
     Texture = new sf::Texture();
     Sprite = new sf::Sprite();
+    Nurse = gcnew NPC();
     Texture->loadFromFile("../Imagenes/Hospital.png"); //Esta imagen es de 160 * 140
     Sprite->setTexture(*Texture, true);
     X = x;

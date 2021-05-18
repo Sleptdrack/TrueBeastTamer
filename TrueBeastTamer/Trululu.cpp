@@ -4,7 +4,7 @@
 GameModel::Trululu::Trululu(float x, float y){
 	TagName = new sf::String("Trululu");
 	Name = new sf::String("Trululu");
-	Type = new sf::String("Neutral");
+	Type = Element::Neutral;
 	Power = gcnew List<GameModel::Power^>();
 	Health = gcnew List<float>();//Base-Particular-Max-Actual-razon
 	Health->Add(30);
