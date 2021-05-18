@@ -12,7 +12,7 @@ namespace GameModel {
     public:
         property System::String^ Name;
         property System::String^ TagName;
-        property Element Type;//eliminar y reemplazar por element
+        property Element Type;//eliminar y reemplazar por elemento
         property List<float>^ Health;
         property List<float>^ Defense;
         property List<float>^ Attack;
