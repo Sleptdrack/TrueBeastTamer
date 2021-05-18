@@ -9,8 +9,10 @@
 #include "Beast.h"
 #include "Movement.h"
 using namespace GameController;
+using namespace System;
 using namespace GameView;
 namespace GameModel {
+	[Serializable]
 	public ref class Arena: public GameObject{
 	public:
 		property Screen^ Screen;

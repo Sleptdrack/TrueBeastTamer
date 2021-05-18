@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Word.h"
 
-GameView::Word::Word(float x, float y, String T, int size, sf::Color c){
+GameView::Word::Word(float x, float y, sf::String T, int size, sf::Color c){
     Font = new sf::Font();
     Text = new sf::Text();
     Color = new sf::Color(c);

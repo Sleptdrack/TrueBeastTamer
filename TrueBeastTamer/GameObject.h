@@ -5,7 +5,9 @@
 #include<time.h>
 const float TileSize = 50;
 using namespace sf;
+using namespace System;
 namespace GameModel {
+	[Serializable]
 	public ref class GameObject {
 	public:
 		property Sprite* Sprite;

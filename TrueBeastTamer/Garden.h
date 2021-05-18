@@ -5,7 +5,9 @@
 #include "Tamer.h"
 #include "Trululu.h"
 using namespace System::Collections::Generic;
+using namespace System;
 namespace GameModel {
+	[Serializable]
 	public ref class Garden : public GameObject {
 	public:
 		property float GrassSize;

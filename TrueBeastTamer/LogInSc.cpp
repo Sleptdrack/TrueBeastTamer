@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "LogInSc.h"
-
+#include <iostream>
 GameView::LogInSc::LogInSc(){
     Screen = gcnew GameView::Screen(0,0,400,200,"Log in");
     bool slog = true;
@@ -60,7 +60,9 @@ void GameView::LogInSc::Log(bool *r)
             Fill(event);
         }
         if (Screen->Word[1]->Click(*Screen->W)) {
+            std::cout << U->toAnsiString() << " " << P->toAnsiString();
             T = GameController::GameManager::ValidatePlayer(*U, *P);
+            
             if (T!=nullptr) {
                 *r = true;
                 Screen->W->close();
@@ -86,8 +88,11 @@ void GameView::LogInSc::Log(bool *r)
             }
         }
         if (Screen->Word[2]->Click(*Screen->W)) {
-            //check if username already taken
-            //create new user
+            T = GameController::GameManager::CreateTamer(*U, *P);
+            if (T != nullptr) {
+                *r = true;
+                Screen->W->close();
+            }
         }
         Screen->W->clear();
         Draw();

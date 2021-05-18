@@ -6,7 +6,9 @@
 #include <stdlib.h>
 #include<time.h>
 using namespace sf;
+using namespace System;
 namespace GameView {
+	[Serializable]
 	public ref class Word{
 	public:
 		property Font* Font;

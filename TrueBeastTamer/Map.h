@@ -7,8 +7,10 @@
 #include "Hospital.h"
 #include "Tamer.h"
 using namespace System::Collections::Generic;
+using namespace System;
 using namespace sf;
 namespace GameModel {
+	[Serializable]
 	public ref class Map {
 	public:
 		property int NumGarden;

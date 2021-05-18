@@ -3,8 +3,10 @@
 #include "Power.h"
 #include <cmath>
 using namespace System::Collections::Generic;
+using namespace System;
 typedef enum {Water,Fire,Air,Ligthing,Earth,Neutral} Element;
 namespace GameModel {
+    [Serializable]
     public ref class Beast : public GameObject
     {
     public:
