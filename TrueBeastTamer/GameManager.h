@@ -15,7 +15,7 @@ namespace GameController {
 		static Tamer^ ValidatePlayer(System::String^ u, System::String^ p);
 
 		static List<Tamer^>^ QueryPlayers();
-		static Tamer^ CreateTamer(System::String u, System::String p);
+		static Tamer^ CreateTamer(System::String^ u, System::String^ p);
 		static void AddPlayer(Tamer^ T);
 		static void SavePlayers();
 		static void LoadPlayers();

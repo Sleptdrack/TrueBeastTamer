@@ -2,8 +2,8 @@
 #include "Trululu.h"
 
 GameModel::Trululu::Trululu(float x, float y){
-	TagName = new sf::String("Trululu");
-	Name = new sf::String("Trululu");
+	TagName = gcnew System::String("Trululu");
+	Name = gcnew System::String("Trululu");
 	Type = Element::Neutral;
 	Power = gcnew List<GameModel::Power^>();
 	Health = gcnew List<float>();//Base-Particular-Max-Actual-razon

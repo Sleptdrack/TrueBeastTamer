@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include<time.h>
+#include <msclr\marshal_cppstd.h>
+using namespace msclr::interop;
 using namespace sf;
 using namespace System;
 namespace GameView {
@@ -22,12 +24,12 @@ namespace GameView {
 		property sf::Sound* S;
 		property bool on;
 	public:
-		Word(float x,float y,sf::String T, int size,sf::Color c);
+		Word(float x,float y,System::String^ T, int size,sf::Color c);
 		void Draw(sf::RenderTarget& rt);
 		void Move(float x, float y);
 		bool Click(sf::RenderWindow& rt);
-		void UpdateString(sf::String T);
-		void Fill(sf::Event e, sf::String *U);
+		void UpdateString(System::String^ T);
+		void Fill(sf::Event e, System::String^ U);
 		void RectColor(sf::Color c);
 	};
 }

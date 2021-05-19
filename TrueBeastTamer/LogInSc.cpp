@@ -6,17 +6,17 @@ GameView::LogInSc::LogInSc(){
     bool slog = true;
     U = gcnew System::String("");
     P = gcnew System::String("");
-    GameView::Word^ Login = gcnew GameView::Word(50, 125, (System::String)"Log in", 24, sf::Color::Red);
-    GameView::Word^ SignUp = gcnew GameView::Word(250, 125, (System::String)"Sign Up", 24, sf::Color::Red);
-    GameView::Word^ U = gcnew GameView::Word(50, 25, (System::String)"Username", 24, sf::Color::Red);
-    GameView::Word^ U1 = gcnew GameView::Word(U->Rect->getGlobalBounds().width+50+20, 25, (System::String)"", 24, sf::Color::Blue);
-    GameView::Word^ P = gcnew GameView::Word(50, 75, (System::String)"Password", 24, sf::Color::Red);
-    GameView::Word^ P1 = gcnew GameView::Word(P->Rect->getGlobalBounds().width+50+20, 75, (System::String)"", 24, sf::Color::Blue);
+    GameView::Word^ Login = gcnew GameView::Word(50, 125,"Log in", 24, sf::Color::Red);
+    GameView::Word^ SignUp = gcnew GameView::Word(250, 125,"Sign Up", 24, sf::Color::Red);
+    GameView::Word^ Ut = gcnew GameView::Word(50, 25,"Username", 24, sf::Color::Red);
+    GameView::Word^ U1 = gcnew GameView::Word(Ut->Rect->getGlobalBounds().width+50+20, 25,"", 24, sf::Color::Blue);
+    GameView::Word^ Pt = gcnew GameView::Word(50, 75,"Password", 24, sf::Color::Red);
+    GameView::Word^ P1 = gcnew GameView::Word(Pt->Rect->getGlobalBounds().width+50+20, 75,"", 24, sf::Color::Blue);
     Screen->Add(Login);
     Screen->Add(SignUp);
-    Screen->Add(U);
+    Screen->Add(Ut);
     Screen->Add(U1);
-    Screen->Add(P);
+    Screen->Add(Pt);
     Screen->Add(P1);
     
 }
@@ -48,10 +48,10 @@ void GameView::LogInSc::Draw()
 void GameView::LogInSc::Log(bool *r)
 {
     sf::RenderWindow error;
-    System::String^ e1 = new System::String("Player not found");
-    System::String^ e3 = new System::String("Wrong Password");
-    GameView::Word^ E1 = gcnew GameView::Word(60, 30, (sf::String)"", 24, sf::Color::Red);
-    GameView::Word^ E2 = gcnew GameView::Word(140, 80, (sf::String)"Close", 24, sf::Color::Red);
+    System::String^ e1 =gcnew System::String("Player not found");
+    System::String^ e3 = gcnew System::String("Wrong Password");
+    GameView::Word^ E1 = gcnew GameView::Word(60, 30,e1, 24, sf::Color::Red);
+    GameView::Word^ E2 = gcnew GameView::Word(140, 80,"Close", 24, sf::Color::Red);
     while (Screen->W->isOpen()){
         sf::Event event;
         while (Screen->W->pollEvent(event))
@@ -60,23 +60,20 @@ void GameView::LogInSc::Log(bool *r)
             Fill(event);
         }
         if (Screen->Word[1]->Click(*Screen->W)) {
-            std::cout << U->toAnsiString() << " " << P->toAnsiString();
-            T = GameController::GameManager::ValidatePlayer(*U, *P);
+            T = GameController::GameManager::ValidatePlayer(U, P);
             
             if (T!=nullptr) {
                 *r = true;
                 Screen->W->close();
             }
             else {
-                E1->UpdateString(*e1);
+                E1->UpdateString(e1);
                 Screen->W->setActive(false);
                 error.create(sf::VideoMode(350, 150),"", sf::Style::None);
                 while (error.isOpen()) {
                     if (E2->Click(error)) {
-                        *U = (sf::String)"";
-                        *P = (sf::String)"";
-                        Screen->Word[4]->UpdateString(*U);
-                        Screen->Word[6]->UpdateString(*P);
+                        Screen->Word[4]->UpdateString(U);
+                        Screen->Word[6]->UpdateString(P);
                         error.close();
                         Screen->W->setActive(true);
                     }
@@ -88,7 +85,7 @@ void GameView::LogInSc::Log(bool *r)
             }
         }
         if (Screen->Word[2]->Click(*Screen->W)) {
-            T = GameController::GameManager::CreateTamer(*U, *P);
+            T = GameController::GameManager::CreateTamer(U, P);
             if (T != nullptr) {
                 *r = true;
                 Screen->W->close();

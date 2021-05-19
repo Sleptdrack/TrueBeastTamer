@@ -7,12 +7,12 @@ namespace GameModel {
     public ref class Tamer :public GameObject {
 	public:
 		property int Id;
-		property sf::String* Username;
-		property sf::String* Password;
+		property System::String^ Username;
+		property System::String^ Password;
 		property int NumBeast;
 		property Bag^ Bag;
 	public:
-		Tamer(sf::String U,sf::String P,int id);
+		Tamer(System::String^ U,System::String^ P,int id);
     };
 }
 

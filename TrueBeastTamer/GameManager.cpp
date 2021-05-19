@@ -7,8 +7,8 @@ Tamer^ GameController::GameManager::ValidatePlayer(System::String^ u, System::St
     List<Tamer^>^ P = QueryPlayers();
     if (u != "" && p != "") {
         for (int i = 0; i < P->Count; i++) {
-            if (u == *P[i]->Username && p == *P[i]->Password) {
-                T = P[i];
+            if (P[i]->Username->Equals(u) && P[i]->Password->Equals(p)) {
+                T =P[i];
             }
         }
     }
@@ -19,9 +19,6 @@ Tamer^ GameController::GameManager::ValidatePlayer(System::String^ u, System::St
 List<Tamer^>^ GameController::GameManager::QueryPlayers()
 {
     LoadPlayers();
-    for (int i = 0; i < Player->Count; i++) {
-        std::cout << Player[i]->Username<< " " << Player[i]->Password->toAnsiString() << "\n";
-    }
     return Player;
 }
 
@@ -30,7 +27,7 @@ Tamer^ GameController::GameManager::CreateTamer(System::String^ u, System::Strin
     List<Tamer^>^ P = QueryPlayers();
     bool exist = false;
     for (int i = 0; i < P->Count; i++) {
-        if (u == *P[i]->Username) {
+        if (P[i]->Username->Equals(u)) {
             exist = true;
         }
     }
