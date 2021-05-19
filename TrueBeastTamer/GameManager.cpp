@@ -19,6 +19,14 @@ Tamer^ GameController::GameManager::ValidatePlayer(System::String^ u, System::St
 List<Tamer^>^ GameController::GameManager::QueryPlayers()
 {
     LoadPlayers();
+    for (int i = 0; i < Player->Count; i++) {
+        Player[i]->Texture = new sf::Texture();
+        Player[i]->Sprite = new sf::Sprite();
+        Player[i]->Texture->loadFromFile("../Imagenes/Tamer.png");
+        Player[i]->Sprite->setTexture(*Player[i]->Texture);
+        Player[i]->Sprite->setScale(TileSize / 555, TileSize / 898);
+        Player[i]->Sprite->setPosition(Player[i]->X, Player[i]->Y);
+    }
     return Player;
 }
 
