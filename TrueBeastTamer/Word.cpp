@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Word.h"
-
+#include <msclr\marshal_cppstd.h>
 GameView::Word::Word(float x, float y, System::String^ T, int size, sf::Color c){
     Font = new sf::Font();
     Text = new sf::Text();
@@ -14,7 +14,8 @@ GameView::Word::Word(float x, float y, System::String^ T, int size, sf::Color c)
     Font->loadFromFile("../Font/Bullpen3D.ttf");
     Text->setFont(*Font);
     Text->setString(" ");
-    //Text->setString((std::string)marshal_as<std::string>(T));
+    std::string st;
+    Text->setString((std::string)msclr::interop::marshal_as<std::string>(T));
     Text->setCharacterSize(size);
     Text->setFillColor(*Color);
     Text->setPosition(X, Y);
@@ -53,28 +54,33 @@ bool GameView::Word::Click(sf::RenderWindow& rt){
     return false;
 }
 
-void GameView::Word::UpdateString(System::String^ T)
+void GameView::Word::UpdateString(sf::String T)
 {
-    Text->setString((std::string)marshal_as<std::string>(T));
+    Text->setString(T);
     Rect->setSize(sf::Vector2f(Text->getGlobalBounds().width+5, Text->getGlobalBounds().height+7));
 }
 
-void GameView::Word::Fill(sf::Event e,System::String^ U)
+void GameView::Word::Fill(sf::Event e,sf::String *U)
 {
     if (e.type == sf::Event::TextEntered) {
         if (e.text.unicode == 8) {
-            U=U->Substring(0, U->Length - 1);
+            *U = (sf::String)U->substring(0, U->getSize() - 1);
         }
         else {
             if (e.key.code != Keyboard::Enter) {
-                U += e.text.unicode;
+                *U+=e.text.unicode;
             }
         }
-        UpdateString(U);
+        UpdateString(*U);
     }
 }
 
 void GameView::Word::RectColor(sf::Color c)
 {
     Rect->setFillColor(c);
+}
+
+System::String^ GameView::Word::SFtoSys(sf::String t)
+{
+    return msclr::interop::marshal_as<System::String^>(t.toAnsiString());
 }

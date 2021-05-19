@@ -7,14 +7,15 @@ namespace GameView {
 	public ref class LogInSc {
 	public:
 		property Screen^ Screen;
-		property System::String^ U;
-		property System::String^ P;
+		property sf::String* U;
+		property sf::String* P;
 		property Tamer^ T;
 	public:
 		LogInSc();
 		void Fill(sf::Event e);
 		void Draw();
 		void Log(bool *r);
+		
 	};
 }
 

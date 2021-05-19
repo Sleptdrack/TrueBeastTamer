@@ -4,8 +4,8 @@
 GameView::LogInSc::LogInSc(){
     Screen = gcnew GameView::Screen(0,0,400,200,"Log in");
     bool slog = true;
-    U = gcnew System::String("");
-    P = gcnew System::String("");
+    U = new sf::String("");
+    P = new sf::String("");
     GameView::Word^ Login = gcnew GameView::Word(50, 125,"Log in", 24, sf::Color::Red);
     GameView::Word^ SignUp = gcnew GameView::Word(250, 125,"Sign Up", 24, sf::Color::Red);
     GameView::Word^ Ut = gcnew GameView::Word(50, 25,"Username", 24, sf::Color::Red);
@@ -60,20 +60,20 @@ void GameView::LogInSc::Log(bool *r)
             Fill(event);
         }
         if (Screen->Word[1]->Click(*Screen->W)) {
-            T = GameController::GameManager::ValidatePlayer(U, P);
+            T = GameController::GameManager::ValidatePlayer(Word::SFtoSys(*U), Word::SFtoSys(*P));
             
             if (T!=nullptr) {
                 *r = true;
                 Screen->W->close();
             }
             else {
-                E1->UpdateString(e1);
+                //E1->UpdateString(*e1);
                 Screen->W->setActive(false);
                 error.create(sf::VideoMode(350, 150),"", sf::Style::None);
                 while (error.isOpen()) {
                     if (E2->Click(error)) {
-                        Screen->Word[4]->UpdateString(U);
-                        Screen->Word[6]->UpdateString(P);
+                        Screen->Word[4]->UpdateString(*U);
+                        Screen->Word[6]->UpdateString(*P);
                         error.close();
                         Screen->W->setActive(true);
                     }
@@ -85,7 +85,7 @@ void GameView::LogInSc::Log(bool *r)
             }
         }
         if (Screen->Word[2]->Click(*Screen->W)) {
-            T = GameController::GameManager::CreateTamer(U, P);
+            T = GameController::GameManager::CreateTamer(Word::SFtoSys(*U), Word::SFtoSys(*P));
             if (T != nullptr) {
                 *r = true;
                 Screen->W->close();

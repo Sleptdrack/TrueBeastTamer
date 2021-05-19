@@ -5,12 +5,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include<time.h>
-#include <msclr\marshal_cppstd.h>
-using namespace msclr::interop;
+#include<string>
 using namespace sf;
-using namespace System;
 namespace GameView {
-	[Serializable]
+	[System::Serializable]
 	public ref class Word{
 	public:
 		property Font* Font;
@@ -28,9 +26,10 @@ namespace GameView {
 		void Draw(sf::RenderTarget& rt);
 		void Move(float x, float y);
 		bool Click(sf::RenderWindow& rt);
-		void UpdateString(System::String^ T);
-		void Fill(sf::Event e, System::String^ U);
+		void UpdateString(sf::String T);
+		void Fill(sf::Event e, sf::String *U);
 		void RectColor(sf::Color c);
+		static System::String^ SFtoSys(sf::String t);
 	};
 }
 

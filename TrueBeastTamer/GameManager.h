@@ -7,6 +7,7 @@ using namespace System::Globalization;
 using namespace System::Runtime::Serialization;
 using namespace System::Runtime::Serialization::Formatters::Binary;
 namespace GameController {
+	[Serializable]
 	public ref class GameManager{
 	public:
 		static List<Tamer^>^ Player = gcnew List<Tamer^>();
