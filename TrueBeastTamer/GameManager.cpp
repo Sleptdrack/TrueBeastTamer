@@ -34,21 +34,26 @@ Tamer^ GameController::GameManager::CreateTamer(System::String^ u, System::Strin
     Tamer^ T = nullptr;
     List<Tamer^>^ P = QueryPlayers();
     bool exist = false;
-    for (int i = 0; i < P->Count; i++) {
-        if (P[i]->Username->Equals(u)) {
-            exist = true;
+    if (u != "" && p != "") {
+        for (int i = 0; i < P->Count; i++) {
+            if (P[i]->Username->Equals(u)) {
+                exist = true;
+            }
+        }
+        if (exist) {
+            //mandar mensaje de que el usuario
+            //ya existe
+            std::cout << "Usuario ya existe\n";
+        }
+        else {
+            T = gcnew Tamer(u, p, P->Count + 1);
+            Player->Add(T);
+            SavePlayers();
+            //mensaje usuario creado
         }
     }
-    if (exist) {
-        //mandar mensaje de que el usuario
-        //ya existe
-        std::cout << "Usuario ya existe\n";
-    }
     else {
-        T = gcnew Tamer(u, p, P->Count+1);
-        Player->Add(T);
-        SavePlayers();
-        //mensaje usuario creado
+        //mensaje de error valores vacios
     }
     return T;
 }
