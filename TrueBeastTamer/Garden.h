@@ -3,7 +3,6 @@
 #include "Grass.h"
 #include "Beast.h"
 #include "Tamer.h"
-#include "Trululu.h"
 using namespace System::Collections::Generic;
 using namespace System;
 namespace GameModel {
