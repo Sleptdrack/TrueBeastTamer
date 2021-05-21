@@ -6,7 +6,6 @@ namespace GameModel {
 	[Serializable]
 	public ref class Power
 	{
-
 		public:
 			property int Type;
 			property int Range;

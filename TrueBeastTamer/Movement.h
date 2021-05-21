@@ -8,6 +8,7 @@ namespace GameController {
 	public ref class Movement{
 	public:
 		static void Move(GameObject^ G, Time t);
+		static void Movement::MoveAttack(GameObject^ G, Time t);
 	};
 }
 

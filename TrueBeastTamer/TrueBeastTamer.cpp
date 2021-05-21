@@ -49,6 +49,8 @@ int main() {
             window.close();
         }
         Movement::Move(M->Player, t);
+        Movement::MoveAttack(M->Weapon, t);
+
         if (t1.asSeconds() > 1) {
             Fight::Hunt(M,A,window);
             c1.restart();
