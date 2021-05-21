@@ -27,3 +27,13 @@ bool GameModel::GameObject::Contains(GameObject^ G)
     else f = false;
     return f;
 }
+
+void GameModel::GameObject::setDrawables(sf::String n)
+{
+    Texture = new sf::Texture();
+    Sprite = new sf::Sprite();
+    Texture->loadFromFile(n);
+    Sprite->setTexture(*Texture);
+    Sprite->setScale(Length / Texture->getSize().x, Height/ Texture->getSize().y);
+    Sprite->setPosition(X, Y);
+}

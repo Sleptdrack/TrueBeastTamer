@@ -22,6 +22,7 @@ namespace GameModel {
 		void Draw(RenderTarget& rt);
 		void Move(float x, float y);
 		bool Contains(GameObject^ G);
+		void setDrawables(sf::String n);
 	};
 }
 

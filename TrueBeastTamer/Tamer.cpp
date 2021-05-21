@@ -41,5 +41,7 @@ void GameModel::Tamer::OpenBag(){
 void GameModel::Tamer::Draw(RenderTarget& rt)
 {
     rt.draw(*Sprite);
-    if (Bag->open)Bag->Draw(rt);
+    if (Bag->open) {
+        Bag->Draw(rt);
+    }
 }

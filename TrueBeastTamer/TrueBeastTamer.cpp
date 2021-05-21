@@ -30,6 +30,7 @@ int main() {
     Map^ M = gcnew Map(10, 0, LI->T);
     M->Player->Move(0, 0);
     Arena^ A = nullptr;
+    GameManager::SavePlayers();
     sf::RenderWindow window;
     if (ready) {
         window.create(sf::VideoMode(800, 800), "TrueBeastTamer"/*, sf::Style::Fullscreen*/);
