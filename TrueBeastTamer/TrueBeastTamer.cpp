@@ -28,10 +28,11 @@ int main() {
     LI->Log(&ready);
     //ssss
     Map^ M = gcnew Map(10, 0, LI->T);
+    M->Player->Move(0, 0);
     Arena^ A = nullptr;
     sf::RenderWindow window;
     if (ready) {
-        window.create(sf::VideoMode(800, 800), "TrueBeastTamer", sf::Style::Fullscreen);
+        window.create(sf::VideoMode(800, 800), "TrueBeastTamer"/*, sf::Style::Fullscreen*/);
     }
     while (window.isOpen())
     {
@@ -49,6 +50,7 @@ int main() {
             window.close();
         }
         Movement::Move(M->Player, t);
+        M->Player->OpenBag();
         Movement::MoveAttack(M->Weapon, t);
 
         if (t1.asSeconds() > 1) {

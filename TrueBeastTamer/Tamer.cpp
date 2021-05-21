@@ -29,3 +29,17 @@ GameModel::Tamer::Tamer(System::String^ U, System::String^ P, int id/*, dummy my
     Length = TileSize;
     Height = TileSize;
 }
+
+void GameModel::Tamer::OpenBag(){
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)){
+        while(sf::Keyboard::isKeyPressed(sf::Keyboard::Tab));
+        if (Bag->open)Bag->open = false;
+        else Bag->open = true;
+    }
+}
+
+void GameModel::Tamer::Draw(RenderTarget& rt)
+{
+    rt.draw(*Sprite);
+    if (Bag->open)Bag->Draw(rt);
+}
