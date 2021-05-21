@@ -3,13 +3,9 @@
 
 GameModel::Grass::Grass(){
     SpawnRate = 10;
-    Texture = new sf::Texture();
-    Sprite = new sf::Sprite();
     Height = TileSize;
     Length = TileSize;
-    Texture->loadFromFile("../Imagenes/Grass.png");//imagen es 500X500px
-    Sprite->setTexture(*Texture, true);
-    Sprite->setScale(Length / 500, Height / 500);
     X = 0;
     Y = 0;
+    setDrawables(PathSource::SystoStd(PathSource::Grass[0]));
 }

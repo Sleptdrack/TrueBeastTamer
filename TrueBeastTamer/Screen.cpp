@@ -4,13 +4,11 @@
 GameView::Screen::Screen(float x, float y, float l, float h, sf::String n){
     Word = gcnew List<GameView::Word^>();
     Texture = new sf::Texture();
-    //Texture->loadFromFile("../Imagenes/Wood.JPG");
     X = x;
     Y = y;
     Length = l;
     Height = h;
     Rect = new sf::RectangleShape(sf::Vector2f(Length, Height));
-    //Rect->setTexture(Texture);
     Rect->setFillColor(sf::Color::Transparent);
     W = new sf::RenderWindow(sf::VideoMode(Length, Height), n, sf::Style::None);
     GameView::Word^ X_ = gcnew GameView::Word(Length - 25, 0,"X", 24, sf::Color::Red);

@@ -3,19 +3,24 @@
 
 GameModel::Bag::Bag()
 {
-	Sprite = new sf::Sprite();
+
 	Length = 500;
 	Height = 500;
+	X = 0;
+	Y = 0;
 	Word = gcnew List<GameView::Word^>();
 	GameView::Word^ w1 = gcnew GameView::Word(50, 50, "Bag", 24, sf::Color::Black);
 	Word->Add(w1);
 	Beast = gcnew List<GameModel::Beast^>();
-	Texture = new sf::Texture();
-	Texture->loadFromFile("../Imagenes/Wood.JPG");
-	Sprite->setTexture(*Texture);
-	Sprite->setScale(Length / Texture->getSize().x, Height / Texture->getSize().y);
-	Sprite->setPosition(0, 0);
+	setDrawables(PathSource::SystoStd(PathSource::Bag[0]));
 	open = false;
+}
+
+void GameModel::Bag::setDrawables(sf::String t){
+	GameObject::setDrawables(t);
+	for (int i=0; i < Word->Count; i++) {
+		Word[i]->SetParameters(PathSource::SystoStd(PathSource::Word[0]), PathSource::SystoStd(PathSource::Word[1]), Word[i]->Code);
+	}
 }
 
 void GameModel::Bag::Draw(sf::RenderTarget& rt)

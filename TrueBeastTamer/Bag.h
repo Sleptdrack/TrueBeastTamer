@@ -14,6 +14,7 @@ namespace GameModel {
         property bool open;
     public:
         Bag();
+        void setDrawables(sf::String t);
         void Draw(sf::RenderTarget& rt);
     };
 }

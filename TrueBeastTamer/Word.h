@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include<time.h>
 #include<string>
+#include "PathSource.h"
 using namespace sf;
 namespace GameView {
 	[System::Serializable]
@@ -13,16 +14,19 @@ namespace GameView {
 	public:
 		property Font* Font;
 		property sf::Text* Text;
+		property System::String^ T;
 		property sf::RectangleShape* Rect;
 		property int Size;
 		property Color* Color;
+		property uint32_t Code;
 		property float X;
 		property float Y;
 		property sf::SoundBuffer* SB;
 		property sf::Sound* S;
 		property bool on;
 	public:
-		Word(float x,float y,System::String^ T, int size,sf::Color c);
+		Word(float x,float y,System::String^ t, int size,sf::Color c);
+		void SetParameters(sf::String f, sf::String a, uint32_t c);
 		void Draw(sf::RenderTarget& rt);
 		void Move(float x, float y);
 		bool Click(sf::RenderWindow& rt);
@@ -30,6 +34,7 @@ namespace GameView {
 		void Fill(sf::Event e, sf::String *U);
 		void RectColor(sf::Color c);
 		static System::String^ SFtoSys(sf::String t);
+		static sf::String SystoSF(System::String^ t);
 	};
 }
 

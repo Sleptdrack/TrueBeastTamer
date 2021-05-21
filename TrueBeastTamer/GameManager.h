@@ -1,6 +1,7 @@
 #pragma once
 #include "Tamer.h"
 #include "MessageBox.h"
+#include "PathSource.h"
 using namespace GameModel;
 using namespace System::Collections::Generic;
 using namespace System::IO;
@@ -19,6 +20,7 @@ namespace GameController {
 		static List<Tamer^>^ QueryPlayers();
 		static Tamer^ CreateTamer(System::String^ u, System::String^ p);
 		static void AddPlayer(Tamer^ T);
+		static void UpdatePlayer(Tamer^ T);
 		static void SavePlayers();
 		static void LoadPlayers();
 	};

@@ -144,6 +144,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Garden.h" />
     <ClInclude Include="Grass.h" />
+    <ClInclude Include="Hack.h" />
     <ClInclude Include="Hospital.h" />
     <ClInclude Include="LogInSc.h" />
     <ClInclude Include="Map.h" />
@@ -151,12 +152,14 @@
     <ClInclude Include="Movement.h" />
     <ClInclude Include="NPC.h" />
     <ClInclude Include="Obstacle.h" />
+    <ClInclude Include="PathSource.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Power.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="Store.h" />
     <ClInclude Include="Tamer.h" />
+    <ClInclude Include="Tutorial.h" />
     <ClInclude Include="Word.h" />
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +174,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Garden.cpp" />
     <ClCompile Include="Grass.cpp" />
+    <ClCompile Include="Hack.cpp" />
     <ClCompile Include="Hospital.cpp" />
     <ClCompile Include="LogInSc.cpp" />
     <ClCompile Include="Map.cpp" />
@@ -178,6 +182,7 @@
     <ClCompile Include="Movement.cpp" />
     <ClCompile Include="NPC.cpp" />
     <ClCompile Include="Obstacle.cpp" />
+    <ClCompile Include="PathSource.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -189,6 +194,7 @@
     <ClCompile Include="Store.cpp" />
     <ClCompile Include="Tamer.cpp" />
     <ClCompile Include="TrueBeastTamer.cpp" />
+    <ClCompile Include="Tutorial.cpp" />
     <ClCompile Include="Word.cpp" />
   </ItemGroup>
   <ItemGroup>

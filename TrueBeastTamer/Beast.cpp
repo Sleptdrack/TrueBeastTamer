@@ -15,21 +15,13 @@ GameModel::Beast::Beast(BeastName name)
 	X = 0;
 	Y = 0;
 	//esta parte debe ser borrada cuando se creen las subclases
-	Sprite = new sf::Sprite();
-	Texture = new sf::Texture();
-	//Sprite->setPosition(X, Y);
 	Length = TileSize;
 	Height = TileSize;
 	switch (name) {
 	     case BeastName::Trululu: 
 			 TagName = "Trululu";
 			 Type = Element::Neutral;
-			 Texture->loadFromFile("../Imagenes/Trululu.png");//cambiar nombres 192X192
-			 Sprite->setTexture(*Texture, true);
-			 Sprite->setScale(TileSize / 192, TileSize / 192);
-			 Sprite->setPosition(X, Y);
-			 Length = TileSize;
-			 Height = TileSize;
+			 setDrawables(PathSource::SystoStd(PathSource::Beast[0]));
 			 setStat(Health, 30, 10, 0.75);
 			 setStat(Defense, 3, 5, 0.5);
 			 setStat(Attack, 5, 3, 0.5);
@@ -38,12 +30,7 @@ GameModel::Beast::Beast(BeastName name)
 		 case BeastName::Atropos: 
 			 TagName = "Atropos";
 			 Type = Element::Earth;
-			 Texture->loadFromFile("../Imagenes/Atropos.png");//cambiar nombres 192X192
-			 Sprite->setTexture(*Texture, true);
-			 Sprite->setScale(TileSize / 192, TileSize / 192);
-			 Sprite->setPosition(X, Y);
-			 Length = TileSize;
-			 Height = TileSize;
+			 setDrawables(PathSource::SystoStd(PathSource::Beast[1]));
 			 setStat(Health, 33, 10, 0.75);
 			 setStat(Defense, 5, 6, 0.5);
 			 setStat(Attack, 4, 3, 0.5);
@@ -52,12 +39,7 @@ GameModel::Beast::Beast(BeastName name)
 		 case BeastName::Quin: 
 			 TagName = "Quin";
 			 Type = Element::Water;
-			 Texture->loadFromFile("../Imagenes/Quin.png");//cambiar nombres 192X192
-			 Sprite->setTexture(*Texture, true);
-			 Sprite->setScale(TileSize / 192, TileSize / 192);
-			 Sprite->setPosition(X, Y);
-			 Length = TileSize;
-			 Height = TileSize;
+			 setDrawables(PathSource::SystoStd(PathSource::Beast[2]));
 			 setStat(Health, 30, 10, 0.75);
 			 setStat(Defense, 2, 5, 0.5);
 			 setStat(Attack, 5.5, 3, 0.5);
@@ -66,12 +48,7 @@ GameModel::Beast::Beast(BeastName name)
 		 case BeastName::Mofset: 
 			 TagName = "Mofset";
 			 Type = Element::Ligthing;
-			 Texture->loadFromFile("../Imagenes/Trululu.png");//cambiar nombres 192X192
-			 Sprite->setTexture(*Texture, true);
-			 Sprite->setScale(TileSize / 192, TileSize / 192);
-			 Sprite->setPosition(X, Y);
-			 Length = TileSize;
-			 Height = TileSize;
+			 setDrawables(PathSource::SystoStd(PathSource::Beast[3]));
 			 setStat(Health, 28, 10, 0.75);
 			 setStat(Defense, 3, 5, 0.5);
 			 setStat(Attack, 7, 3, 0.5);

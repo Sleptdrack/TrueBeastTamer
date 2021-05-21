@@ -9,6 +9,7 @@
 #include "Fight.h"
 #include "Screen.h"
 #include "LogInSc.h"
+#include "PathSource.h"
 #include <iostream>
 using namespace sf;
 using namespace System;
@@ -18,6 +19,8 @@ using namespace GameView;
 int main() {
     srand(time(NULL));
     float x = 50, y = 0;
+    //path
+    PathSource::LoadFromFile("../Path/Path.txt");
     View View;
     Time t,t1;
     Clock clk;
@@ -27,13 +30,17 @@ int main() {
     bool ready = false;
     LI->Log(&ready);
     //ssss
-    Map^ M = gcnew Map(10, 0, LI->T);
-    M->Player->Move(0, 0);
     Arena^ A = nullptr;
-    GameManager::SavePlayers();
+    Map^ M = nullptr;
     sf::RenderWindow window;
     if (ready) {
+        M = gcnew Map(10, 0, LI->T);
+        M->Player->Move(0, 0);
+        GameManager::UpdatePlayer(M->Player);
         window.create(sf::VideoMode(800, 800), "TrueBeastTamer"/*, sf::Style::Fullscreen*/);
+    }
+    else {
+        return 0;
     }
     while (window.isOpen())
     {

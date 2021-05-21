@@ -92,6 +92,15 @@
     <ClInclude Include="Attack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Hack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tutorial.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PathSource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TrueBeastTamer.cpp">
@@ -167,6 +176,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Attack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Hack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tutorial.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PathSource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -23,8 +23,8 @@ List<Tamer^>^ GameController::GameManager::QueryPlayers()
 {
     LoadPlayers();
     for (int i = 0; i < Player->Count; i++) {
-        Player[i]->setDrawables("../Imagenes/Tamer.png");
-        Player[i]->Bag->setDrawables("../Imagenes/Tamer.png");
+        Player[i]->setDrawables(PathSource::SystoStd(PathSource::Tamer[0]));
+        Player[i]->Bag->setDrawables(PathSource::SystoStd(PathSource::Bag[0]));
     }
     return Player;
 }
@@ -58,6 +58,16 @@ Tamer^ GameController::GameManager::CreateTamer(System::String^ u, System::Strin
 
 void GameController::GameManager::AddPlayer(Tamer^ T){
     Player->Add(T);
+    SavePlayers();
+}
+
+void GameController::GameManager::UpdatePlayer(Tamer^ T)
+{
+    List<Tamer^>^ P = QueryPlayers();
+    for (int i = 0; i < P->Count; i++) {
+        if (T->Id == P[i]->Id)P[i] = T;
+    }
+    Player = P;
     SavePlayers();
 }
 

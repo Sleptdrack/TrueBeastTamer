@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include<time.h>
+#include "PathSource.h"
 const float TileSize = 50;
 using namespace sf;
 using namespace System;
