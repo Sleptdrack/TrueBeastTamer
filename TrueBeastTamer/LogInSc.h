@@ -3,6 +3,7 @@
 #include "Tamer.h"
 #include "GameManager.h"
 #include "Tamer.h"
+#include "MessageBox.h"
 namespace GameView {
 	public ref class LogInSc {
 	public:

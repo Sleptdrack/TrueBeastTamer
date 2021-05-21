@@ -10,6 +10,9 @@ Tamer^ GameController::GameManager::ValidatePlayer(System::String^ u, System::St
             if (P[i]->Username->Equals(u) && P[i]->Password->Equals(p)) {
                 T =P[i];
             }
+            else if (P[i]->Username->Equals(u)) {
+                GameView::MessageBox::Show("Wrong Password");
+            }
         }
     }
     // agregen sus usuarios
@@ -41,19 +44,18 @@ Tamer^ GameController::GameManager::CreateTamer(System::String^ u, System::Strin
             }
         }
         if (exist) {
-            //mandar mensaje de que el usuario
-            //ya existe
-            std::cout << "Usuario ya existe\n";
+            GameView::MessageBox::Show("Username is taken");
         }
         else {
             T = gcnew Tamer(u, p, P->Count + 1);
             Player->Add(T);
             SavePlayers();
+            GameView::MessageBox::Show("Account Created");
             //mensaje usuario creado
         }
     }
     else {
-        //mensaje de error valores vacios
+        GameView::MessageBox::Show("Invalid Arguments");
     }
     return T;
 }

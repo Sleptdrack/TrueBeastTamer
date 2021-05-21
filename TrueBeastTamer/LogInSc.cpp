@@ -2,7 +2,7 @@
 #include "LogInSc.h"
 #include <iostream>
 GameView::LogInSc::LogInSc(){
-    Screen = gcnew GameView::Screen(0,0,400,200,"Log in");
+    Screen = gcnew GameView::Screen(500,500,400,200,"Log in");
     bool slog = true;
     U = new sf::String("");
     P = new sf::String("");
@@ -64,24 +64,11 @@ void GameView::LogInSc::Log(bool *r)
             
             if (T!=nullptr) {
                 *r = true;
+                MessageBox::Show("Welcome " + T->Username);
                 Screen->W->close();
             }
             else {
-                //E1->UpdateString(*e1);
-                Screen->W->setActive(false);
-                error.create(sf::VideoMode(350, 150),"", sf::Style::None);
-                while (error.isOpen()) {
-                    if (E2->Click(error)) {
-                        Screen->Word[4]->UpdateString(*U);
-                        Screen->Word[6]->UpdateString(*P);
-                        error.close();
-                        Screen->W->setActive(true);
-                    }
-                    error.clear();
-                    E1->Draw(error);
-                    E2->Draw(error);
-                    error.display();
-                }
+                MessageBox::Show("Player not Found");
             }
         }
         if (Screen->Word[2]->Click(*Screen->W)) {

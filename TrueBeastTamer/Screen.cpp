@@ -13,8 +13,9 @@ GameView::Screen::Screen(float x, float y, float l, float h, sf::String n){
     //Rect->setTexture(Texture);
     Rect->setFillColor(sf::Color::Transparent);
     W = new sf::RenderWindow(sf::VideoMode(Length, Height), n, sf::Style::None);
-    GameView::Word^ X = gcnew GameView::Word(Length - 25, 0,"X", 24, sf::Color::Red);
-    Add(X);
+    GameView::Word^ X_ = gcnew GameView::Word(Length - 25, 0,"X", 24, sf::Color::Red);
+    W->setPosition(sf::Vector2i(X,Y));
+    Add(X_);
 }
 
 void GameView::Screen::Add(GameView::Word^ w)
