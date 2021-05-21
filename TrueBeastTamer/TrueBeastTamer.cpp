@@ -26,7 +26,7 @@ int main() {
     LogInSc^ LI = gcnew LogInSc();
     bool ready = false;
     LI->Log(&ready);
-    //
+    //ssss
     Map^ M = gcnew Map(10, 0, LI->T);
     Arena^ A = nullptr;
     sf::RenderWindow window;
