@@ -5,7 +5,7 @@
 using namespace System::Collections::Generic;
 using namespace System;
 typedef enum {Water,Fire,Air,Ligthing,Earth,Neutral} Element;
-typedef enum {Trululu, Atropos, Quin, Mofset} BeastName;
+typedef enum {Trululu, Atropos, Quin, Mosfet} BeastName;
 namespace GameModel {
     [Serializable]
     public ref class Beast : public GameObject

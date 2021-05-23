@@ -9,6 +9,7 @@
 #include "Fight.h"
 #include "Screen.h"
 #include "LogInSc.h"
+#include "Tutorial.h"
 #include "PathSource.h"
 #include <iostream>
 using namespace sf;
@@ -27,13 +28,19 @@ int main() {
     Clock c1;
     //Log in screen
     LogInSc^ LI = gcnew LogInSc();
-    bool ready = false;
+    Tutorial^ TU = nullptr;
+    bool ready = false,Tready=true;
     LI->Log(&ready);
-    //ssss
+    if (LI->T->Bag->Beast->Count == 0 && ready) {
+        Tready = false;
+        Tutorial^ TU = gcnew Tutorial(LI->T);
+        TU->ChooseBeast(&Tready);
+    }
     Arena^ A = nullptr;
     Map^ M = nullptr;
     sf::RenderWindow window;
-    if (ready) {
+    bool pause = false;
+    if (ready && Tready) {
         M = gcnew Map(10, 0, LI->T);
         M->Player->Move(0, 0);
         GameManager::UpdatePlayer(M->Player);
@@ -53,17 +60,25 @@ int main() {
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
+            if (event.type == sf::Event::LostFocus) {
+                pause = true;
+            }
+            if (event.type == sf::Event::GainedFocus) {
+                pause = false;
+            }
         }
-        if (Keyboard::isKeyPressed(Keyboard::Enter)) {
-            window.close();
-        }
-        Movement::Move(M->Player, t);
-        M->Player->OpenBag();
-        Movement::MoveAttack(M->Weapon, t);
+        if (!pause) {
+            if (Keyboard::isKeyPressed(Keyboard::Enter)) {
+                window.close();
+            }
+            Movement::Move(M->Player, t);
+            M->Player->OpenBag();
+            Movement::MoveAttack(M->Weapon, t);
 
-        if (t1.asSeconds() > 1) {
-            Fight::Hunt(M,A,window);
-            c1.restart();
+            if (t1.asSeconds() > 1) {
+                Fight::Hunt(M, A, window);
+                c1.restart();
+            }
         }
         window.clear();
         M->Draw(window);

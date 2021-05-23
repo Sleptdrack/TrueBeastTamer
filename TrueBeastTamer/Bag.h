@@ -16,5 +16,6 @@ namespace GameModel {
         Bag();
         void setDrawables(sf::String t);
         void Draw(sf::RenderTarget& rt);
+        void AddBeast(GameModel::Beast^ b);
     };
 }

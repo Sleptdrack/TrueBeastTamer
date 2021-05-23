@@ -42,7 +42,7 @@ void GameView::LogInSc::Fill(sf::Event e)
 
 void GameView::LogInSc::Draw()
 {
-    Screen->Draw(*Screen->W);
+    Screen->Draw();
 }
 
 void GameView::LogInSc::Log(bool *r)

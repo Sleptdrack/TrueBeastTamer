@@ -16,7 +16,7 @@ void GameView::MessageBox::Show(System::String^ n){
 			if (Screen->Word[2]->Click(*Screen->W))Screen->W->close();
 		}
 		Screen->W->clear();
-		Screen->Draw(*Screen->W);
+		Screen->Draw();
 		Screen->W->display();
 	}
 }

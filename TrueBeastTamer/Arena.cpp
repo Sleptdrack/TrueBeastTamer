@@ -14,7 +14,7 @@ GameModel::Arena::Arena(Beast^ b)
 
 void GameModel::Arena::Draw()
 {
-	Screen->Draw(*Screen->W);
+	Screen->Draw();
 	B->Draw(*Screen->W);
 }
 

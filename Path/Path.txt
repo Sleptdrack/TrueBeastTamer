@@ -1,6 +1,6 @@
 Tamer;../Imagenes/Tamer.png;
 Word;../Font/Bullpen3D.ttf;../Sound/Click.WAV;
-Bag;../Imagenes/Wood.JPG;
+Bag;../Imagenes/Box.png;
 Beast;../Imagenes/Trululu.png;../Imagenes/Atropos.png;../Imagenes/Quin.png;../Imagenes/Mosfet.png;
 Grass;../Imagenes/Grass.png;
 Hospital;../Imagenes/Hospital.png;

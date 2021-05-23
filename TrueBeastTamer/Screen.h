@@ -21,7 +21,7 @@ namespace GameView {
 	public:
 		Screen(float x,float y,float l,float h,sf::String n);
 		void Add(GameView::Word^ w);
-		void Draw(RenderTarget& rt);
+		void Draw();
 	};
 }
 

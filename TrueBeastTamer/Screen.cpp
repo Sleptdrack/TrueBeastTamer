@@ -21,11 +21,11 @@ void GameView::Screen::Add(GameView::Word^ w)
     Word->Add(w);
 }
 
-void GameView::Screen::Draw(RenderTarget& rt)
+void GameView::Screen::Draw()
 {
-    rt.draw(*Rect);
+    W->draw(*Rect);
     for (int i = 0; i < Word->Count; i++) {
-        Word[i]->Draw(rt);
+        Word[i]->Draw(*W);
     }
 
 }

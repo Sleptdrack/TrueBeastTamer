@@ -45,8 +45,8 @@ GameModel::Beast::Beast(BeastName name)
 			 setStat(Attack, 5.5, 3, 0.5);
 			 setStat(Cooldown, 10, 10, 3 / 5);
 			 break;
-		 case BeastName::Mofset: 
-			 TagName = "Mofset";
+		 case BeastName::Mosfet: 
+			 TagName = "Mosfet";
 			 Type = Element::Ligthing;
 			 setDrawables(PathSource::SystoStd(PathSource::Beast[3]));
 			 setStat(Health, 28, 10, 0.75);
