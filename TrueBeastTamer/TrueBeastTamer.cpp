@@ -27,6 +27,7 @@ int main() {
     Time t,t1;
     Clock clk;
     Clock c1;
+    RectangleShape* rec = new RectangleShape(sf::Vector2f(1920, 1080));
     //Log in screen
     LogInSc^ LI = gcnew LogInSc();
     Tutorial^ TU = nullptr;
@@ -46,7 +47,7 @@ int main() {
         M = gcnew Map(10, 0, LI->T);
         M->Player->Move(0, 0);
         GameManager::UpdatePlayer(M->Player);
-        window.create(sf::VideoMode(800, 800), "TrueBeastTamer"/*, sf::Style::Fullscreen*/);
+        window.create(sf::VideoMode(), "TrueBeastTamer", sf::Style::Fullscreen);
     }
     else {
         return 0;
@@ -73,7 +74,7 @@ int main() {
             if (Keyboard::isKeyPressed(Keyboard::Enter)) {
                 window.close();
             }
-            Movement::Move(M->Player, t);
+            Movement::Move(M->Player, t,rec);
             M->Player->OpenBag();
             Movement::MoveAttack(M->Weapon, t);
             Interraction::SetStateBag(M->Player, window);

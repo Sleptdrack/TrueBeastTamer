@@ -16,6 +16,7 @@ namespace GameModel {
 	public ref class Arena: public GameObject{
 	public:
 		property Screen^ Screen;
+		property RectangleShape* Tspace;
 		property Beast^ B;
 	public:
 		Arena(Beast^ b);
