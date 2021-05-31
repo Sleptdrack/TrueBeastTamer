@@ -66,16 +66,21 @@ void GameModel::Bag::Draw(sf::RenderTarget& rt)
 	case Window_Bag::Beasts:
 		rt.draw(*Sprite);
 		Word_Beast[0]->Draw(rt);
-		for (int i = 0; i < Beast->Count; i++) {
+		for (int j = 0; j < Beast->Count; j++) {
 			//revisar posicion
-			Beast[i]->Move(X, Y + Word_Beast[0]->Rect->getGlobalBounds().height + (i + 2) * (Height / 6));
-			Beast[i]->Draw(rt);
+			Beast[j]->Move(X, Y + Word_Beast[0]->Rect->getGlobalBounds().height + (j + 2) * (Height / 6));
+			Beast[j]->Draw(rt);
+			for (int i = 1; i < Word_Beast->Count; i += 3) {
+				//revisar posicion
+				Word_Beast[i]->Move(Beast[j]->X + Beast[j]->Length + 20, Beast[j]->Y);
+				Word_Beast[i + 1]->Move(Word_Beast[j]->X + 30, Beast[j]->Y - 15);
+				Word_Beast[i + 2]->Move(Word_Beast[j]->X + 30, Beast[j]->Y + 15);
+				Word_Beast[i]->Draw(rt);
+				Word_Beast[i + 1]->Draw(rt);
+				Word_Beast[i + 2]->Draw(rt);
+			}
 		}
-		for (int i = 1; i < Word_Beast->Count; i++) {
-			//revisar posicion
-			Word_Beast[i]->Move(X+Beast[i-1]->Length+20, Y + Word_Beast[0]->Rect->getGlobalBounds().height + (i + 2) * (Height / 6));
-			Word_Beast[i]->Draw(rt);
-		}
+
 
 
 	}
@@ -84,8 +89,12 @@ void GameModel::Bag::Draw(sf::RenderTarget& rt)
 void GameModel::Bag::AddBeast(GameModel::Beast^ b)
 {
 	Beast->Add(b);
-	GameView::Word^ n = gcnew GameView::Word(Beast[Beast->Count - 1]->X + Beast[Beast->Count - 1]->Length + 20, Beast[Beast->Count - 1]->Y, Beast[Beast->Count - 1]->TagName, 24, sf::Color::Red);
+	GameView::Word^ n = gcnew GameView::Word(0,0, Beast[Beast->Count - 1]->TagName, 24, sf::Color::Red);
+	GameView::Word^ n1 = gcnew GameView::Word(0, 0, "Edit", 24, sf::Color::Red);
+	GameView::Word^ n2 = gcnew GameView::Word(0, 0, "Set Free", 24, sf::Color::Red);
 	Word_Beast->Add(n);
+	Word_Beast->Add(n1);
+	Word_Beast->Add(n2);
 }
 
 
