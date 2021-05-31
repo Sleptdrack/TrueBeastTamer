@@ -7,6 +7,7 @@
 #include "Map.h"
 #include "Movement.h"
 #include "Fight.h"
+#include "Interraction.h"
 #include "Screen.h"
 #include "LogInSc.h"
 #include "Tutorial.h"
@@ -35,6 +36,7 @@ int main() {
         Tready = false;
         Tutorial^ TU = gcnew Tutorial(LI->T);
         TU->ChooseBeast(&Tready);
+        LI->T = TU->T;
     }
     Arena^ A = nullptr;
     Map^ M = nullptr;
@@ -74,7 +76,7 @@ int main() {
             Movement::Move(M->Player, t);
             M->Player->OpenBag();
             Movement::MoveAttack(M->Weapon, t);
-
+            Interraction::SetStateBag(M->Player, window);
             if (t1.asSeconds() > 1) {
                 Fight::Hunt(M, A, window);
                 c1.restart();

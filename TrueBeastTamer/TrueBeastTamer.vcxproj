@@ -146,6 +146,7 @@
     <ClInclude Include="Grass.h" />
     <ClInclude Include="Hack.h" />
     <ClInclude Include="Hospital.h" />
+    <ClInclude Include="Interraction.h" />
     <ClInclude Include="LogInSc.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MessageBox.h" />
@@ -176,6 +177,7 @@
     <ClCompile Include="Grass.cpp" />
     <ClCompile Include="Hack.cpp" />
     <ClCompile Include="Hospital.cpp" />
+    <ClCompile Include="Interraction.cpp" />
     <ClCompile Include="LogInSc.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MessageBox.cpp" />
