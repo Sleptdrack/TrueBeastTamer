@@ -4,3 +4,4 @@ Bag;../Imagenes/Box.png;
 Beast;../Imagenes/Trululu.png;../Imagenes/Atropos.png;../Imagenes/Quin.png;../Imagenes/Mosfet.png;
 Grass;../Imagenes/Grass.png;
 Hospital;../Imagenes/Hospital.png;
+Power;../Imagenes/BaseAttack.png;

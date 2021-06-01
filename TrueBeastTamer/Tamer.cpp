@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "Tamer.h"
 
 GameModel::Tamer::Tamer(System::String^ U, System::String^ P, int id/*, dummy mydummy*/)

@@ -53,6 +53,11 @@ void PathSource::LoadFromFile(std::string t)
 					Hospital->Add(StdtoSys(line.substr(n[i] + 1, n[i + 1] - n[i] - 1)));
 				}
 			}
+			if (line.substr(0, n[0]) == "Power") {
+				for (int i = 0; i < n->Count - 1; i++) {
+					Power->Add(StdtoSys(line.substr(n[i] + 1, n[i + 1] - n[i] - 1)));
+				}
+			}
 		}
 		myfile.close();
 	}

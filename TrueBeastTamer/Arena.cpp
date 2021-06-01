@@ -11,6 +11,7 @@ GameModel::Arena::Arena(Beast^ b)
 	Screen->Rect->setFillColor(sf::Color::White);
 	Tspace = new RectangleShape(sf::Vector2f(850, 480));
 	Tspace->setPosition(505, 212);
+	//Screen->W->setSize(sf::Vector2u(800, 800));//erase after
 	B = b;
 }
 
@@ -21,13 +22,15 @@ void GameModel::Arena::Draw()
 }
 
 void GameModel::Arena::Show(Map^ M){
+	M->Player->Bag->open = false;
 	M->Player->Move(280, 600);
 	M->Player->Bag->Beast[0]->Move(947, 640);
 	B->Move(947, 157);
-	Time t;
-	Clock clk;
+	Time t,t1;
+	Clock clk,clk1;
 	while (Screen->W->isOpen()) {
 		t = clk.getElapsedTime();
+		t1 = clk1.getElapsedTime();
 		clk.restart();
 		sf::Event event;
 		while (Screen->W->pollEvent(event)){
@@ -37,12 +40,19 @@ void GameModel::Arena::Show(Map^ M){
 			}
 		}
 		Movement::Move(M->Player->Bag->Beast[0], t,Tspace);
-		//std::cout << PathSource::SystoStd(M->Player->X.ToString()) + (std::string)" " + PathSource::SystoStd(M->Player->Y.ToString()) + "\n";
+		Interraction::UsePower(M->Player->Bag->Beast[0], *Screen->W);
+		if (t1.asMilliseconds() > 100) {
+			Movement::ShotDinamics(M->Player->Bag->Beast[0]->Power[0]);
+			clk1.restart();
+		}
 		Screen->W->clear();
 		Draw();
 		M->Player->Draw(*Screen->W);
 		for (int i = 0; i < M->Player->Bag->Beast->Count; i++) {
 			M->Player->Bag->Beast[i]->Draw(*Screen->W);
+		}
+		if (M->Player->Bag->Beast[0]->Power[0]->InUse) {
+			M->Player->Bag->Beast[0]->Power[0]->Shot[0]->Draw(*Screen->W);
 		}
 		Screen->W->display();
 	}

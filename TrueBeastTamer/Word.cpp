@@ -43,11 +43,12 @@ void GameView::Word::Move(float x, float y){
     X = x;
     Y = y;
     Text->setPosition(X, Y);
+    Rect->setPosition(X, Y);
 }
 
 bool GameView::Word::Click(sf::RenderWindow& rt){
     sf::Vector2i m = sf::Mouse::getPosition(rt);
-    if (Text->getGlobalBounds().contains((sf::Vector2f)m)) {
+    if (Rect->getGlobalBounds().contains((sf::Vector2f)m)) {
         Text->setFillColor(sf::Color::Blue);
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
             S->play();

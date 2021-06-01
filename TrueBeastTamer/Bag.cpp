@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "Bag.h"
 
 GameModel::Bag::Bag()
@@ -34,7 +34,23 @@ GameModel::Bag::Bag()
 	Word_Beast = gcnew List<GameView::Word^>();
 	GameView::Word^ B1 = gcnew GameView::Word(0, 0, "Beasts", 24, sf::Color(255, 101, 80, 255));
 	B1->Move(X + Length / 2 - B1->Rect->getGlobalBounds().width / 2, Y + 1 * (Height / 6) - B1->Rect->getGlobalBounds().height);
+	GameView::Word^ B2 = gcnew GameView::Word(X+20, Y + 1 * (Height / 6) - B1->Rect->getGlobalBounds().height, "Back", 24, sf::Color(255, 101, 80, 255));
 	Word_Beast->Add(B1);
+	Word_Beast->Add(B2);
+	//State Items
+	Word_Item = gcnew List<GameView::Word^>();
+	GameView::Word^I1 = gcnew GameView::Word(0, 0, "Items", 24, sf::Color(255, 101, 80, 255));
+	I1->Move(X + Length / 2 - I1->Rect->getGlobalBounds().width / 2, Y + 1 * (Height / 6) - I1->Rect->getGlobalBounds().height);
+	GameView::Word^ I2 = gcnew GameView::Word(X + 20, Y + 1 * (Height / 6) - I1->Rect->getGlobalBounds().height, "Back", 24, sf::Color(255, 101, 80, 255));
+	Word_Item->Add(I1);
+	Word_Item->Add(I2);
+	//State Setting
+	Word_Setting = gcnew List<GameView::Word^>();
+	GameView::Word^ S1 = gcnew GameView::Word(0, 0, "Settings", 24, sf::Color(255, 101, 80, 255));
+	S1->Move(X + Length / 2 - S1->Rect->getGlobalBounds().width / 2, Y + 1 * (Height / 6) - S1->Rect->getGlobalBounds().height);
+	GameView::Word^ S2 = gcnew GameView::Word(X + 20, Y + 1 * (Height / 6) - S1->Rect->getGlobalBounds().height, "Back", 24, sf::Color(255, 101, 80, 255));
+	Word_Setting->Add(S1);
+	Word_Setting->Add(S2);
 	setDrawables(PathSource::SystoStd(PathSource::Bag[0]));
 	open = false;
 	State = Window_Bag::Menu;
@@ -49,8 +65,14 @@ void GameModel::Bag::setDrawables(sf::String t){
 	for (int i = 0; i < Word_Beast->Count; i++) {
 		Word_Beast[i]->SetParameters(PathSource::SystoStd(PathSource::Word[0]), PathSource::SystoStd(PathSource::Word[1]), Word_Beast[i]->Code);
 	}
+	for (int i = 0; i < Word_Item->Count; i++) {
+		Word_Item[i]->SetParameters(PathSource::SystoStd(PathSource::Word[0]), PathSource::SystoStd(PathSource::Word[1]), Word_Item[i]->Code);
+	}
+	for (int i = 0; i < Word_Setting->Count; i++) {
+		Word_Setting[i]->SetParameters(PathSource::SystoStd(PathSource::Word[0]), PathSource::SystoStd(PathSource::Word[1]), Word_Setting[i]->Code);
+	}
 	for (int i = 0; i < Beast->Count; i++) {
-		Beast[i]->setDrawables(PathSource::SystoStd(PathSource::Beast[Beast[i]->Type]));
+		Beast[i]->setDrawables(PathSource::SystoStd(PathSource::Beast[Beast[i]->Name+1]));
 	}
 }
 
@@ -66,11 +88,12 @@ void GameModel::Bag::Draw(sf::RenderTarget& rt)
 	case Window_Bag::Beasts:
 		rt.draw(*Sprite);
 		Word_Beast[0]->Draw(rt);
+		Word_Beast[1]->Draw(rt);
 		for (int j = 0; j < Beast->Count; j++) {
 			//revisar posicion
 			Beast[j]->Move(X, Y + Word_Beast[0]->Rect->getGlobalBounds().height + (j + 2) * (Height / 6));
 			Beast[j]->Draw(rt);
-			for (int i = 1; i < Word_Beast->Count; i += 3) {
+			for (int i = 2; i < Word_Beast->Count; i += 3) {
 				//revisar posicion
 				Word_Beast[i]->Move(Beast[j]->X + Beast[j]->Length + 20, Beast[j]->Y);
 				Word_Beast[i + 1]->Move(Word_Beast[j]->X + 30, Beast[j]->Y - 15);
@@ -80,7 +103,17 @@ void GameModel::Bag::Draw(sf::RenderTarget& rt)
 				Word_Beast[i + 2]->Draw(rt);
 			}
 		}
-
+		break;
+	case Items:
+		rt.draw(*Sprite);
+		Word_Item[0]->Draw(rt);
+		Word_Item[1]->Draw(rt);
+		break;
+	case Setting:
+		rt.draw(*Sprite);
+		Word_Setting[0]->Draw(rt);
+		Word_Setting[1]->Draw(rt);
+		break;
 
 
 	}

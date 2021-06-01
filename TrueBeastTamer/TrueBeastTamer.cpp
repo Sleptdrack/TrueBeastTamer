@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <stdio.h>
@@ -33,7 +33,10 @@ int main() {
     Tutorial^ TU = nullptr;
     bool ready = false,Tready=true;
     LI->Log(&ready);
-    if (LI->T->Bag->Beast->Count == 0 && ready) {
+    if (ready == false) {
+        return 0;
+    }
+    else if (LI->T->Bag->Beast->Count == 0 && ready) {
         Tready = false;
         Tutorial^ TU = gcnew Tutorial(LI->T);
         TU->ChooseBeast(&Tready);
@@ -47,7 +50,7 @@ int main() {
         M = gcnew Map(10, 0, LI->T);
         M->Player->Move(0, 0);
         GameManager::UpdatePlayer(M->Player);
-        window.create(sf::VideoMode(), "TrueBeastTamer", sf::Style::Fullscreen);
+        window.create(sf::VideoMode(800,800), "TrueBeastTamer"/*, sf::Style::Fullscreen*/);
     }
     else {
         return 0;
@@ -76,7 +79,6 @@ int main() {
             }
             Movement::Move(M->Player, t,rec);
             M->Player->OpenBag();
-            Movement::MoveAttack(M->Weapon, t);
             Interraction::SetStateBag(M->Player, window);
             if (t1.asSeconds() > 1) {
                 Fight::Hunt(M, A, window);

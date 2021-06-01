@@ -55,6 +55,9 @@ GameModel::Beast::Beast(BeastName name)
 			 setStat(Cooldown, 10, 10, 3 / 5);
 			 break; 
 	}
+	Power = gcnew List<GameModel::Power^>();
+	GameModel::Power^ p=gcnew GameModel::Power(Type,basic);
+	Power->Add(p);
 }
 
 

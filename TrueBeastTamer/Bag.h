@@ -14,6 +14,8 @@ namespace GameModel {
         property Window_Bag State;
         property List<GameView::Word^>^ Word;
         property List<GameView::Word^>^ Word_Beast;
+        property List<GameView::Word^>^ Word_Item;
+        property List<GameView::Word^>^ Word_Setting;
         property bool open;
     public:
         Bag();

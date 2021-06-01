@@ -11,6 +11,7 @@ public:
 	static List<System::String^>^ Bag = gcnew List<System::String^>();
 	static List<System::String^>^ Grass = gcnew List<System::String^>();
 	static List<System::String^>^ Hospital = gcnew List<System::String^>();
+	static List<System::String^>^ Power = gcnew List<System::String^>();
 public:
 	static std::string SystoStd(System::String^ t);
 	static System::String^ StdtoSys(std::string t);

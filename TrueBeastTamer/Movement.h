@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Map.h"
+#include "Interraction.h"
 using namespace System;
 using namespace GameModel;
 using namespace sf;
@@ -10,6 +11,7 @@ namespace GameController {
 		static void Move(GameObject^ G, Time t);
 		static void Move(GameObject^ G, Time t, RectangleShape* R);
 		static void Movement::MoveAttack(GameObject^ G, Time t);
+		static void ShotDinamics(Power^ p);
 	};
 }
 

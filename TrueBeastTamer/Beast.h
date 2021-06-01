@@ -4,7 +4,6 @@
 #include <cmath>
 using namespace System::Collections::Generic;
 using namespace System;
-typedef enum {Water,Fire,Air,Ligthing,Earth,Neutral} Element;
 typedef enum {Trululu, Atropos, Quin, Mosfet} BeastName;
 namespace GameModel {
     [Serializable]
@@ -13,7 +12,7 @@ namespace GameModel {
     public:
         property BeastName Name;
         property System::String^ TagName;
-        property Element Type;//eliminar y reemplazar por elemento
+        property Element Type;//Element
         property List<float>^ Health;
         property List<float>^ Defense;
         property List<float>^ Attack;

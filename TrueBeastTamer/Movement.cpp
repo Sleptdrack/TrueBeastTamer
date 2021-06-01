@@ -64,3 +64,17 @@ void GameController::Movement::MoveAttack(GameObject^ G, Time t)
 	G->Y = globalPosition.y;
 	G->Move(G->X, G->Y);
 }
+
+void GameController::Movement::ShotDinamics(Power^ p)
+{
+	if (p->InUse) {
+		if (p->Shot[0]->destiny>=10) {
+			p->InUse = false;
+			p->Shot->RemoveAt(0);
+		}
+		else {
+			p->Shot[0]->Move(p->Shot[0]->X + (p->Shot[0]->end->x - p->Shot[0]->start->x) / 10, p->Shot[0]->Y + (p->Shot[0]->end->y - p->Shot[0]->start->y) / 10);
+			p->Shot[0]->destiny += 1;
+		}
+	}
+}

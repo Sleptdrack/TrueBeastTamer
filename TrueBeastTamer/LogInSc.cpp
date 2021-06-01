@@ -56,7 +56,10 @@ void GameView::LogInSc::Log(bool *r)
         sf::Event event;
         while (Screen->W->pollEvent(event))
         {
-            if (Screen->Word[0]->Click(*Screen->W))Screen->W->close();
+            if (Screen->Word[0]->Click(*Screen->W)) {
+                Screen->W->close();
+                *r = false;
+            }
             Fill(event);
         }
         if (Screen->Word[1]->Click(*Screen->W)) {

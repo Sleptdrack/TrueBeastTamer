@@ -64,9 +64,4 @@ void GameModel::Map::Draw(RenderTarget& rt){
     Hospital->Draw(rt);
     //Store->Draw(rt);
     Player->Draw(rt);
-
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-    {
-        Weapon->Draw(rt);
-    }
 }

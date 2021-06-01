@@ -7,6 +7,7 @@
 const float TileSize = 50;
 using namespace sf;
 using namespace System;
+typedef enum { Water, Fire, Air, Ligthing, Earth, Neutral } Element;
 namespace GameModel {
 	[Serializable]
 	public ref class GameObject {
