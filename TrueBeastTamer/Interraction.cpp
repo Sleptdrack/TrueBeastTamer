@@ -24,7 +24,8 @@ void GameController::Interraction::SetStateBag(Tamer^ T, RenderWindow& rt)
 				
 			}
 			if (T->Bag->Word[5]->Click(rt)) {
-				//Logout methos
+				rt.close();
+				GameManager::UpdatePlayer(T);
 			}
 		}
 		if (T->Bag->State == Window_Bag::Beasts) {
