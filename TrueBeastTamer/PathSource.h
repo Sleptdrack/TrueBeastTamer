@@ -17,4 +17,9 @@ public:
 	static System::String^ StdtoSys(std::string t);
 	static void LoadFromFile(std::string t);
 };
-
+public ref class WordSource {
+public:
+	static List<List<System::String^>^>^ Word = gcnew List<List<System::String^>^>();
+public:
+	static void LoadFromFile(std::string t);
+};

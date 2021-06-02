@@ -63,3 +63,28 @@ void PathSource::LoadFromFile(std::string t)
 	}
 	else std::cout << "Unable to open path";
 }
+
+void WordSource::LoadFromFile(std::string t)
+{
+	Word->Clear();
+	std::string line;
+	std::ifstream myfile(t);
+	if (myfile.is_open()) {
+		while (getline(myfile, line)) {
+			List<int>^ n = gcnew List<int>();
+			for (int i = 0; i < line.size(); i++) {
+				if (line[i] == ';') {
+					n->Add(i);
+				}
+			}
+			if (line.substr(0, n[0]) == "Word") {
+				Word->Add(gcnew List<System::String^>);
+				for (int i = 0; i < n->Count - 1; i++) {
+					Word[Word->Count - 1]->Add(PathSource::StdtoSys(line.substr(n[i] + 1, n[i + 1] - n[i] - 1)));
+				}
+			}
+		}
+		myfile.close();
+	}
+	else std::cout << "Unable to open path";
+}

@@ -6,18 +6,19 @@ GameView::LogInSc::LogInSc(){
     bool slog = true;
     U = new sf::String("");
     P = new sf::String("");
-    GameView::Word^ Login = gcnew GameView::Word(50, 125,"Log in", 24, sf::Color::Red);
-    GameView::Word^ SignUp = gcnew GameView::Word(250, 125,"Sign Up", 24, sf::Color::Red);
-    GameView::Word^ Ut = gcnew GameView::Word(50, 25,"Username", 24, sf::Color::Red);
-    GameView::Word^ U1 = gcnew GameView::Word(Ut->Rect->getGlobalBounds().width+50+20, 25,"", 24, sf::Color::Blue);
-    GameView::Word^ Pt = gcnew GameView::Word(50, 75,"Password", 24, sf::Color::Red);
-    GameView::Word^ P1 = gcnew GameView::Word(Pt->Rect->getGlobalBounds().width+50+20, 75,"", 24, sf::Color::Blue);
-    Screen->Add(Login);
-    Screen->Add(SignUp);
-    Screen->Add(Ut);
-    Screen->Add(U1);
-    Screen->Add(Pt);
-    Screen->Add(P1);
+
+    WordSource::LoadFromFile("../Path/LogScreen.txt");
+    List<System::String^>^ s = gcnew List<System::String^>();
+    for (int i = 0; i < WordSource::Word->Count; i++) {
+        s->Clear();
+        s = WordSource::Word[i];
+        GameView::Word^ w = gcnew GameView::Word((float)System::Int32::Parse(s[0]),
+            (float)System::Int32::Parse(s[1]),
+            s[2],
+            System::Int32::Parse(s[3]),
+            sf::Color::Color((uint32_t)System::UInt32::Parse(s[4])));
+        Screen->Add(w);
+    }
     
 }
 
