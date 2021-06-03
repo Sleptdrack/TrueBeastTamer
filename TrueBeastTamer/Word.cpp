@@ -47,8 +47,8 @@ void GameView::Word::Move(float x, float y){
 }
 
 bool GameView::Word::Click(sf::RenderWindow& rt){
-    sf::Vector2i m = sf::Mouse::getPosition(rt);
-    if (Rect->getGlobalBounds().contains((sf::Vector2f)m)) {
+    sf::Vector2f m = (sf::Vector2f)rt.mapPixelToCoords(sf::Mouse::getPosition(rt));
+    if (Rect->getGlobalBounds().contains(m)) {
         Text->setFillColor(sf::Color::Blue);
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
             S->play();

@@ -54,8 +54,8 @@ void GameController::Interraction::UsePower(Beast^ b, RenderWindow& rt)
 	if (b->Power[0]->InUse == false) {
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) ){
 			b->Power[0]->InUse = true;
-			sf::Vector2i mouse =(sf::Vector2i)rt.mapPixelToCoords(sf::Mouse::getPosition(rt));
-			GameModel::Shot^ s = gcnew GameModel::Shot(mouse, sf::Vector2i(b->X+b->Length/2, b->Y+b->Height/2));
+			sf::Vector2f mouse =(sf::Vector2f)rt.mapPixelToCoords(sf::Mouse::getPosition(rt));
+			GameModel::Shot^ s = gcnew GameModel::Shot(mouse, sf::Vector2f(b->X+b->Length/2, b->Y+b->Height/2));
 			b->Power[0]->Shot->Add(s);
 		}
 	}

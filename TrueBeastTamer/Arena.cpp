@@ -11,7 +11,7 @@ GameModel::Arena::Arena(Beast^ b)
 	Screen->Rect->setFillColor(sf::Color::White);
 	Tspace = new RectangleShape(sf::Vector2f(850, 480));
 	Tspace->setPosition(505, 212);
-	//Screen->W->setSize(sf::Vector2u(800, 800));//erase after
+	Screen->W->setSize(sf::Vector2u(800, 800));//erase after
 	B = b;
 }
 

@@ -5,15 +5,15 @@ GameModel::Power::Power(Element t, Attack k)
 {
 	Type = t;
 	Kind = k;
-    Range = 100;
+    Range = 300;
     cooldown = 500;//en ms
     InUse = false;
     Shot = gcnew List<GameModel::Shot^>();
 }
-GameModel::Shot::Shot(sf::Vector2i e, sf::Vector2i s)
+GameModel::Shot::Shot(sf::Vector2f e, sf::Vector2f s)
 {
-    start = new sf::Vector2i(s);
-    end = new sf::Vector2i(e);
+    start = new sf::Vector2f(s);
+    end = new sf::Vector2f(e);
     X = start->x;
     Y = start->y;
     destiny = 0;
@@ -26,6 +26,7 @@ void GameModel::Shot::setDrawable(sf::String n)
     Texture->loadFromFile(n);
     Sprite->setTexture(*Texture);
     Sprite->setPosition(X, Y);
-    Sprite->setScale(2, 2);
     Sprite->setOrigin(Sprite->getGlobalBounds().width / 2, Sprite->getGlobalBounds().height / 2);
+    Sprite->setScale(2, 2);
+    
 }

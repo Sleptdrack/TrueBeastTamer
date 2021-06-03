@@ -19,6 +19,7 @@ GameView::Tutorial::Tutorial(Tamer^ t)
 	GameView::Word^ w = gcnew GameView::Word(0, 0, "Choose your Beast", 48, sf::Color::Red);
 	Screen->Word->Add(w);
 	Screen->Word[5]->Move(Screen->Length / 2 - Screen->Word[5]->Rect->getGlobalBounds().width / 2, 100);
+	Screen->W->setSize(sf::Vector2u(800, 800));//erase after
 
 
 }
@@ -43,7 +44,7 @@ void GameView::Tutorial::ChooseBeast(bool* t)
 				*t = true;
 			}
 		}
-		for (int i = 1; i < Beast->Count + 1; i++) {
+		for (int i = 1; i <= 4; i++) {
 			if (Screen->Word[i]->Click(*Screen->W)) {
 				T->Bag->AddBeast(Beast[i - 1]);
 				Screen->W->close();

@@ -42,38 +42,20 @@ void GameController::Movement::Move(GameObject^ G, Time t, RectangleShape* R)
 	G->Move(G->X, G->Y);
 }
 
-void GameController::Movement::MoveAttack(GameObject^ G, Time t)
-{
-	sf::Vector2i globalPosition = sf::Mouse::getPosition(); // posicion del mouse
-	//int xp = 30;
-	//int yp = 30;
-
-	//int n =  abs(globalPosition.x - xp)/50;
-	//int x_r = xp;
-	//int y_r;
-	//for(int i=0;i<n;i++)
-	//{
-	//	y_r = (yp - globalPosition.y) * (x_r - xp) / (xp - globalPosition.x);
-	//	x_r = x_r + n;
-	//	G->X = x_r;
-	//	G->Y = y_r;
-	//	G->Move(G->X, G->Y);
-	//}
-
-	G->X = globalPosition.x;
-	G->Y = globalPosition.y;
-	G->Move(G->X, G->Y);
-}
-
 void GameController::Movement::ShotDinamics(Power^ p)
 {
 	if (p->InUse) {
+		float x = p->Shot[0]->end->x - p->Shot[0]->start->x;
+		float y = p->Shot[0]->end->y - p->Shot[0]->start->y;
+		float m = y / x;
+		float plus = p->Range / (10 * pow((1 + pow(m, 2)), 0.5));
 		if (p->Shot[0]->destiny>=10) {
 			p->InUse = false;
 			p->Shot->RemoveAt(0);
 		}
 		else {
-			p->Shot[0]->Move(p->Shot[0]->X + (p->Shot[0]->end->x - p->Shot[0]->start->x) / 10, p->Shot[0]->Y + (p->Shot[0]->end->y - p->Shot[0]->start->y) / 10);
+			if(x>0)p->Shot[0]->Move(p->Shot[0]->X + plus, p->Shot[0]->Y + plus * m);
+			else p->Shot[0]->Move(p->Shot[0]->X - plus, p->Shot[0]->Y - plus * m);
 			p->Shot[0]->destiny += 1;
 		}
 	}

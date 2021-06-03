@@ -6,7 +6,6 @@
 #include "Garden.h"
 #include "Hospital.h"
 #include "Tamer.h"
-#include "Attack.h"
 using namespace System::Collections::Generic;
 using namespace System;
 using namespace sf;
@@ -22,8 +21,6 @@ namespace GameModel {
 		property Hospital^ Hospital;
 		//property Store^ Store;
 		property Tamer^ Player;
-
-		property Attack^ Weapon;
 	public:
 		Map(int ng, int nn,Tamer^ p);
 		void Draw(RenderTarget& rt);

@@ -9,11 +9,11 @@ namespace GameModel {
 	[Serializable]
 	public ref class Shot : public GameObject {
 	public:
-		property sf::Vector2i* start;
-		property sf::Vector2i* end;
+		property sf::Vector2f* start;
+		property sf::Vector2f* end;
 		property int destiny;
 	public:
-		Shot(sf::Vector2i e, sf::Vector2i s);
+		Shot(sf::Vector2f e, sf::Vector2f s);
 		void setDrawable(sf::String n);
 	};
 	[Serializable]

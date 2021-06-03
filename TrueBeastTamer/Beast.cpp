@@ -17,7 +17,8 @@ GameModel::Beast::Beast(BeastName name)
 	//esta parte debe ser borrada cuando se creen las subclases
 	Length = TileSize;
 	Height = TileSize;
-	switch (name) {
+	Name = name;
+	switch (Name) {
 	     case BeastName::Trululu: 
 			 TagName = "Trululu";
 			 Type = Element::Neutral;
@@ -86,9 +87,9 @@ void GameModel::Beast::UpdateStats(List<float>^ T,int L)
 //codigo de GC
 void GameModel::Beast::setStat(List<float>^ s, float base, float particularidad, float radio)
 {
-	s->Add(base);
-	s->Add(rand() % (int)particularidad);
-	s->Add(Health[0] + Health[1]);
-	s->Add(Health[2]);
-	s->Add(radio);
+	s->Add(base);//valor base
+	s->Add(rand() % (int)particularidad);//valor particular
+	s->Add(s[0] + s[1]);//valor max actual
+	s->Add(s[2]);//valor actual
+	s->Add(radio);//razon de cambio
 }

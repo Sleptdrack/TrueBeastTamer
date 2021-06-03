@@ -30,7 +30,6 @@ GameModel::Map::Map(int ng, int nn,Tamer^ p){
     //NPC = gcnew List<NPC^>();
     //Algoritmo para Hospital
     Hospital = gcnew GameModel::Hospital(0,0);
-    Weapon = gcnew GameModel::Attack(30, 30);
 
     int FH;
     do {
