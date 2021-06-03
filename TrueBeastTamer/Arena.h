@@ -18,6 +18,7 @@ namespace GameModel {
 		property Screen^ Screen;
 		property RectangleShape* Tspace;
 		property Beast^ B;
+
 	public:
 		Arena(Beast^ b);
 		void Draw();

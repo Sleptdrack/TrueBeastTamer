@@ -16,3 +16,8 @@ void GameController::Fight::Hunt(Map^ M, Arena^ A, RenderWindow& W){
 
 	}
 }
+
+void GameController::Fight::Battle(Arena^ A)
+{
+
+}

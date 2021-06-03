@@ -9,7 +9,7 @@ namespace GameController {
 	public ref class Fight {
 	public:
 		static void Hunt(Map^ M, Arena^ A, RenderWindow& W);
-		//static void Battle(Arena^ A);
+		static void Battle(Arena^ A);
 	};
 }
 

@@ -11,6 +11,7 @@ GameModel::Arena::Arena(Beast^ b)
 	Screen->Rect->setFillColor(sf::Color::White);
 	Tspace = new RectangleShape(sf::Vector2f(850, 480));
 	Tspace->setPosition(505, 212);
+	//Crear clase que maneje un cuadro con valores 
 	Screen->W->setSize(sf::Vector2u(800, 800));//erase after
 	B = b;
 }
@@ -25,6 +26,8 @@ void GameModel::Arena::Show(Map^ M){
 	M->Player->Bag->open = false;
 	M->Player->Move(280, 600);
 	M->Player->Bag->Beast[0]->Move(947, 640);
+	M->Player->Bag->Beast[0]->Power[0]->Shot->Clear();
+	M->Player->Bag->Beast[0]->Power[0]->InUse = false;
 	B->Move(947, 157);
 	Time t,t1;
 	Clock clk,clk1;
