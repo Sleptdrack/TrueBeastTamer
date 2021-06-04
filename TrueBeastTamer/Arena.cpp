@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Arena.h"
-
+#include "Fight.h"
 GameModel::Arena::Arena(Beast^ b)
 {
 	Texture = new sf::Texture();
@@ -48,6 +48,8 @@ void GameModel::Arena::Show(Map^ M){
 			Movement::ShotDinamics(M->Player->Bag->Beast[0]->Power[0]);
 			clk1.restart();
 		}
+		Fight::Battle(B, M->Player);
+		if (B->Health[3] <= 0)Screen->W->close();//reemplazar por metodo para atrapar o liberar Beast
 		Screen->W->clear();
 		Draw();
 		M->Player->Draw(*Screen->W);

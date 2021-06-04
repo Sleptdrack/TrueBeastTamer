@@ -56,6 +56,7 @@ void GameController::Movement::ShotDinamics(Power^ p)
 		else {
 			if(x>0)p->Shot[0]->Move(p->Shot[0]->X + plus, p->Shot[0]->Y + plus * m);
 			else p->Shot[0]->Move(p->Shot[0]->X - plus, p->Shot[0]->Y - plus * m);
+			//agregar efecto de sonido, metodo con entrada el elemento
 			p->Shot[0]->destiny += 1;
 		}
 	}
