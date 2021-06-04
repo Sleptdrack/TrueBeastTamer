@@ -5,3 +5,4 @@ Beast;../Path/Beast/Trululu.txt;../Path/Beast/Atropos.txt;../Path/Beast/Quin.txt
 Grass;../Imagenes/Grass.png;
 Hospital;../Imagenes/Hospital.png;
 Power;../Imagenes/BaseAttack.png;
+Resolution;1600;900;
