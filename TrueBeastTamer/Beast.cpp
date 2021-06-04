@@ -25,7 +25,7 @@ GameModel::Beast::Beast(BeastName name)
 			 setDrawables(PathSource::SystoStd(PathSource::Beast[0]));
 			 setStat(Health, 30, 10, 0.75);
 			 setStat(Defense, 3, 5, 0.5);
-			 setStat(Attack, 5, 3, 0.5);
+			 setStat(Attack, 5, 8, 0.5);
 			 setStat(Cooldown, 10, 10, 3/5);
 			 break;
 		 case BeastName::Atropos: 
@@ -34,7 +34,7 @@ GameModel::Beast::Beast(BeastName name)
 			 setDrawables(PathSource::SystoStd(PathSource::Beast[1]));
 			 setStat(Health, 33, 10, 0.75);
 			 setStat(Defense, 5, 6, 0.5);
-			 setStat(Attack, 4, 3, 0.5);
+			 setStat(Attack, 4, 9, 0.5);
 			 setStat(Cooldown, 10, 10, 3 / 5);
 			 break;
 		 case BeastName::Quin: 
@@ -43,7 +43,7 @@ GameModel::Beast::Beast(BeastName name)
 			 setDrawables(PathSource::SystoStd(PathSource::Beast[2]));
 			 setStat(Health, 30, 10, 0.75);
 			 setStat(Defense, 2, 5, 0.5);
-			 setStat(Attack, 5.5, 3, 0.5);
+			 setStat(Attack, 5.5, 8, 0.5);
 			 setStat(Cooldown, 10, 10, 3 / 5);
 			 break;
 		 case BeastName::Mosfet: 
@@ -52,7 +52,7 @@ GameModel::Beast::Beast(BeastName name)
 			 setDrawables(PathSource::SystoStd(PathSource::Beast[3]));
 			 setStat(Health, 28, 10, 0.75);
 			 setStat(Defense, 3, 5, 0.5);
-			 setStat(Attack, 7, 3, 0.5);
+			 setStat(Attack, 7, 5, 0.5);
 			 setStat(Cooldown, 10, 10, 3 / 5);
 			 break; 
 	}
