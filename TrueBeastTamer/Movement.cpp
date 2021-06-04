@@ -52,11 +52,14 @@ void GameController::Movement::ShotDinamics(Power^ p)
 		if (p->Shot[0]->destiny>=10) {
 			p->InUse = false;
 			p->Shot->RemoveAt(0);
+			p->Move->stop();
+			p->Hit->play();
 		}
 		else {
+			p->Move->play();
+			p->Move->setLoop(true);
 			if(x>0)p->Shot[0]->Move(p->Shot[0]->X + plus, p->Shot[0]->Y + plus * m);
 			else p->Shot[0]->Move(p->Shot[0]->X - plus, p->Shot[0]->Y - plus * m);
-			//agregar efecto de sonido, metodo con entrada el elemento
 			p->Shot[0]->destiny += 1;
 		}
 	}

@@ -14,51 +14,84 @@ GameModel::Beast::Beast(BeastName name)
 	Exp = 0;
 	X = 0;
 	Y = 0;
-	//esta parte debe ser borrada cuando se creen las subclases
 	Length = TileSize;
 	Height = TileSize;
 	Name = name;
+	Power = gcnew List<GameModel::Power^>();
+	GameModel::Power^ p = nullptr;
 	switch (Name) {
 	     case BeastName::Trululu: 
 			 TagName = "Trululu";
 			 Type = Element::Neutral;
-			 setDrawables(PathSource::SystoStd(PathSource::Beast[0]));
-			 setStat(Health, 30, 10, 0.75);
-			 setStat(Defense, 3, 5, 0.5);
-			 setStat(Attack, 5, 8, 0.5);
-			 setStat(Cooldown, 10, 10, 3/5);
+			 p = gcnew GameModel::Power(Type, basic);
+			 Power->Add(p);
+			 BeastSource::LoadFromFile(PathSource::SystoStd(PathSource::Beast[0]));
+			 SetDrawables(PathSource::SystoStd(BeastSource::Sprite[0]),
+				 PathSource::SystoStd(BeastSource::Sound[0]),
+				 PathSource::SystoStd(BeastSource::Sound[1]));
+			 setStat(Health, BeastSource::Health[0], BeastSource::Health[1], BeastSource::Health[2]);
+			 setStat(Defense, BeastSource::Defense[0], BeastSource::Defense[1], BeastSource::Defense[2]);
+			 setStat(Attack, BeastSource::Attack[0], BeastSource::Attack[1], BeastSource::Attack[2]);
+			 setStat(Cooldown, BeastSource::Cooldown[0], BeastSource::Cooldown[1], BeastSource::Cooldown[2]);
 			 break;
 		 case BeastName::Atropos: 
 			 TagName = "Atropos";
 			 Type = Element::Earth;
-			 setDrawables(PathSource::SystoStd(PathSource::Beast[1]));
-			 setStat(Health, 33, 10, 0.75);
-			 setStat(Defense, 5, 6, 0.5);
-			 setStat(Attack, 4, 9, 0.5);
-			 setStat(Cooldown, 10, 10, 3 / 5);
+			 p = gcnew GameModel::Power(Type, basic);
+			 Power->Add(p);
+			 BeastSource::LoadFromFile(PathSource::SystoStd(PathSource::Beast[1]));
+			 SetDrawables(PathSource::SystoStd(BeastSource::Sprite[0]),
+				 PathSource::SystoStd(BeastSource::Sound[0]),
+				 PathSource::SystoStd(BeastSource::Sound[1]));
+			 setStat(Health, BeastSource::Health[0], BeastSource::Health[1], BeastSource::Health[2]);
+			 setStat(Defense, BeastSource::Defense[0], BeastSource::Defense[1], BeastSource::Defense[2]);
+			 setStat(Attack, BeastSource::Attack[0], BeastSource::Attack[1], BeastSource::Attack[2]);
+			 setStat(Cooldown, BeastSource::Cooldown[0], BeastSource::Cooldown[1], BeastSource::Cooldown[2]);
 			 break;
 		 case BeastName::Quin: 
 			 TagName = "Quin";
 			 Type = Element::Water;
-			 setDrawables(PathSource::SystoStd(PathSource::Beast[2]));
-			 setStat(Health, 30, 10, 0.75);
-			 setStat(Defense, 2, 5, 0.5);
-			 setStat(Attack, 5.5, 8, 0.5);
-			 setStat(Cooldown, 10, 10, 3 / 5);
+			 p = gcnew GameModel::Power(Type, basic);
+			 Power->Add(p);
+			 BeastSource::LoadFromFile(PathSource::SystoStd(PathSource::Beast[2]));
+			 SetDrawables(PathSource::SystoStd(BeastSource::Sprite[0]),
+				 PathSource::SystoStd(BeastSource::Sound[0]),
+				 PathSource::SystoStd(BeastSource::Sound[1]));
+			 setStat(Health, BeastSource::Health[0], BeastSource::Health[1], BeastSource::Health[2]);
+			 setStat(Defense, BeastSource::Defense[0], BeastSource::Defense[1], BeastSource::Defense[2]);
+			 setStat(Attack, BeastSource::Attack[0], BeastSource::Attack[1], BeastSource::Attack[2]);
+			 setStat(Cooldown, BeastSource::Cooldown[0], BeastSource::Cooldown[1], BeastSource::Cooldown[2]);
 			 break;
 		 case BeastName::Mosfet: 
 			 TagName = "Mosfet";
 			 Type = Element::Ligthing;
-			 setDrawables(PathSource::SystoStd(PathSource::Beast[3]));
-			 setStat(Health, 28, 10, 0.75);
-			 setStat(Defense, 3, 5, 0.5);
-			 setStat(Attack, 7, 5, 0.5);
-			 setStat(Cooldown, 10, 10, 3 / 5);
+			 p = gcnew GameModel::Power(Type, basic);
+			 Power->Add(p);
+			 BeastSource::LoadFromFile(PathSource::SystoStd(PathSource::Beast[3]));
+			 SetDrawables(PathSource::SystoStd(BeastSource::Sprite[0]),
+				 PathSource::SystoStd(BeastSource::Sound[0]),
+				 PathSource::SystoStd(BeastSource::Sound[1]));
+			 setStat(Health, BeastSource::Health[0], BeastSource::Health[1], BeastSource::Health[2]);
+			 setStat(Defense, BeastSource::Defense[0], BeastSource::Defense[1], BeastSource::Defense[2]);
+			 setStat(Attack, BeastSource::Attack[0], BeastSource::Attack[1], BeastSource::Attack[2]);
+			 setStat(Cooldown, BeastSource::Cooldown[0], BeastSource::Cooldown[1], BeastSource::Cooldown[2]);
 			 break; 
 	}
-	Power = gcnew List<GameModel::Power^>();
-	GameModel::Power^ p=gcnew GameModel::Power(Type,basic);
-	Power->Add(p);
+}
+
+void GameModel::Beast::SetDrawables(sf::String s, sf::String a1, sf::String a2)
+{
+	GameObject::setDrawables(s);
+	Power[0]->SHit = new sf::SoundBuffer();
+	Power[0]->SMove = new sf::SoundBuffer();
+	Power[0]->Hit = new sf::Sound();
+	Power[0]->Move = new sf::Sound();
+	Power[0]->SHit->loadFromFile(a1);
+	Power[0]->SMove->loadFromFile(a2);
+	Power[0]->Hit->setBuffer(*Power[0]->SHit);
+	Power[0]->Hit->setVolume(50);
+	Power[0]->Move->setBuffer(*Power[0]->SMove);
+	Power[0]->Move->setVolume(50);
 }
 
 

@@ -23,3 +23,14 @@ public:
 public:
 	static void LoadFromFile(std::string t);
 };
+public ref class BeastSource {
+public:
+	static List<System::String^>^ Sprite = gcnew List<System::String^>();
+	static List<System::String^>^ Sound = gcnew List<System::String^>();
+	static List<float>^ Health = gcnew List<float>();
+	static List<float>^ Defense = gcnew List<float>();
+	static List<float>^ Attack = gcnew List<float>();
+	static List<float>^ Cooldown = gcnew List<float>();
+public:
+	static void LoadFromFile(std::string t);
+};

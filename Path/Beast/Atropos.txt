@@ -1,0 +1,6 @@
+Sprite;../Imagenes/Atropos.png;
+Sound;../Sound/stone_impact.wav;../Sound/stone.wav;
+Health;40;10;0.75;
+Defense;7;5;0.5;
+Attack;4;8;0.5;
+Cooldown;10;10;0.6;

@@ -23,7 +23,8 @@ void GameController::Fight::Battle(Beast^ B, Tamer^ T){
 			std::cout << B->Health[3] << "\n";
 			B->Health[3] -= T->Bag->Beast[0]->Attack[3] - B->Defense[3];//el tercer elemento es el valor real que posee
 			//agregar metodo para definir daño por elemento
-			//agregar efecto de sonido
+			T->Bag->Beast[0]->Power[0]->Move->stop();
+			T->Bag->Beast[0]->Power[0]->Hit->play();
 			T->Bag->Beast[0]->Power[0]->Shot->Clear();
 			T->Bag->Beast[0]->Power[0]->InUse = false;
 		}

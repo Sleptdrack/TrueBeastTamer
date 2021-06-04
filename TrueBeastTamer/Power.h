@@ -1,6 +1,7 @@
 #pragma once
 #include "pch.h"
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "GameObject.h"
 using namespace System;
 using namespace System::Collections::Generic;
@@ -26,6 +27,10 @@ namespace GameModel {
 			property List<Shot^>^ Shot;
 			property int cooldown;
 			property bool InUse;
+			property sf::SoundBuffer* SHit;
+			property sf::SoundBuffer* SMove;
+			property sf::Sound* Hit;
+			property sf::Sound* Move;
 	public:
 		Power(Element t, Attack k);
 		

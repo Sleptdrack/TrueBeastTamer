@@ -72,7 +72,10 @@ void GameModel::Bag::setDrawables(sf::String t){
 		Word_Setting[i]->SetParameters(PathSource::SystoStd(PathSource::Word[0]), PathSource::SystoStd(PathSource::Word[1]), Word_Setting[i]->Code);
 	}
 	for (int i = 0; i < Beast->Count; i++) {
-		Beast[i]->setDrawables(PathSource::SystoStd(PathSource::Beast[Beast[i]->Name]));
+		BeastSource::LoadFromFile(PathSource::SystoStd(PathSource::Beast[Beast[i]->Name]));
+		Beast[i]->SetDrawables(PathSource::SystoStd(BeastSource::Sprite[0]),
+			PathSource::SystoStd(BeastSource::Sound[0]),
+			PathSource::SystoStd(BeastSource::Sound[1]));
 	}
 }
 

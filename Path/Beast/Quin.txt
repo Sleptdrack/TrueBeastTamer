@@ -1,0 +1,6 @@
+Sprite;../Imagenes/Quin.png;
+Sound;../Sound/water_impact.wav;../Sound/water.wav;
+Health;30;10;0.75;
+Defense;2;5;0.5;
+Attack;5.5;8;0.5;
+Cooldown;10;10;0.6;

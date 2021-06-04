@@ -23,6 +23,7 @@ namespace GameModel {
 
     public:
         Beast(BeastName name);//el predeterminado
+        void SetDrawables(sf::String s, sf::String a1, sf::String a2);
         void Learn();
         void LevelUp();
         void UpdateStats(List<float>^ T,int L);

@@ -1,0 +1,6 @@
+Sprite;../Imagenes/Mosfet.png;
+Sound;../Sound/electricidad_impacto.wav;../Sound/electricidad.wav;
+Health;28;10;0.75;
+Defense;3;5;0.5;
+Attack;7;5;0.5;
+Cooldown;10;10;0.6;
