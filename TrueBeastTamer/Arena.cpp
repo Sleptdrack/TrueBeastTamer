@@ -12,7 +12,7 @@ GameModel::Arena::Arena(Beast^ b)
 	Tspace = new RectangleShape(sf::Vector2f(850, 480));
 	Tspace->setPosition(505, 212);
 	//Crear clase que maneje un cuadro con valores 
-	Screen->W->setSize(sf::Vector2u(800, 800));//erase after
+	Screen->W->setSize(sf::Vector2u(PathSource::Resolution[0], PathSource::Resolution[1]));//erase after
 	B = b;
 }
 

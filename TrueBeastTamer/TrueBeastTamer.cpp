@@ -53,7 +53,7 @@ int main() {
             M->Player->Bag->open = false;
             GameManager::UpdatePlayer(M->Player);
             window.create(sf::VideoMode(1920, 1080), "TrueBeastTamer"/*, sf::Style::Fullscreen*/);
-            window.setSize(sf::Vector2u(800, 800));
+            window.setSize(sf::Vector2u(PathSource::Resolution[0], PathSource::Resolution[1]));
         }
         else {
             return 0;
