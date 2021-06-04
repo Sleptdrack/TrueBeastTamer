@@ -21,7 +21,12 @@ void GameController::Fight::Battle(Beast^ B, Tamer^ T){
 	if (T->Bag->Beast[0]->Power[0]->InUse) {
 		if (T->Bag->Beast[0]->Power[0]->Shot[0]->Contains(B)) {
 			std::cout << B->Health[3] << "\n";
-			B->Health[3] -= T->Bag->Beast[0]->Attack[3] - B->Defense[3];//el tercer elemento es el valor real que posee
+			if (T->Bag->Beast[0]->Attack[3] - B->Defense[3] <= 0) {
+				B->Health[3] -= 1;
+			}
+			else {
+				B->Health[3] -= T->Bag->Beast[0]->Attack[3] - B->Defense[3];//el tercer elemento es el valor real que posee
+			}
 			//agregar metodo para definir daño por elemento
 			T->Bag->Beast[0]->Power[0]->Move->stop();
 			T->Bag->Beast[0]->Power[0]->Hit->play();
