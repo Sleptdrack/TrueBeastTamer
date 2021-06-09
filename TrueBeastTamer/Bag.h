@@ -17,10 +17,12 @@ namespace GameModel {
         property List<GameView::Word^>^ Word_Item;
         property List<GameView::Word^>^ Word_Setting;
         property bool open;
+        property bool moving;
     public:
         Bag();
         void setDrawables(sf::String t);
         void Draw(sf::RenderTarget& rt);
         void AddBeast(GameModel::Beast^ b);
+        void Move(float x, float y);
     };
 }

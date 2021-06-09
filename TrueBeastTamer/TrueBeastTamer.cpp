@@ -21,6 +21,7 @@ using namespace GameView;
 int main() {
     srand(time(NULL));
     float x = 50, y = 0;
+    sf::Vector2f* rtv = new sf::Vector2f();
     //path
     PathSource::LoadFromFile("../Path/Path.txt");
     View View;
@@ -67,6 +68,7 @@ int main() {
             while (window.pollEvent(event))
             {
                 if (event.type == sf::Event::Closed) {
+                    GameManager::UpdatePlayer(M->Player);
                     window.close();
                 }
                 if (event.type == sf::Event::LostFocus) {
@@ -87,6 +89,7 @@ int main() {
                     Fight::Hunt(M, A, window);
                     c1.restart();
                 }
+                Interraction::MoveBag(M->Player, window, rtv);
             }
             window.clear();
             M->Draw(window);

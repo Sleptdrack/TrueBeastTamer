@@ -9,6 +9,7 @@ namespace GameController {
 	public ref class Interraction{
 	public:
 		static void SetStateBag(Tamer^ T, RenderWindow& rt);
+		static void MoveBag(Tamer^ T, RenderWindow& rt, sf::Vector2f* t);
 		static void UsePower(Beast^ b, RenderWindow& rt);
 	};
 }

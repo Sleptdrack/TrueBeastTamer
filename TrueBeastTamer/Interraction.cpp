@@ -49,6 +49,28 @@ void GameController::Interraction::SetStateBag(Tamer^ T, RenderWindow& rt)
 	}
 }
 
+void GameController::Interraction::MoveBag(Tamer^ T, RenderWindow& rt, sf::Vector2f* t)
+{
+	if (T->Bag->open) {
+		if (!T->Bag->moving) {
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+				T->Bag->moving = true;
+				*t= (sf::Vector2f)rt.mapPixelToCoords(sf::Mouse::getPosition(rt));
+			}
+		}
+		else {
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+				sf::Vector2f mouse = (sf::Vector2f)rt.mapPixelToCoords(sf::Mouse::getPosition(rt));
+				T->Bag->Move(T->Bag->X+mouse.x - t->x,T->Bag->Y+mouse.y - t->y);
+				*t = (sf::Vector2f)rt.mapPixelToCoords(sf::Mouse::getPosition(rt));
+			}
+			else {
+				T->Bag->moving = false;
+			}
+		}
+	}
+}
+
 void GameController::Interraction::UsePower(Beast^ b, RenderWindow& rt)
 {
 	if (b->Power[0]->InUse == false) {

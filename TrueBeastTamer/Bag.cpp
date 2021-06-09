@@ -13,7 +13,7 @@ GameModel::Bag::Bag()
 	GameView::Word^ w1 = gcnew GameView::Word(0, 0, "Bag", 24, sf::Color(255,101,80,255));
 	w1->Move(X + Length / 2 - w1->Rect->getGlobalBounds().width/2, Y + 1 * (Height / 6) - w1->Rect->getGlobalBounds().height);
 	GameView::Word^ w2 = gcnew GameView::Word(0, 0, "Items", 24, sf::Color(255, 101, 80, 255));
-	w2->Move(X + 1*(Length /4) - w1->Rect->getGlobalBounds().width/2, Y + 2 * (Height / 6) - w1->Rect->getGlobalBounds().height);
+	w2->Move(X + 1*(Length /4) - w2->Rect->getGlobalBounds().width/2, Y + 2 * (Height / 6) - w2->Rect->getGlobalBounds().height);
 	GameView::Word^ w3 = gcnew GameView::Word(0, 0, "Beasts", 24, sf::Color(255, 101, 80, 255));
 	w3->Move(X +3* (Length / 4) - w3->Rect->getGlobalBounds().width/2, Y + 2 * (Height / 6) - w3->Rect->getGlobalBounds().height);
 	GameView::Word^ w4 = gcnew GameView::Word(0,0, "Settings", 24, sf::Color(255, 101, 80, 255));
@@ -51,13 +51,17 @@ GameModel::Bag::Bag()
 	GameView::Word^ S2 = gcnew GameView::Word(X + 20, Y + 1 * (Height / 6) - S1->Rect->getGlobalBounds().height, "Back", 24, sf::Color(255, 101, 80, 255));
 	Word_Setting->Add(S1);
 	Word_Setting->Add(S2);
+
 	setDrawables(PathSource::SystoStd(PathSource::Bag[0]));
 	open = false;
+	moving = false;
 	State = Window_Bag::Menu;
 }
 
 void GameModel::Bag::setDrawables(sf::String t){
 	GameObject::setDrawables(t);
+	Rect = new RectangleShape(sf::Vector2f(Length, Height / 25));
+	Rect->setPosition(X, Y);
 	Sprite->setColor(sf::Color(111, 29, 116, 255));
 	for (int i=0; i < Word->Count; i++) {
 		Word[i]->SetParameters(PathSource::SystoStd(PathSource::Word[0]), PathSource::SystoStd(PathSource::Word[1]), Word[i]->Code);
@@ -131,6 +135,28 @@ void GameModel::Bag::AddBeast(GameModel::Beast^ b)
 	Word_Beast->Add(n);
 	Word_Beast->Add(n1);
 	Word_Beast->Add(n2);
+}
+
+void GameModel::Bag::Move(float x, float y)
+{
+	GameObject::Move(x, y);
+	//Menu
+	Word[0]->Move(X + Length / 2 - Word[0]->Rect->getGlobalBounds().width / 2, Y + 1 * (Height / 6) - Word[0]->Rect->getGlobalBounds().height);
+	Word[1]->Move(X + 1 * (Length / 4) - Word[1]->Rect->getGlobalBounds().width / 2, Y + 2 * (Height / 6) - Word[1]->Rect->getGlobalBounds().height);
+	Word[2]->Move(X + 3 * (Length / 4) - Word[2]->Rect->getGlobalBounds().width / 2, Y + 2 * (Height / 6) - Word[2]->Rect->getGlobalBounds().height);
+	Word[3]->Move(X + Length / 2 - Word[3]->Rect->getGlobalBounds().width / 2, Y + 3 * (Height / 6) - Word[3]->Rect->getGlobalBounds().height);
+	Word[4]->Move(X + Length / 2 - Word[4]->Rect->getGlobalBounds().width / 2, Y + 4 * (Height / 6) - Word[4]->Rect->getGlobalBounds().height);
+	Word[5]->Move(X + Length / 2 - Word[5]->Rect->getGlobalBounds().width / 2, Y + 5 * (Height / 6) - Word[5]->Rect->getGlobalBounds().height);
+	//Beast
+	Word_Beast[0]->Move(X + Length / 2 - Word_Beast[0]->Rect->getGlobalBounds().width / 2, Y + 1 * (Height / 6) - Word_Beast[0]->Rect->getGlobalBounds().height);
+	Word_Beast[1]->Move(X + 20, Y + 1 * (Height / 6) - Word_Beast[0]->Rect->getGlobalBounds().height);
+	//Items
+	Word_Item[0]->Move(X + Length / 2 - Word_Item[0]->Rect->getGlobalBounds().width / 2, Y + 1 * (Height / 6) - Word_Item[0]->Rect->getGlobalBounds().height);
+	Word_Item[1]->Move(X + 20, Y + 1 * (Height / 6) - Word_Item[0]->Rect->getGlobalBounds().height);
+	//Settings
+	Word_Setting[0]->Move(X + Length / 2 - Word_Setting[0]->Rect->getGlobalBounds().width / 2, Y + 1 * (Height / 6) - Word_Setting[0]->Rect->getGlobalBounds().height);
+	Word_Setting[1]->Move(X + 20, Y + 1 * (Height / 6) - Word_Setting[0]->Rect->getGlobalBounds().height);
+
 }
 
 
