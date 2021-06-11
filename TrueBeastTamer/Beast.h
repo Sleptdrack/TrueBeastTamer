@@ -4,7 +4,7 @@
 #include <cmath>
 using namespace System::Collections::Generic;
 using namespace System;
-typedef enum {Trululu, Atropos, Quin, Mosfet} BeastName;
+typedef enum {Trululu, Atropos, Quin, Mosfet, Feuer, Hurrikan} BeastName;
 namespace GameModel {
     [Serializable]
     public ref class Beast : public GameObject
