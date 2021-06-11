@@ -12,6 +12,7 @@
 #include "LogInSc.h"
 #include "Tutorial.h"
 #include "PathSource.h"
+#include "Pause.h" // julio
 #include <iostream>
 using namespace sf;
 using namespace System;
@@ -34,6 +35,9 @@ int main() {
         LogInSc^ LI = gcnew LogInSc();
         Tutorial^ TU = nullptr;
         bool ready = false, Tready = true;
+        //
+
+        //
         LI->Log(&ready);
         if (ready == false) {
             return 0;
@@ -76,6 +80,11 @@ int main() {
                 }
                 if (event.type == sf::Event::GainedFocus) {
                     pause = false;
+                }
+
+                if (Keyboard::isKeyPressed(Keyboard::Escape)) {
+                    pause = true;
+                    Pause::PrintWindows(pause);
                 }
             }
             if (!pause) {
