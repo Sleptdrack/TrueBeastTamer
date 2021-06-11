@@ -81,7 +81,7 @@ GameModel::Beast::Beast(BeastName name)
 			 Type = Element::Fire;
 			 p = gcnew GameModel::Power(Type, basic);
 			 Power->Add(p);
-			 BeastSource::LoadFromFile(PathSource::SystoStd(PathSource::Beast[3]));
+			 BeastSource::LoadFromFile(PathSource::SystoStd(PathSource::Beast[4]));
 			 SetDrawables(PathSource::SystoStd(BeastSource::Sprite[0]),
 				 PathSource::SystoStd(BeastSource::Sound[0]),
 				 PathSource::SystoStd(BeastSource::Sound[1]));
@@ -95,7 +95,7 @@ GameModel::Beast::Beast(BeastName name)
 			 Type = Element::Air;
 			 p = gcnew GameModel::Power(Type, basic);
 			 Power->Add(p);
-			 BeastSource::LoadFromFile(PathSource::SystoStd(PathSource::Beast[3]));
+			 BeastSource::LoadFromFile(PathSource::SystoStd(PathSource::Beast[5]));
 			 SetDrawables(PathSource::SystoStd(BeastSource::Sprite[0]),
 				 PathSource::SystoStd(BeastSource::Sound[0]),
 				 PathSource::SystoStd(BeastSource::Sound[1]));

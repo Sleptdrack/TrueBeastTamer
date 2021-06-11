@@ -1,7 +1,7 @@
 Tamer;../Imagenes/Tamer.png;
 Word;../Font/Bullpen3D.ttf;../Sound/Click.WAV;
 Bag;../Imagenes/Box.png;
-Beast;../Path/Beast/Trululu.txt;../Path/Beast/Atropos.txt;../Path/Beast/Quin.txt;../Path/Beast/Mosfet.txt;
+Beast;../Path/Beast/Trululu.txt;../Path/Beast/Atropos.txt;../Path/Beast/Quin.txt;../Path/Beast/Mosfet.txt;../Path/Beast/Feuer.txt;../Path/Beast/Hurrikan.txt;
 Grass;../Imagenes/Grass.png;
 Hospital;../Imagenes/Hospital.png;
 Power;../Imagenes/BaseAttack.png;
