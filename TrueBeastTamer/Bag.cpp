@@ -1,6 +1,6 @@
 ﻿#include "pch.h"
 #include "Bag.h"
-
+#include<string>
 GameModel::Bag::Bag()
 {
 
@@ -51,7 +51,31 @@ GameModel::Bag::Bag()
 	GameView::Word^ S2 = gcnew GameView::Word(X + 20, Y + 1 * (Height / 6) - S1->Rect->getGlobalBounds().height, "Back", 24, sf::Color(255, 101, 80, 255));
 	Word_Setting->Add(S1);
 	Word_Setting->Add(S2);
+	//State Edit
+	Word_Edit = gcnew List<GameView::Word^>();
 
+	Word_Edit->Add(gcnew GameView::Word(0, 0, "", 24, sf::Color::Black));
+
+	Word_Edit->Add(gcnew GameView::Word(X+20,Y+(1)*Height/13-Word_Beast[0]->Rect->getGlobalBounds().height, "Back", 24, sf::Color::Black));
+	Word_Edit->Add(gcnew GameView::Word(0, 0, "", 24, sf::Color::Black));
+	Word_Edit[2]->Move(X + Length / 2, Y + (1) * Height /13 - Word_Edit[1]->Rect->getGlobalBounds().height);
+
+	Word_Edit->Add(gcnew GameView::Word(X + 50 + 40, Y + (2) * Height /13, "Health: ", 24, sf::Color::Black));
+	Word_Edit->Add(gcnew GameView::Word(X + 50 + 40 +Word_Edit[3]->Rect->getGlobalBounds().width, Y + (2) * Height / 13, "", 24, sf::Color::Black));
+	Word_Edit->Add(gcnew GameView::Word(X + 50 + 40, Y + (3) * Height / 13, "Level: ", 24, sf::Color::Black));
+	Word_Edit->Add(gcnew GameView::Word(X + 50 + 40 + Word_Edit[5]->Rect->getGlobalBounds().width, Y + (3) * Height / 13, "", 24, sf::Color::Black));
+	Word_Edit->Add(gcnew GameView::Word(X + 50 + 40, Y + (4) * Height / 13, "Exp: ", 24, sf::Color::Black));
+	Word_Edit->Add(gcnew GameView::Word(X + 50 + 40 + Word_Edit[7]->Rect->getGlobalBounds().width, Y + (4) * Height / 13, ""+ "/100", 24, sf::Color::Black));
+	Word_Edit->Add(gcnew GameView::Word(X + 20, Y + (5) * Height / 13, "Element: ", 24, sf::Color::Black));
+	Word_Edit->Add(gcnew GameView::Word(X + 20 + Word_Edit[9]->Rect->getGlobalBounds().width, Y + (5) * Height / 13, "", 24, sf::Color::Black));
+	Word_Edit->Add(gcnew GameView::Word(X + 20, Y + (6) * Height / 13, "Attack: ", 24, sf::Color::Black));
+	Word_Edit->Add(gcnew GameView::Word(X + 20 + Word_Edit[11]->Rect->getGlobalBounds().width, Y + (6) * Height / 13, "", 24, sf::Color::Black));
+	Word_Edit->Add(gcnew GameView::Word(X + 20, Y + (7) * Height / 13, "Defense: ", 24, sf::Color::Black));
+	Word_Edit->Add(gcnew GameView::Word(X + 20 + Word_Edit[13]->Rect->getGlobalBounds().width, Y + (7) * Height / 13, "", 24, sf::Color::Black));
+	Word_Edit->Add(gcnew GameView::Word(X + 20, Y + (8) * Height / 13, "Cooldown: ", 24, sf::Color::Black));
+	Word_Edit->Add(gcnew GameView::Word(X + 20 + Word_Edit[15]->Rect->getGlobalBounds().width, Y + (8) * Height / 13, ""+ "%", 24, sf::Color::Black));
+	Word_Edit->Add(gcnew GameView::Word(X + 20, Y + (9) * Height / 13, "Beast: ", 24, sf::Color::Black));
+	Word_Edit->Add(gcnew GameView::Word(X + 20 + Word_Edit[17]->Rect->getGlobalBounds().width, Y + (9) * Height / 13, "", 24, sf::Color::Black));
 	setDrawables(PathSource::SystoStd(PathSource::Bag[0]));
 	open = false;
 	moving = false;
@@ -81,6 +105,25 @@ void GameModel::Bag::setDrawables(sf::String t){
 			PathSource::SystoStd(BeastSource::Sound[0]),
 			PathSource::SystoStd(BeastSource::Sound[1]));
 	}
+	for (int i = 0; i < Word_Edit->Count; i++) {
+		Word_Edit[i]->SetParameters(PathSource::SystoStd(PathSource::Word[0]), PathSource::SystoStd(PathSource::Word[1]), Word_Edit[i]->Code);
+	}
+}
+
+void GameModel::Bag::setEditMode(int t)
+{
+	Word_Edit[0]->UpdateString(std::to_string(t));
+	Word_Edit[2]->UpdateString(PathSource::SystoStd(Beast[t]->TagName));
+	Word_Edit[4]->UpdateString(PathSource::SystoStd(Beast[t]->Health[3].ToString() + "/" + Beast[t]->Health[2].ToString()));
+	Word_Edit[6]->UpdateString(PathSource::SystoStd(Beast[t]->Level.ToString()));
+	Word_Edit[8]->UpdateString(PathSource::SystoStd(Beast[t]->Exp.ToString() + "/100"));
+	Word_Edit[10]->UpdateString(ElementString[Beast[t]->Type]);
+	Word_Edit[12]->UpdateString(PathSource::SystoStd(Beast[t]->Attack[3].ToString()));
+	Word_Edit[14]->UpdateString(PathSource::SystoStd(Beast[t]->Defense[3].ToString()));
+	Word_Edit[16]->UpdateString(PathSource::SystoStd(Beast[t]->Cooldown[3].ToString() + "%"));
+	Word_Edit[18]->UpdateString(BeastString[Beast[t]->Name]);
+	//add row for powers
+		
 }
 
 void GameModel::Bag::Draw(sf::RenderTarget& rt)
@@ -102,6 +145,7 @@ void GameModel::Bag::Draw(sf::RenderTarget& rt)
 			Beast[j]->Draw(rt);
 			for (int i = 2; i < Word_Beast->Count; i += 3) {
 				//revisar posicion
+				Word_Beast[i]->UpdateString(PathSource::SystoStd(Beast[j]->TagName));
 				Word_Beast[i]->Move(Beast[j]->X + Beast[j]->Length + 20, Beast[j]->Y);
 				Word_Beast[i + 1]->Move(Word_Beast[j]->X + 30, Beast[j]->Y - 15);
 				Word_Beast[i + 2]->Move(Word_Beast[j]->X + 30, Beast[j]->Y + 15);
@@ -121,8 +165,13 @@ void GameModel::Bag::Draw(sf::RenderTarget& rt)
 		Word_Setting[0]->Draw(rt);
 		Word_Setting[1]->Draw(rt);
 		break;
-
-
+	case Edit:
+		rt.draw(*Sprite);
+		Beast[System::Int16::Parse(Word_Edit[0]->T)]->Move(X + 20, Y + (2) * Height / 13);
+		Beast[System::Int16::Parse(Word_Edit[0]->T)]->Draw(rt);
+		for (int i = 1; i < Word_Edit->Count; i++) {
+			Word_Edit[i]->Draw(rt);
+		}
 	}
 }
 
@@ -156,7 +205,25 @@ void GameModel::Bag::Move(float x, float y)
 	//Settings
 	Word_Setting[0]->Move(X + Length / 2 - Word_Setting[0]->Rect->getGlobalBounds().width / 2, Y + 1 * (Height / 6) - Word_Setting[0]->Rect->getGlobalBounds().height);
 	Word_Setting[1]->Move(X + 20, Y + 1 * (Height / 6) - Word_Setting[0]->Rect->getGlobalBounds().height);
-
+	//Edit
+	Word_Edit[1]->Move(X + 20, Y + (1) * Height / 13 - Word_Beast[0]->Rect->getGlobalBounds().height);
+	Word_Edit[2]->Move(X + Length / 2, Y + (1) * Height / 13 - Word_Edit[1]->Rect->getGlobalBounds().height);
+	Word_Edit[3]->Move(X + 50 + 40, Y + (2) * Height / 13);
+	Word_Edit[4]->Move(X + 50 + 40 + Word_Edit[3]->Rect->getGlobalBounds().width, Y + (2) * Height / 13);
+	Word_Edit[5]->Move(X + 50 + 40, Y + (3) * Height / 13);
+	Word_Edit[6]->Move(X + 50 + 40 + Word_Edit[5]->Rect->getGlobalBounds().width, Y + (3) * Height / 13);
+	Word_Edit[7]->Move(X + 50 + 40, Y + (4) * Height / 13);
+	Word_Edit[8]->Move(X + 50 + 40 + Word_Edit[7]->Rect->getGlobalBounds().width, Y + (4) * Height / 13);
+	Word_Edit[9]->Move(X + 20, Y + (5) * Height / 13);
+	Word_Edit[10]->Move(X + 20 + Word_Edit[9]->Rect->getGlobalBounds().width, Y + (5) * Height / 13);
+	Word_Edit[11]->Move(X + 20, Y + (6) * Height / 13);
+	Word_Edit[12]->Move(X + 20 + Word_Edit[11]->Rect->getGlobalBounds().width, Y + (6) * Height / 13);
+	Word_Edit[13]->Move(X + 20, Y + (7) * Height / 13);
+	Word_Edit[14]->Move(X + 20 + Word_Edit[13]->Rect->getGlobalBounds().width, Y + (7) * Height / 13);
+	Word_Edit[15]->Move(X + 20, Y + (8) * Height / 13);
+	Word_Edit[16]->Move(X + 20 + Word_Edit[15]->Rect->getGlobalBounds().width, Y + (8) * Height / 13);
+	Word_Edit[17]->Move(X + 20, Y + (9) * Height / 13);
+	Word_Edit[18]->Move(X + 20 + Word_Edit[17]->Rect->getGlobalBounds().width, Y + (9) * Height / 13);
 }
 
 

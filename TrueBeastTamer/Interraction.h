@@ -11,6 +11,7 @@ namespace GameController {
 		static void SetStateBag(Tamer^ T, RenderWindow& rt);
 		static void MoveBag(Tamer^ T, RenderWindow& rt, sf::Vector2f* t);
 		static void UsePower(Beast^ b, RenderWindow& rt);
+		static void RenameBeast(Tamer^ T, RenderWindow& rt, Event e);
 	};
 }
 

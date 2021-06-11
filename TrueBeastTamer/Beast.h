@@ -5,6 +5,7 @@
 using namespace System::Collections::Generic;
 using namespace System;
 typedef enum {Trululu, Atropos, Quin, Mosfet, Feuer, Hurrikan} BeastName;
+static std::string BeastString[] = { "Trululu","Atropos","Quin","Mosfet","Feuer","Hurrikan" };
 namespace GameModel {
     [Serializable]
     public ref class Beast : public GameObject

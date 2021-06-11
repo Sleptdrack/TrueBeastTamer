@@ -4,7 +4,7 @@
 #include "Word.h"
 using namespace System::Collections::Generic;
 using namespace System;
-typedef enum {Menu, Items, Beasts,Setting} Window_Bag;
+typedef enum {Menu, Items, Beasts,Setting,Edit} Window_Bag;
 namespace GameModel {
     [Serializable]
     public ref class Bag :public GameObject {
@@ -16,11 +16,13 @@ namespace GameModel {
         property List<GameView::Word^>^ Word_Beast;
         property List<GameView::Word^>^ Word_Item;
         property List<GameView::Word^>^ Word_Setting;
+        property List<GameView::Word^>^ Word_Edit;
         property bool open;
         property bool moving;
     public:
         Bag();
         void setDrawables(sf::String t);
+        void setEditMode(int t);
         void Draw(sf::RenderTarget& rt);
         void AddBeast(GameModel::Beast^ b);
         void Move(float x, float y);

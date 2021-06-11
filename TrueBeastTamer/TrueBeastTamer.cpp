@@ -86,6 +86,7 @@ int main() {
                     pause = true;
                     Pause::PrintWindows(pause);
                 }
+                Interraction::RenameBeast(M->Player, window, event);
             }
             if (!pause) {
                 if (Keyboard::isKeyPressed(Keyboard::Enter)) {
@@ -94,11 +95,12 @@ int main() {
                 Movement::Move(M->Player, t, rec);
                 M->Player->OpenBag();
                 Interraction::SetStateBag(M->Player, window);
+                Interraction::MoveBag(M->Player, window, rtv);
                 if (t1.asSeconds() > 1) {
                     Fight::Hunt(M, A, window);
                     c1.restart();
                 }
-                Interraction::MoveBag(M->Player, window, rtv);
+                
             }
             window.clear();
             M->Draw(window);
