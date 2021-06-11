@@ -76,6 +76,34 @@ GameModel::Beast::Beast(BeastName name)
 			 setStat(Attack, BeastSource::Attack[0], BeastSource::Attack[1], BeastSource::Attack[2]);
 			 setStat(Cooldown, BeastSource::Cooldown[0], BeastSource::Cooldown[1], BeastSource::Cooldown[2]);
 			 break; 
+		 case BeastName::Feuer:
+			 TagName = "Feuer";
+			 Type = Element::Fire;
+			 p = gcnew GameModel::Power(Type, basic);
+			 Power->Add(p);
+			 BeastSource::LoadFromFile(PathSource::SystoStd(PathSource::Beast[3]));
+			 SetDrawables(PathSource::SystoStd(BeastSource::Sprite[0]),
+				 PathSource::SystoStd(BeastSource::Sound[0]),
+				 PathSource::SystoStd(BeastSource::Sound[1]));
+			 setStat(Health, BeastSource::Health[0], BeastSource::Health[1], BeastSource::Health[2]);
+			 setStat(Defense, BeastSource::Defense[0], BeastSource::Defense[1], BeastSource::Defense[2]);
+			 setStat(Attack, BeastSource::Attack[0], BeastSource::Attack[1], BeastSource::Attack[2]);
+			 setStat(Cooldown, BeastSource::Cooldown[0], BeastSource::Cooldown[1], BeastSource::Cooldown[2]);
+			 break;
+		 case BeastName::Hurrikan:
+			 TagName = "Hurrikan";
+			 Type = Element::Air;
+			 p = gcnew GameModel::Power(Type, basic);
+			 Power->Add(p);
+			 BeastSource::LoadFromFile(PathSource::SystoStd(PathSource::Beast[3]));
+			 SetDrawables(PathSource::SystoStd(BeastSource::Sprite[0]),
+				 PathSource::SystoStd(BeastSource::Sound[0]),
+				 PathSource::SystoStd(BeastSource::Sound[1]));
+			 setStat(Health, BeastSource::Health[0], BeastSource::Health[1], BeastSource::Health[2]);
+			 setStat(Defense, BeastSource::Defense[0], BeastSource::Defense[1], BeastSource::Defense[2]);
+			 setStat(Attack, BeastSource::Attack[0], BeastSource::Attack[1], BeastSource::Attack[2]);
+			 setStat(Cooldown, BeastSource::Cooldown[0], BeastSource::Cooldown[1], BeastSource::Cooldown[2]);
+			 break;
 	}
 }
 
