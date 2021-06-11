@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Arena.h"
 #include "Fight.h"
+#include "Pause.h"
 GameModel::Arena::Arena(Beast^ b)
 {
 	Texture = new sf::Texture();
@@ -31,35 +32,51 @@ void GameModel::Arena::Show(Map^ M){
 	B->Move(947, 157);
 	Time t,t1;
 	Clock clk,clk1;
+
+	//julio
+	bool pause = false;
+
 	while (Screen->W->isOpen()) {
-		t = clk.getElapsedTime();
-		t1 = clk1.getElapsedTime();
-		clk.restart();
 		sf::Event event;
-		while (Screen->W->pollEvent(event)){
-			if (Screen->Word[0]->Click(*Screen->W)) {
-				Screen->W->close();
-				B->Health[3] = 0;
+		while (Screen->W->pollEvent(event))
+		{
+			if (Keyboard::isKeyPressed(Keyboard::Escape)) {
+				pause = true;
+				Pause::PrintWindows(pause);
 			}
 		}
-		Movement::Move(M->Player->Bag->Beast[0], t,Tspace);
-		Interraction::UsePower(M->Player->Bag->Beast[0], *Screen->W);
-		if (t1.asMilliseconds() > 100) {
-			Movement::ShotDinamics(M->Player->Bag->Beast[0]->Power[0]);
-			clk1.restart();
+
+		if (!pause)
+		{
+			t = clk.getElapsedTime();
+			t1 = clk1.getElapsedTime();
+			clk.restart();
+			sf::Event event;
+			while (Screen->W->pollEvent(event)) {
+				if (Screen->Word[0]->Click(*Screen->W)) {
+					Screen->W->close();
+					B->Health[3] = 0;
+				}
+			}
+			Movement::Move(M->Player->Bag->Beast[0], t, Tspace);
+			Interraction::UsePower(M->Player->Bag->Beast[0], *Screen->W);
+			if (t1.asMilliseconds() > 100) {
+				Movement::ShotDinamics(M->Player->Bag->Beast[0]->Power[0]);
+				clk1.restart();
+			}
+			Fight::Battle(B, M->Player);
+			if (B->Health[3] <= 0)Screen->W->close();//reemplazar por metodo para atrapar o liberar Beast
+			Screen->W->clear();
+			Draw();
+			M->Player->Draw(*Screen->W);
+			for (int i = 0; i < M->Player->Bag->Beast->Count; i++) {
+				M->Player->Bag->Beast[i]->Draw(*Screen->W);
+			}
+			if (M->Player->Bag->Beast[0]->Power[0]->InUse) {
+				M->Player->Bag->Beast[0]->Power[0]->Shot[0]->Draw(*Screen->W);
+			}
+			Screen->W->display();
 		}
-		Fight::Battle(B, M->Player);
-		if (B->Health[3] <= 0)Screen->W->close();//reemplazar por metodo para atrapar o liberar Beast
-		Screen->W->clear();
-		Draw();
-		M->Player->Draw(*Screen->W);
-		for (int i = 0; i < M->Player->Bag->Beast->Count; i++) {
-			M->Player->Bag->Beast[i]->Draw(*Screen->W);
-		}
-		if (M->Player->Bag->Beast[0]->Power[0]->InUse) {
-			M->Player->Bag->Beast[0]->Power[0]->Shot[0]->Draw(*Screen->W);
-		}
-		Screen->W->display();
 	}
 	
 }
