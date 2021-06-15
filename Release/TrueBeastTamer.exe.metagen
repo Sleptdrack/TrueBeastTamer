@@ -1,0 +1,281 @@
+ImageRuntimeVersion: v4.0.30319
+Assembly TrueBeastTamer, Version=1.0.*, Culture=Invariant Language (Invariant Country): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Class GameModel.GameObject: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Single Speed 'get set' : 
+    Single Y   'get set' : 
+    Single X   'get set' : 
+    Single Length 'get set' : 
+    Single Height 'get set' : 
+    sf.Texture* Texture 'get set' : 
+    sf.Sprite* Sprite 'get set' : 
+  Methods:
+    get_Sprite(): PrivateScope, Public, HideBySig, SpecialName
+    set_Sprite(Sprite*): PrivateScope, Public, HideBySig, SpecialName
+    get_Texture(): PrivateScope, Public, HideBySig, SpecialName
+    set_Texture(Texture*): PrivateScope, Public, HideBySig, SpecialName
+    get_Height(): PrivateScope, Public, HideBySig, SpecialName
+    set_Height(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_Length(): PrivateScope, Public, HideBySig, SpecialName
+    set_Length(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_X(): PrivateScope, Public, HideBySig, SpecialName
+    set_X(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_Y(): PrivateScope, Public, HideBySig, SpecialName
+    set_Y(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_Speed(): PrivateScope, Public, HideBySig, SpecialName
+    set_Speed(Single): PrivateScope, Public, HideBySig, SpecialName
+    Draw(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Move(Single, Single): PrivateScope, Public, HideBySig
+    Contains(GameObject): PrivateScope, Public, HideBySig
+Class GameModel.Arena: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :GameModel.GameObject
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class GameModel.Beast: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :GameModel.GameObject
+    Void .ctor(Single, Single): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Int32 Exp  'get set' : 
+    Int32 Level 'get set' : 
+    Int32 Speed 'get set' : 
+    Int32 Attack 'get set' : 
+    Int32 Defense 'get set' : 
+    Int32 Health 'get set' : 
+    Int32 Type 'get set' : 
+    sf.String* TagName 'get set' : 
+    sf.String* Name 'get set' : 
+  Methods:
+    get_Name(): PrivateScope, Public, HideBySig, SpecialName
+    set_Name(String*): PrivateScope, Public, HideBySig, SpecialName
+    get_TagName(): PrivateScope, Public, HideBySig, SpecialName
+    set_TagName(String*): PrivateScope, Public, HideBySig, SpecialName
+    get_Type(): PrivateScope, Public, HideBySig, SpecialName
+    set_Type(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_Health(): PrivateScope, Public, HideBySig, SpecialName
+    set_Health(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_Defense(): PrivateScope, Public, HideBySig, SpecialName
+    set_Defense(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_Attack(): PrivateScope, Public, HideBySig, SpecialName
+    set_Attack(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_Speed(): PrivateScope, Public, HideBySig, SpecialName
+    set_Speed(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_Level(): PrivateScope, Public, HideBySig, SpecialName
+    set_Level(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_Exp(): PrivateScope, Public, HideBySig, SpecialName
+    set_Exp(Int32): PrivateScope, Public, HideBySig, SpecialName
+    Learn(): PrivateScope, Public, HideBySig
+Class GameModel.Bag: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :GameModel.GameObject
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    System.Collections.Generic.List`1[GameModel.Beast] Beast 'get set' : 
+  Methods:
+    get_Beast(): PrivateScope, Public, HideBySig, SpecialName
+    set_Beast(List`1): PrivateScope, Public, HideBySig, SpecialName
+Class GameModel.Behavior: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class GameModel.Tamer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :GameModel.GameObject
+    Void .ctor(sf.String*, sf.String*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    GameModel.Bag Bag 'get set' : 
+    Int32 NumBeast 'get set' : 
+    sf.String* Password 'get set' : 
+    sf.String* Username 'get set' : 
+  Methods:
+    get_Username(): PrivateScope, Public, HideBySig, SpecialName
+    set_Username(String*): PrivateScope, Public, HideBySig, SpecialName
+    get_Password(): PrivateScope, Public, HideBySig, SpecialName
+    set_Password(String*): PrivateScope, Public, HideBySig, SpecialName
+    get_NumBeast(): PrivateScope, Public, HideBySig, SpecialName
+    set_NumBeast(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_Bag(): PrivateScope, Public, HideBySig, SpecialName
+    set_Bag(Bag): PrivateScope, Public, HideBySig, SpecialName
+Class GameController.GameManager: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    ValidatePlayer(String*, String*): PrivateScope, Public, Static, HideBySig
+Class GameModel.Grass: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :GameModel.GameObject
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Int32 SpawnRate 'get set' : 
+  Methods:
+    get_SpawnRate(): PrivateScope, Public, HideBySig, SpecialName
+    set_SpawnRate(Int32): PrivateScope, Public, HideBySig, SpecialName
+Class GameModel.Garden: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :GameModel.GameObject
+    Void .ctor(Single, Single, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    System.Collections.Generic.List`1[GameModel.Beast] LBeast 'get set' : 
+    System.Collections.Generic.List`1[GameModel.Grass] Grass 'get set' : 
+    Int32 Size 'get set' : 
+    Single GrassSize 'get set' : 
+  Methods:
+    get_GrassSize(): PrivateScope, Public, HideBySig, SpecialName
+    set_GrassSize(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_Size(): PrivateScope, Public, HideBySig, SpecialName
+    set_Size(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_Grass(): PrivateScope, Public, HideBySig, SpecialName
+    set_Grass(List`1): PrivateScope, Public, HideBySig, SpecialName
+    get_LBeast(): PrivateScope, Public, HideBySig, SpecialName
+    set_LBeast(List`1): PrivateScope, Public, HideBySig, SpecialName
+    Draw(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Contains(GameObject): PrivateScope, Public, HideBySig
+    Spawn(Tamer): PrivateScope, Public, HideBySig
+Class GameModel.Hospital: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :GameModel.GameObject
+    Void .ctor(Single, Single): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class GameView.Word: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(Single, Single, sf.String*, Int32, sf.Color): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Boolean on 'get set' : 
+    sf.Sound* S 'get set' : 
+    sf.SoundBuffer* SB 'get set' : 
+    Single Y   'get set' : 
+    Single X   'get set' : 
+    sf.Color* Color 'get set' : 
+    Int32 Size 'get set' : 
+    sf.RectangleShape* Rect 'get set' : 
+    sf.Text* Text 'get set' : 
+    sf.Font* Font 'get set' : 
+  Methods:
+    get_Font(): PrivateScope, Public, HideBySig, SpecialName
+    set_Font(Font*): PrivateScope, Public, HideBySig, SpecialName
+    get_Text(): PrivateScope, Public, HideBySig, SpecialName
+    set_Text(Text*): PrivateScope, Public, HideBySig, SpecialName
+    get_Rect(): PrivateScope, Public, HideBySig, SpecialName
+    set_Rect(RectangleShape*): PrivateScope, Public, HideBySig, SpecialName
+    get_Size(): PrivateScope, Public, HideBySig, SpecialName
+    set_Size(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_Color(): PrivateScope, Public, HideBySig, SpecialName
+    set_Color(Color*): PrivateScope, Public, HideBySig, SpecialName
+    get_X(): PrivateScope, Public, HideBySig, SpecialName
+    set_X(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_Y(): PrivateScope, Public, HideBySig, SpecialName
+    set_Y(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_SB(): PrivateScope, Public, HideBySig, SpecialName
+    set_SB(SoundBuffer*): PrivateScope, Public, HideBySig, SpecialName
+    get_S(): PrivateScope, Public, HideBySig, SpecialName
+    set_S(Sound*): PrivateScope, Public, HideBySig, SpecialName
+    get_on(): PrivateScope, Public, HideBySig, SpecialName
+    set_on(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    Draw(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Move(Single, Single): PrivateScope, Public, HideBySig
+    Click(RenderWindow* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    UpdateString(String*): PrivateScope, Public, HideBySig
+    Fill(Event, String*): PrivateScope, Public, HideBySig
+    RectColor(Color): PrivateScope, Public, HideBySig
+Class GameView.Screen: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(Single, Single, Single, Single, sf.String*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Single Y   'get set' : 
+    Single X   'get set' : 
+    sf.Texture* Texture 'get set' : 
+    sf.RectangleShape* Rect 'get set' : 
+    Single Height 'get set' : 
+    Single Length 'get set' : 
+    System.Collections.Generic.List`1[GameView.Word] Word 'get set' : 
+    sf.RenderWindow* W 'get set' : 
+  Methods:
+    get_W(): PrivateScope, Public, HideBySig, SpecialName
+    set_W(RenderWindow*): PrivateScope, Public, HideBySig, SpecialName
+    get_Word(): PrivateScope, Public, HideBySig, SpecialName
+    set_Word(List`1): PrivateScope, Public, HideBySig, SpecialName
+    get_Length(): PrivateScope, Public, HideBySig, SpecialName
+    set_Length(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_Height(): PrivateScope, Public, HideBySig, SpecialName
+    set_Height(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_Rect(): PrivateScope, Public, HideBySig, SpecialName
+    set_Rect(RectangleShape*): PrivateScope, Public, HideBySig, SpecialName
+    get_Texture(): PrivateScope, Public, HideBySig, SpecialName
+    set_Texture(Texture*): PrivateScope, Public, HideBySig, SpecialName
+    get_X(): PrivateScope, Public, HideBySig, SpecialName
+    set_X(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_Y(): PrivateScope, Public, HideBySig, SpecialName
+    set_Y(Single): PrivateScope, Public, HideBySig, SpecialName
+    Add(Word): PrivateScope, Public, HideBySig
+    Draw(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+Class GameView.LogInSc: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    GameModel.Tamer T 'get set' : 
+    sf.String* P 'get set' : 
+    sf.String* U 'get set' : 
+    GameView.Screen Screen 'get set' : 
+  Methods:
+    get_Screen(): PrivateScope, Public, HideBySig, SpecialName
+    set_Screen(Screen): PrivateScope, Public, HideBySig, SpecialName
+    get_U(): PrivateScope, Public, HideBySig, SpecialName
+    set_U(String*): PrivateScope, Public, HideBySig, SpecialName
+    get_P(): PrivateScope, Public, HideBySig, SpecialName
+    set_P(String*): PrivateScope, Public, HideBySig, SpecialName
+    get_T(): PrivateScope, Public, HideBySig, SpecialName
+    set_T(Tamer): PrivateScope, Public, HideBySig, SpecialName
+    Fill(Event): PrivateScope, Public, HideBySig
+    Draw(): PrivateScope, Public, HideBySig
+    Log(Boolean*): PrivateScope, Public, HideBySig
+Class GameModel.Map: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(Int32, Int32, GameModel.Tamer): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    GameModel.Tamer Player 'get set' : 
+    GameModel.Hospital Hospital 'get set' : 
+    System.Collections.Generic.List`1[GameModel.Garden] Garden 'get set' : 
+    Int32 NumNPC 'get set' : 
+    Int32 NumGarden 'get set' : 
+  Methods:
+    get_NumGarden(): PrivateScope, Public, HideBySig, SpecialName
+    set_NumGarden(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_NumNPC(): PrivateScope, Public, HideBySig, SpecialName
+    set_NumNPC(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_Garden(): PrivateScope, Public, HideBySig, SpecialName
+    set_Garden(List`1): PrivateScope, Public, HideBySig, SpecialName
+    get_Hospital(): PrivateScope, Public, HideBySig, SpecialName
+    set_Hospital(Hospital): PrivateScope, Public, HideBySig, SpecialName
+    get_Player(): PrivateScope, Public, HideBySig, SpecialName
+    set_Player(Tamer): PrivateScope, Public, HideBySig, SpecialName
+    Draw(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+Class GameController.Movement: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    Move(GameObject, Time): PrivateScope, Public, Static, HideBySig
+    Hunt(Map): PrivateScope, Public, Static, HideBySig
+Class GameModel.NPC: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :GameModel.GameObject
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class GameModel.Obstacle: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :GameModel.GameObject
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Boolean Harmful 'get set' : 
+    Boolean Breakeable 'get set' : 
+  Methods:
+    get_Breakeable(): PrivateScope, Public, HideBySig, SpecialName
+    set_Breakeable(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    get_Harmful(): PrivateScope, Public, HideBySig, SpecialName
+    set_Harmful(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+Class GameModel.Power: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    sf.String* Name 'get set' : 
+    Int32 Range 'get set' : 
+    Int32 Type 'get set' : 
+  Methods:
+    get_Type(): PrivateScope, Public, HideBySig, SpecialName
+    set_Type(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_Range(): PrivateScope, Public, HideBySig, SpecialName
+    set_Range(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_Name(): PrivateScope, Public, HideBySig, SpecialName
+    set_Name(String*): PrivateScope, Public, HideBySig, SpecialName
+Class GameModel.Store: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :GameModel.GameObject
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
