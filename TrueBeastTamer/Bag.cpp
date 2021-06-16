@@ -56,9 +56,9 @@ GameModel::Bag::Bag()
 
 	Word_Edit->Add(gcnew GameView::Word(0, 0, "", 24, sf::Color::Black));
 
-	Word_Edit->Add(gcnew GameView::Word(X+20,Y+(1)*Height/13-Word_Beast[0]->Rect->getGlobalBounds().height, "Back", 24, sf::Color::Black));
+	Word_Edit->Add(gcnew GameView::Word(X+20,Y+(1)*Height/13, "Back", 24, sf::Color::Black));
 	Word_Edit->Add(gcnew GameView::Word(0, 0, "", 24, sf::Color::Black));
-	Word_Edit[2]->Move(X + Length / 2, Y + (1) * Height /13 - Word_Edit[1]->Rect->getGlobalBounds().height);
+	Word_Edit[2]->Move(X + Length / 2, Y + (1) * Height /13);
 
 	Word_Edit->Add(gcnew GameView::Word(X + 50 + 40, Y + (2) * Height /13, "Health: ", 24, sf::Color::Black));
 	Word_Edit->Add(gcnew GameView::Word(X + 50 + 40 +Word_Edit[3]->Rect->getGlobalBounds().width, Y + (2) * Height / 13, "", 24, sf::Color::Black));
@@ -206,8 +206,8 @@ void GameModel::Bag::Move(float x, float y)
 	Word_Setting[0]->Move(X + Length / 2 - Word_Setting[0]->Rect->getGlobalBounds().width / 2, Y + 1 * (Height / 6) - Word_Setting[0]->Rect->getGlobalBounds().height);
 	Word_Setting[1]->Move(X + 20, Y + 1 * (Height / 6) - Word_Setting[0]->Rect->getGlobalBounds().height);
 	//Edit
-	Word_Edit[1]->Move(X + 20, Y + (1) * Height / 13 - Word_Beast[0]->Rect->getGlobalBounds().height);
-	Word_Edit[2]->Move(X + Length / 2, Y + (1) * Height / 13 - Word_Edit[1]->Rect->getGlobalBounds().height);
+	Word_Edit[1]->Move(X + 20, Y + (1) * Height / 13);
+	Word_Edit[2]->Move(X + Length / 2, Y + (1) * Height / 13);
 	Word_Edit[3]->Move(X + 50 + 40, Y + (2) * Height / 13);
 	Word_Edit[4]->Move(X + 50 + 40 + Word_Edit[3]->Rect->getGlobalBounds().width, Y + (2) * Height / 13);
 	Word_Edit[5]->Move(X + 50 + 40, Y + (3) * Height / 13);
