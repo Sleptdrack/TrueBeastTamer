@@ -24,6 +24,7 @@ namespace GameModel {
 		//
 		property List<Animate^>^ Animation;
 		AnimationIndex CurrentAnimation;
+		property int FrameSize;
 		//
 		property sf::IntRect* In_Rect;
 

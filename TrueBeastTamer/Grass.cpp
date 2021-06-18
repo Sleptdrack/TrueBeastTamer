@@ -7,5 +7,6 @@ GameModel::Grass::Grass(){
     Length = TileSize;
     X = 0;
     Y = 0;
+    FrameSize = 500;
     setDrawables(PathSource::SystoStd(PathSource::Grass[0]));
 }

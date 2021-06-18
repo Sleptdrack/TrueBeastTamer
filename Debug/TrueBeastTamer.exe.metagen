@@ -1,5 +1,5 @@
 ImageRuntimeVersion: v4.0.30319
-Assembly TrueBeastTamer, Version=1.0.*, Culture=Todos los idiomas (todos los países): 
+Assembly TrueBeastTamer, Version=1.0.*, Culture=Invariant Language (Invariant Country): 
 	hash=SHA1, flags=PublicKey
 Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
 	hash=None, flags=None
@@ -81,6 +81,7 @@ Class GameModel.GameObject: AutoLayout, AnsiClass, Class, Public, Serializable, 
     AnimationIndex CurrentAnimation : Public
   Properties:
     sf.Rect<int>* In_Rect 'get set' : 
+    Int32 FrameSize 'get set' : 
     System.Collections.Generic.List`1[Animate] Animation 'get set' : 
     Single Speed 'get set' : 
     Single Y   'get set' : 
@@ -106,6 +107,8 @@ Class GameModel.GameObject: AutoLayout, AnsiClass, Class, Public, Serializable, 
     set_Speed(Single): PrivateScope, Public, HideBySig, SpecialName
     get_Animation(): PrivateScope, Public, HideBySig, SpecialName
     set_Animation(List`1): PrivateScope, Public, HideBySig, SpecialName
+    get_FrameSize(): PrivateScope, Public, HideBySig, SpecialName
+    set_FrameSize(Int32): PrivateScope, Public, HideBySig, SpecialName
     get_In_Rect(): PrivateScope, Public, HideBySig, SpecialName
     set_In_Rect(Rect<int>*): PrivateScope, Public, HideBySig, SpecialName
     Draw(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig

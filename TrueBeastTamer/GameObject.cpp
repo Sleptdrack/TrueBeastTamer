@@ -5,6 +5,7 @@ GameModel::GameObject::GameObject()
 {
     X = 0;
     Y = 0;
+    FrameSize = 96;
     Sprite = new sf::Sprite();
     Texture = new sf::Texture();
     CurrentAnimation = AnimationIndex::WalkingRight;//Cambiar Idle
@@ -39,18 +40,18 @@ void GameModel::GameObject::setDrawables(sf::String n)
     Sprite->setTexture(*Texture);
     Animation = gcnew List<Animate^>();
     //Agregar el resto de estados, en orden
-    Animation->Add(gcnew Animate(0, 0, 96, 96));//Right
-    Animation->Add(gcnew Animate(0, 96, 96, 96));//Left
-    Animation->Add(gcnew Animate(0, 2 * 96, 96, 96));//Down
-    Animation->Add(gcnew Animate(0, 3 * 96, 96, 96));//Up
-    Animation->Add(gcnew Animate(0, 0, 96, 96, 1));//Idle
+    Animation->Add(gcnew Animate(0, 0, FrameSize, FrameSize));//Right
+    Animation->Add(gcnew Animate(0, FrameSize, FrameSize, FrameSize));//Left
+    Animation->Add(gcnew Animate(0, 2 * FrameSize, FrameSize, FrameSize));//Down
+    Animation->Add(gcnew Animate(0, 3 * FrameSize, FrameSize, FrameSize));//Up
+    Animation->Add(gcnew Animate(0, 0, FrameSize, FrameSize, 1));//Idle
     In_Rect = new sf::IntRect(
         Animation[CurrentAnimation]->frame[Animation[CurrentAnimation]->iFrame]->X,
         Animation[CurrentAnimation]->frame[Animation[CurrentAnimation]->iFrame]->Y,
         Animation[CurrentAnimation]->frame[Animation[CurrentAnimation]->iFrame]->Width,
         Animation[CurrentAnimation]->frame[Animation[CurrentAnimation]->iFrame]->Height);
     Sprite->setTextureRect(*In_Rect);
-    Sprite->setScale(2*Length / 96, 2*Height / 96);
+    Sprite->setScale(Length / FrameSize, Height / FrameSize);
     Sprite->setPosition(X, Y);
 }
 

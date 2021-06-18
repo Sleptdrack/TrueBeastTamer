@@ -61,8 +61,8 @@ void GameModel::Arena::Show(Map^ M){
 			}
 			Movement::Move(M->Player->Bag->Beast[0], t, Tspace);
 			if (t2.asMilliseconds() > 200) {
-			
 				M->Player->Bag->Beast[0]->Update();
+				clk2.restart();
 			}
 			Interraction::UsePower(M->Player->Bag->Beast[0], *Screen->W);
 			if (t1.asMilliseconds() > 100) {

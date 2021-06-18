@@ -8,6 +8,7 @@ GameModel::Bag::Bag()
 	Height = 500;
 	X = 0;
 	Y = 0;
+	FrameSize = 774;
 	Word = gcnew List<GameView::Word^>();
 	//State Menu
 	GameView::Word^ w1 = gcnew GameView::Word(0, 0, "Bag", 24, sf::Color(255,101,80,255));
