@@ -134,6 +134,7 @@
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="Arena.h" />
     <ClInclude Include="Bag.h" />
     <ClInclude Include="Beast.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="Word.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Arena.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Bag.cpp" />

@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include<time.h>
 #include "PathSource.h"
+#include "Animation.h"
 const float TileSize = 50;
 using namespace sf;
 using namespace System;
@@ -20,12 +21,19 @@ namespace GameModel {
 		property float X;
 		property float Y;
 		property float Speed;
+		//
+		property List<Animate^>^ Animation;
+		AnimationIndex CurrentAnimation;
+		//
+		property sf::IntRect* In_Rect;
+
 	public:
 		GameObject();
 		void Draw(RenderTarget& rt);
 		void Move(float x, float y);
 		bool Contains(GameObject^ G);
 		void setDrawables(sf::String n);
+		void Update();
 	};
 }
 

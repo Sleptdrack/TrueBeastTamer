@@ -30,8 +30,8 @@ void GameModel::Arena::Show(Map^ M){
 	M->Player->Bag->Beast[0]->Power[0]->Shot->Clear();
 	M->Player->Bag->Beast[0]->Power[0]->InUse = false;
 	B->Move(947, 157);
-	Time t,t1;
-	Clock clk,clk1;
+	Time t,t1,t2;
+	Clock clk,clk1,clk2;
 
 	//julio
 	bool pause = false;
@@ -50,6 +50,7 @@ void GameModel::Arena::Show(Map^ M){
 		{
 			t = clk.getElapsedTime();
 			t1 = clk1.getElapsedTime();
+			t2 = clk2.getElapsedTime();
 			clk.restart();
 			sf::Event event;
 			while (Screen->W->pollEvent(event)) {
@@ -59,6 +60,10 @@ void GameModel::Arena::Show(Map^ M){
 				}
 			}
 			Movement::Move(M->Player->Bag->Beast[0], t, Tspace);
+			if (t2.asMilliseconds() > 200) {
+			
+				M->Player->Bag->Beast[0]->Update();
+			}
 			Interraction::UsePower(M->Player->Bag->Beast[0], *Screen->W);
 			if (t1.asMilliseconds() > 100) {
 				Movement::ShotDinamics(M->Player->Bag->Beast[0]->Power[0]);

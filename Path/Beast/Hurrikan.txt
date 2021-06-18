@@ -1,4 +1,4 @@
-Sprite;../Imagenes/Hurrikan.png;
+Sprite;../Imagenes/caratula hurrikan.png;
 Sound;../Sound/aire.wav;../Sound/aire_impacto.wav;//cambiar por algo neutral
 Health;30;10;0.75;
 Defense;3;5;0.5;

@@ -1,5 +1,5 @@
 ImageRuntimeVersion: v4.0.30319
-Assembly TrueBeastTamer, Version=1.0.*, Culture=Invariant Language (Invariant Country): 
+Assembly TrueBeastTamer, Version=1.0.*, Culture=Todos los idiomas (todos los países): 
 	hash=SHA1, flags=PublicKey
 Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
 	hash=None, flags=None
@@ -9,6 +9,40 @@ Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e0
 	hash=None, flags=None
 Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
 	hash=None, flags=None
+Class Frame: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+    Void .ctor(Single, Single, Single, Single): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Single Height 'get set' : 
+    Single Width 'get set' : 
+    Single Y   'get set' : 
+    Single X   'get set' : 
+  Methods:
+    get_X(): PrivateScope, Public, HideBySig, SpecialName
+    set_X(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_Y(): PrivateScope, Public, HideBySig, SpecialName
+    set_Y(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_Width(): PrivateScope, Public, HideBySig, SpecialName
+    set_Width(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_Height(): PrivateScope, Public, HideBySig, SpecialName
+    set_Height(Single): PrivateScope, Public, HideBySig, SpecialName
+Class Animate: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+    Void .ctor(Single, Single, Single, Single, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Single, Single, Single, Single): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    System.Collections.Generic.List`1[Frame] frame 'get set' : 
+    Single ht  'get set' : 
+    Int32 iFrame 'get set' : 
+    Int32 nFrames 'get set' : 
+  Methods:
+    get_nFrames(): PrivateScope, Public, HideBySig, SpecialName
+    set_nFrames(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_iFrame(): PrivateScope, Public, HideBySig, SpecialName
+    set_iFrame(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_ht(): PrivateScope, Public, HideBySig, SpecialName
+    set_ht(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_frame(): PrivateScope, Public, HideBySig, SpecialName
+    set_frame(List`1): PrivateScope, Public, HideBySig, SpecialName
+    Advance(): PrivateScope, Public, HideBySig
 Class PathSource: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
@@ -43,7 +77,11 @@ Class BeastSource: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     LoadFromFile(basic_string<char\,std::char_traits<char>\,std::allocator<char> >*): PrivateScope, Public, Static, HideBySig
 Class GameModel.GameObject: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    AnimationIndex CurrentAnimation : Public
   Properties:
+    sf.Rect<int>* In_Rect 'get set' : 
+    System.Collections.Generic.List`1[Animate] Animation 'get set' : 
     Single Speed 'get set' : 
     Single Y   'get set' : 
     Single X   'get set' : 
@@ -66,10 +104,15 @@ Class GameModel.GameObject: AutoLayout, AnsiClass, Class, Public, Serializable, 
     set_Y(Single): PrivateScope, Public, HideBySig, SpecialName
     get_Speed(): PrivateScope, Public, HideBySig, SpecialName
     set_Speed(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_Animation(): PrivateScope, Public, HideBySig, SpecialName
+    set_Animation(List`1): PrivateScope, Public, HideBySig, SpecialName
+    get_In_Rect(): PrivateScope, Public, HideBySig, SpecialName
+    set_In_Rect(Rect<int>*): PrivateScope, Public, HideBySig, SpecialName
     Draw(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     Move(Single, Single): PrivateScope, Public, HideBySig
     Contains(GameObject): PrivateScope, Public, HideBySig
     setDrawables(String*): PrivateScope, Public, HideBySig
+    Update(): PrivateScope, Public, HideBySig
 Class GameView.Word: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
     Void .ctor(Single, Single, System.String, Int32, sf.Color): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:

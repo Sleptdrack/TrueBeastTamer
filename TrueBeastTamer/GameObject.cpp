@@ -1,11 +1,14 @@
 #include "pch.h"
 #include "GameObject.h"
 
-GameModel::GameObject::GameObject(){
+GameModel::GameObject::GameObject() 
+{
     X = 0;
     Y = 0;
     Sprite = new sf::Sprite();
     Texture = new sf::Texture();
+    CurrentAnimation = AnimationIndex::WalkingRight;//Cambiar Idle
+   
 }
 
 void GameModel::GameObject::Draw(RenderTarget& rt){
@@ -34,6 +37,29 @@ void GameModel::GameObject::setDrawables(sf::String n)
     Sprite = new sf::Sprite();
     Texture->loadFromFile(n);
     Sprite->setTexture(*Texture);
-    Sprite->setScale(Length / Texture->getSize().x, Height/ Texture->getSize().y);
+    Animation = gcnew List<Animate^>();
+    //Agregar el resto de estados, en orden
+    Animation->Add(gcnew Animate(0, 0, 96, 96));//Right
+    Animation->Add(gcnew Animate(0, 96, 96, 96));//Left
+    Animation->Add(gcnew Animate(0, 2 * 96, 96, 96));//Down
+    Animation->Add(gcnew Animate(0, 3 * 96, 96, 96));//Up
+    Animation->Add(gcnew Animate(0, 0, 96, 96, 1));//Idle
+    In_Rect = new sf::IntRect(
+        Animation[CurrentAnimation]->frame[Animation[CurrentAnimation]->iFrame]->X,
+        Animation[CurrentAnimation]->frame[Animation[CurrentAnimation]->iFrame]->Y,
+        Animation[CurrentAnimation]->frame[Animation[CurrentAnimation]->iFrame]->Width,
+        Animation[CurrentAnimation]->frame[Animation[CurrentAnimation]->iFrame]->Height);
+    Sprite->setTextureRect(*In_Rect);
+    Sprite->setScale(2*Length / 96, 2*Height / 96);
     Sprite->setPosition(X, Y);
+}
+
+void GameModel::GameObject::Update()
+{
+    Animation[CurrentAnimation]->Advance();
+    Sprite->setTextureRect(sf::IntRect(
+        Animation[CurrentAnimation]->frame[Animation[CurrentAnimation]->iFrame]->X,
+        Animation[CurrentAnimation]->frame[Animation[CurrentAnimation]->iFrame]->Y,
+        Animation[CurrentAnimation]->frame[Animation[CurrentAnimation]->iFrame]->Width,
+        Animation[CurrentAnimation]->frame[Animation[CurrentAnimation]->iFrame]->Height));
 }
