@@ -1,4 +1,4 @@
-Sprite;../Imagenes/caratula mosfet.png;
+Sprite;../Imagenes/cmosfet.png;
 Sound;../Sound/electricidad_impacto.wav;../Sound/electricidad.wav;
 Health;28;10;0.75;
 Defense;3;5;0.5;
