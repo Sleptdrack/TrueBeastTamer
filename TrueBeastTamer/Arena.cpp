@@ -42,7 +42,7 @@ void GameModel::Arena::Show(Map^ M){
 		{
 			if (Keyboard::isKeyPressed(Keyboard::Escape)) {
 				pause = true;
-				Pause::PrintWindows(pause);
+				M->Player->PauseObj->OpenPause(pause);
 			}
 		}
 
@@ -75,8 +75,11 @@ void GameModel::Arena::Show(Map^ M){
 			if (M->Player->Bag->Beast[0]->Power[0]->InUse) {
 				M->Player->Bag->Beast[0]->Power[0]->Shot[0]->Draw(*Screen->W);
 			}
-			Screen->W->display();
+			
 		}
+		M->Player->PauseObj->SelectOption(*Screen->W, pause);
+		M->Player->PauseObj->DrawPause(*Screen->W);
+		Screen->W->display();
 	}
 	
 }

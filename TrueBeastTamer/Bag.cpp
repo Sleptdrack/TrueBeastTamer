@@ -3,7 +3,6 @@
 #include<string>
 GameModel::Bag::Bag()
 {
-
 	Length = 500;
 	Height = 500;
 	X = 0;

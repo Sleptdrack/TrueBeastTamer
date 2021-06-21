@@ -82,7 +82,48 @@ void GameController::Interraction::MoveBag(Tamer^ T, RenderWindow& rt, sf::Vecto
 		}
 	}
 }
-
+void GameController::Interraction::MovePause(Tamer^ T, RenderWindow& rt, sf::Vector2f* t)
+{
+	if (T->PauseObj->m_flagPause) {
+		if (!T->PauseObj->moving) {
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+				T->PauseObj->moving = true;
+				*t = (sf::Vector2f)rt.mapPixelToCoords(sf::Mouse::getPosition(rt));
+			}
+		}
+		else {
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+				sf::Vector2f mouse = (sf::Vector2f)rt.mapPixelToCoords(sf::Mouse::getPosition(rt));
+				T->PauseObj->Move(T->PauseObj->X + mouse.x - t->x, T->PauseObj->Y + mouse.y - t->y);
+				*t = (sf::Vector2f)rt.mapPixelToCoords(sf::Mouse::getPosition(rt));
+			}
+			else {
+				T->PauseObj->moving = false;
+			}
+		}
+	}
+}
+void GameController::Interraction::MoveHealth(Tamer^ T, RenderWindow& rt, sf::Vector2f* t)
+{
+	if (T->HealthObj->m_flagHealth) {
+		if (!T->HealthObj->moving) {
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+				T->HealthObj->moving = true;
+				*t = (sf::Vector2f)rt.mapPixelToCoords(sf::Mouse::getPosition(rt));
+			}
+		}
+		else {
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+				sf::Vector2f mouse = (sf::Vector2f)rt.mapPixelToCoords(sf::Mouse::getPosition(rt));
+				T->HealthObj->Move(T->HealthObj->X + mouse.x - t->x, T->HealthObj->Y + mouse.y - t->y);
+				*t = (sf::Vector2f)rt.mapPixelToCoords(sf::Mouse::getPosition(rt));
+			}
+			else {
+				T->HealthObj->moving = false;
+			}
+		}
+	}
+}
 void GameController::Interraction::UsePower(Beast^ b, RenderWindow& rt)
 {
 	if (b->Power[0]->InUse == false) {

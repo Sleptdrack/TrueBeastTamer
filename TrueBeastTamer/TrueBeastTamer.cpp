@@ -44,21 +44,28 @@ int main() {
         }
         else if (LI->T->Bag->Beast->Count == 0 && ready) {
             Tready = false;
+            //Pause::Init();
             Tutorial^ TU = gcnew Tutorial(LI->T);
             TU->ChooseBeast(&Tready);
             LI->T = TU->T;
+            
         }
         Arena^ A = nullptr;
         Map^ M = nullptr;
         sf::RenderWindow window;
+        
         bool pause = false;
+        bool pause2 = false;
         if (ready && Tready) {
             M = gcnew Map(10, 0, LI->T);
             M->Player->Move(0, 0);
             M->Player->Bag->open = false;
+            M->Player->PauseObj->m_flagPause = false;
+            M->Player->HealthObj->m_flagHealth = false;
+           // M->Player->Pause1->LoadDraw();
             GameManager::UpdatePlayer(M->Player);
             window.create(sf::VideoMode(1920, 1080), "TrueBeastTamer"/*, sf::Style::Fullscreen*/);
-            window.setSize(sf::Vector2u(PathSource::Resolution[0], PathSource::Resolution[1]));
+            window.setSize(sf::Vector2u(PathSource::Resolution[0], PathSource::Resolution[1])); 
         }
         else {
             return 0;
@@ -83,25 +90,44 @@ int main() {
                 }
 
                 if (Keyboard::isKeyPressed(Keyboard::Escape)) {
-                    pause = true;
-                    Pause::PrintWindows(pause);
+                    pause2 = true;
+                    M->Player->PauseObj->OpenPause(pause2);
                 }
                 Interraction::RenameBeast(M->Player, window, event);
             }
-            if (!pause) {
+            if (!pause && !pause2) {
                 if (Keyboard::isKeyPressed(Keyboard::Enter)) {
                     window.close();
                 }
                 Movement::Move(M->Player, t, rec);
                 M->Player->OpenBag();
-                Interraction::SetStateBag(M->Player, window);
+                Interraction::SetStateBag(M->Player, window);               
                 Interraction::MoveBag(M->Player, window, rtv);
+
                 if (t1.asSeconds() > 1) {
                     Fight::Hunt(M, A, window);
                     c1.restart();
                 }
-                
+                if (t1.asSeconds() > 1) {
+                    if (M->Hospital->Contains(M->Player))
+                    {
+                        if(!M->Player->HealthObj->m_flagHealth2)
+                        { 
+                            M->Player->HealthObj->OpenHealth(true);
+                            M->Player->HealthObj->m_flagHealth2 = true;
+                        }
+                        
+                    }
+                    else
+                    {
+                        M->Player->HealthObj->m_flagHealth2 = false;
+                    }
+                }
             }
+            M->Player->HealthObj->SelectOption(window);
+            M->Player->PauseObj->SelectOption(window, pause2);
+            Interraction::MovePause(M->Player, window, rtv);
+            Interraction::MoveHealth(M->Player, window, rtv);
             window.clear();
             M->Draw(window);
             window.display();

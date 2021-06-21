@@ -7,6 +7,8 @@ GameModel::Tamer::Tamer(System::String^ U, System::String^ P, int id/*, dummy my
     Username = gcnew System::String(U);
     Password = gcnew System::String(P);
     Bag = gcnew GameModel::Bag();
+    PauseObj = gcnew GameModel::Pause();
+    HealthObj = gcnew GameModel::Health();
     /*
     speed = dummy.speed;
     texture = new sf::...
@@ -39,4 +41,6 @@ void GameModel::Tamer::Draw(RenderTarget& rt)
     if (Bag->open) {
         Bag->Draw(rt);
     }
+    PauseObj->DrawPause(rt);
+    HealthObj->DrawPause(rt);
 }

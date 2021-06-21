@@ -286,10 +286,34 @@ Class GameModel.Bag: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeF
     Draw(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     AddBeast(Beast): PrivateScope, Public, HideBySig
     Move(Single, Single): PrivateScope, Public, HideBySig
+Class GameModel.Pause: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+  :GameModel.GameObject
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    sf.RectangleShape* Rect 'get set' : 
+    System.Collections.Generic.List`1[GameView.Word] Word_Pause 'get set' : 
+    Boolean moving 'get set' : 
+    Boolean m_flagPause 'get set' : 
+  Methods:
+    get_m_flagPause(): PrivateScope, Public, HideBySig, SpecialName
+    set_m_flagPause(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    get_moving(): PrivateScope, Public, HideBySig, SpecialName
+    set_moving(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    get_Word_Pause(): PrivateScope, Public, HideBySig, SpecialName
+    set_Word_Pause(List`1): PrivateScope, Public, HideBySig, SpecialName
+    get_Rect(): PrivateScope, Public, Static, HideBySig, SpecialName
+    set_Rect(RectangleShape*): PrivateScope, Public, Static, HideBySig, SpecialName
+    OpenPause(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SelectOption(RenderWindow* IsImplicitlyDereferenced, Boolean* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    DrawPause(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    setDrawables(String*): PrivateScope, Public, HideBySig
+    Move(Single, Single): PrivateScope, Public, HideBySig
 Class GameModel.Tamer: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
   :GameModel.GameObject
     Void .ctor(System.String, System.String, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
+    GameModel.Health HealthObj 'get set' : 
+    GameModel.Pause PauseObj 'get set' : 
     GameModel.Bag Bag 'get set' : 
     Int32 NumBeast 'get set' : 
     System.String Password 'get set' : 
@@ -306,6 +330,10 @@ Class GameModel.Tamer: AutoLayout, AnsiClass, Class, Public, Serializable, Befor
     set_NumBeast(Int32): PrivateScope, Public, HideBySig, SpecialName
     get_Bag(): PrivateScope, Public, HideBySig, SpecialName
     set_Bag(Bag): PrivateScope, Public, HideBySig, SpecialName
+    get_PauseObj(): PrivateScope, Public, HideBySig, SpecialName
+    set_PauseObj(Pause): PrivateScope, Public, HideBySig, SpecialName
+    get_HealthObj(): PrivateScope, Public, HideBySig, SpecialName
+    set_HealthObj(Health): PrivateScope, Public, HideBySig, SpecialName
     OpenBag(): PrivateScope, Public, HideBySig
     Draw(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
 Class GameModel.Garden: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
@@ -384,6 +412,8 @@ Class GameController.Interraction: AutoLayout, AnsiClass, Class, Public, BeforeF
   Methods:
     SetStateBag(Tamer, RenderWindow* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
     MoveBag(Tamer, RenderWindow* IsImplicitlyDereferenced, Vector2<float>*): PrivateScope, Public, Static, HideBySig
+    MovePause(Tamer, RenderWindow* IsImplicitlyDereferenced, Vector2<float>*): PrivateScope, Public, Static, HideBySig
+    MoveHealth(Tamer, RenderWindow* IsImplicitlyDereferenced, Vector2<float>*): PrivateScope, Public, Static, HideBySig
     UsePower(Beast, RenderWindow* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
     RenameBeast(Tamer, RenderWindow* IsImplicitlyDereferenced, Event): PrivateScope, Public, Static, HideBySig
 Class GameController.Movement: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
@@ -413,18 +443,6 @@ Class GameController.Fight: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
   Methods:
     Hunt(Map, Arena, RenderWindow* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
     Battle(Beast, Tamer): PrivateScope, Public, Static, HideBySig
-Class GameView.Pause: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Properties:
-    GameView.Screen Screen 'get set' : 
-    Boolean m_flagPause 'get set' : 
-  Methods:
-    get_m_flagPause(): PrivateScope, Public, Static, HideBySig, SpecialName
-    set_m_flagPause(Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig, SpecialName
-    get_Screen(): PrivateScope, Public, Static, HideBySig, SpecialName
-    set_Screen(Screen): PrivateScope, Public, Static, HideBySig, SpecialName
-    MakeWindowsOnTop(RenderWindow* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
-    PrintWindows(Boolean* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
 Class GameModel.Behavior: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:

@@ -25,6 +25,8 @@ List<Tamer^>^ GameController::GameManager::QueryPlayers()
     for (int i = 0; i < Player->Count; i++) {
         Player[i]->setDrawables(PathSource::SystoStd(PathSource::Tamer[0]));
         Player[i]->Bag->setDrawables(PathSource::SystoStd(PathSource::Bag[0]));
+        Player[i]->PauseObj->setDrawables(PathSource::SystoStd(PathSource::Bag[0]));
+        Player[i]->HealthObj->setDrawables(PathSource::SystoStd(PathSource::Bag[0]));
     }
     return Player;
 }
