@@ -1,4 +1,4 @@
-Sprite;../Imagenes/Feuer.png;
+Sprite;../Imagenes/caratula feuer.png;
 Sound;../Sound/fuego.wav;../Sound/fuego_impacto.wav;//cambiar por algo neutral
 Health;30;10;0.75;
 Defense;3;5;0.5;

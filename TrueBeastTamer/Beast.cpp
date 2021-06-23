@@ -16,6 +16,7 @@ GameModel::Beast::Beast(BeastName name)
 	Y = 0;
 	Length = TileSize;
 	Height = TileSize;
+	FrameSize = 96;
 	Name = name;
 	Power = gcnew List<GameModel::Power^>();
 	GameModel::Power^ p = nullptr;

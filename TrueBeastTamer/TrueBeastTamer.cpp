@@ -26,8 +26,8 @@ int main() {
     //path
     PathSource::LoadFromFile("../Path/Path.txt");
     View View;
-    Time t,t1;
-    Clock clk;
+    Time t,t1,t2;
+    Clock clk,clk2;
     Clock c1;
     RectangleShape* rec = new RectangleShape(sf::Vector2f(1920, 1080));
     //Log in screen
@@ -74,6 +74,7 @@ int main() {
         {
             t1 = c1.getElapsedTime();
             t = clk.getElapsedTime();
+            t2 = clk2.getElapsedTime();
             clk.restart();
             sf::Event event;
             while (window.pollEvent(event))
@@ -100,6 +101,11 @@ int main() {
                     window.close();
                 }
                 Movement::Move(M->Player, t, rec);
+                if (t2.asMilliseconds() > 200) {
+
+                    M->Player->Update();
+                    clk2.restart();
+                }
                 M->Player->OpenBag();
                 Interraction::SetStateBag(M->Player, window);               
                 Interraction::MoveBag(M->Player, window, rtv);

@@ -1,4 +1,4 @@
-Sprite;../Imagenes/Atropos.png;
+Sprite;../Imagenes/caratula atropos.png;
 Sound;../Sound/stone_impact.wav;../Sound/stone.wav;
 Health;40;10;0.75;
 Defense;7;5;0.5;

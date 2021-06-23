@@ -1,4 +1,4 @@
-Sprite;../Imagenes/Trululu.png;
+Sprite;../Imagenes/caratula trululu.png;
 Sound;../Sound/Gunshot.wav;../Sound/Gunshot.wav;//cambiar por algo neutral
 Health;30;10;0.75;
 Defense;3;5;0.5;

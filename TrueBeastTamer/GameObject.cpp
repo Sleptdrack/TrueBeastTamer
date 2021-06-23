@@ -1,11 +1,15 @@
 #include "pch.h"
 #include "GameObject.h"
 
-GameModel::GameObject::GameObject(){
+GameModel::GameObject::GameObject() 
+{
     X = 0;
     Y = 0;
+    FrameSize = 96;
     Sprite = new sf::Sprite();
     Texture = new sf::Texture();
+    CurrentAnimation = AnimationIndex::WalkingRight;//Cambiar Idle
+   
 }
 
 void GameModel::GameObject::Draw(RenderTarget& rt){
@@ -34,6 +38,29 @@ void GameModel::GameObject::setDrawables(sf::String n)
     Sprite = new sf::Sprite();
     Texture->loadFromFile(n);
     Sprite->setTexture(*Texture);
-    Sprite->setScale(Length / Texture->getSize().x, Height/ Texture->getSize().y);
+    Animation = gcnew List<Animate^>();
+    //Agregar el resto de estados, en orden
+    Animation->Add(gcnew Animate(0, 0, FrameSize, FrameSize));//Right
+    Animation->Add(gcnew Animate(0, FrameSize, FrameSize, FrameSize));//Left
+    Animation->Add(gcnew Animate(0, 2 * FrameSize, FrameSize, FrameSize));//Down
+    Animation->Add(gcnew Animate(0, 3 * FrameSize, FrameSize, FrameSize));//Up
+    Animation->Add(gcnew Animate(0, 0, FrameSize, FrameSize, 1));//Idle
+    In_Rect = new sf::IntRect(
+        Animation[CurrentAnimation]->frame[Animation[CurrentAnimation]->iFrame]->X,
+        Animation[CurrentAnimation]->frame[Animation[CurrentAnimation]->iFrame]->Y,
+        Animation[CurrentAnimation]->frame[Animation[CurrentAnimation]->iFrame]->Width,
+        Animation[CurrentAnimation]->frame[Animation[CurrentAnimation]->iFrame]->Height);
+    Sprite->setTextureRect(*In_Rect);
+    Sprite->setScale(Length / FrameSize, Height / FrameSize);
     Sprite->setPosition(X, Y);
+}
+
+void GameModel::GameObject::Update()
+{
+    Animation[CurrentAnimation]->Advance();
+    Sprite->setTextureRect(sf::IntRect(
+        Animation[CurrentAnimation]->frame[Animation[CurrentAnimation]->iFrame]->X,
+        Animation[CurrentAnimation]->frame[Animation[CurrentAnimation]->iFrame]->Y,
+        Animation[CurrentAnimation]->frame[Animation[CurrentAnimation]->iFrame]->Width,
+        Animation[CurrentAnimation]->frame[Animation[CurrentAnimation]->iFrame]->Height));
 }
