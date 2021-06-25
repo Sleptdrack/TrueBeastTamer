@@ -37,7 +37,17 @@ void GameController::Interraction::SetStateBag(Tamer^ T, RenderWindow& rt)
 					T->Bag->setEditMode(i);
 					T->Bag->State = Edit;
 				}
+			}//repetir codigo, buscar simplificacion
+			/*if (T->Bag->Word_Beast[3]->Click(rt)) {
+				T->Bag->setEditMode(0);
+				T->Bag->State = Edit;
 			}
+			if (T->Bag->Beast->Count > 1) {
+				if (T->Bag->Word_Beast[6]->Click(rt)) {
+					T->Bag->setEditMode(1);
+					T->Bag->State = Edit;
+				}
+			}*/
 		}
 		if (T->Bag->State == Items) {
 			if (T->Bag->Word_Item[1]->Click(rt)) {

@@ -154,4 +154,5 @@ void GameModel::Beast::setStat(List<float>^ s, float base, float particularidad,
 	s->Add(s[0] + s[1]);//valor max actual
 	s->Add(s[2]);//valor actual
 	s->Add(radio);//razon de cambio
+	s->Add(particularidad);//Limite particular
 }

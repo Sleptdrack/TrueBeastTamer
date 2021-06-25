@@ -70,7 +70,11 @@ void GameModel::Arena::Show(Map^ M){
 				clk1.restart();
 			}
 			Fight::Battle(B, M->Player);
-			if (B->Health[3] <= 0)Screen->W->close();//reemplazar por metodo para atrapar o liberar Beast
+			if (B->Health[3] <= 0) {
+				M->Player->Bag->Beast[0]->Exp += 10;
+				M->Player->Bag->AddBeast(B);
+				Screen->W->close();
+			}//reemplazar por metodo para atrapar o liberar Beast
 			Screen->W->clear();
 			Draw();
 			M->Player->Draw(*Screen->W);
