@@ -8,7 +8,7 @@ void GameModel::Behavior::Load()
 	Destiny = gcnew Coords(1000,600);
 }
 
-void GameModel::Behavior::Move(Beast^ G, Time t, RectangleShape* R)
+void GameModel::Behavior::Move(Beast^ G, Time t, RectangleShape* R,Beast^ B)
 {
 	if (!Loaded) {
 		Load();
@@ -17,6 +17,11 @@ void GameModel::Behavior::Move(Beast^ G, Time t, RectangleShape* R)
 	if (G->State == Calm && DestinationReached) {
 		Destiny->x = R->getPosition().x+rand() % (int)(R->getGlobalBounds().width - G->Length);
 		Destiny->y = R->getPosition().y+rand() % (int)(R->getGlobalBounds().height - G->Height);
+		DestinationReached = false;
+	}
+	if (G->State == Annoyed && DestinationReached) {
+		Destiny->x = B->X- 2*B->Length + rand() % (int)(4*B->Length);
+		Destiny->y = B->Y- 2 * B->Height + rand() % (int)(4*B->Height);
 		DestinationReached = false;
 	}
 	if (!DestinationReached) {
@@ -71,10 +76,10 @@ void GameModel::Behavior::UpdateBehavior(Beast^ G)
 	else if (G->Health[3] >= G->Health[2] * .50) {
 		G->State = Annoyed;
 	}
-	else if (G->Health[3] >= G->Health[2] * .40) {
+	else if (G->Health[3] >= G->Health[2] * .25) {
 		G->State = Angry;
 	}
-	else if (G->Health[3] >= G->Health[2] * .25) {
+	else if (G->Health[3] >= G->Health[2] * .10) {
 		G->State = Mad;
 	}
 	else {

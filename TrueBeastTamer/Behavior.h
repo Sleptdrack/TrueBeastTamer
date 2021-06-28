@@ -18,7 +18,7 @@ namespace GameModel {
 		static bool Loaded = false;
 	public:
 		static void Load();
-		static void Move(Beast^ G, Time t, RectangleShape* R);
+		static void Move(Beast^ G, Time t, RectangleShape* R, Beast^ B);
 		static void UpdateBehavior(Beast^ G);
 	};
 }
