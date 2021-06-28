@@ -81,6 +81,7 @@ Class GameModel.GameObject: AutoLayout, AnsiClass, Class, Public, Serializable, 
     AnimationIndex CurrentAnimation : Public
   Properties:
     sf.Rect<int>* In_Rect 'get set' : 
+    MOOD State 'get set' : 
     Int32 FrameSize 'get set' : 
     System.Collections.Generic.List`1[Animate] Animation 'get set' : 
     Single Speed 'get set' : 
@@ -109,6 +110,8 @@ Class GameModel.GameObject: AutoLayout, AnsiClass, Class, Public, Serializable, 
     set_Animation(List`1): PrivateScope, Public, HideBySig, SpecialName
     get_FrameSize(): PrivateScope, Public, HideBySig, SpecialName
     set_FrameSize(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_State(): PrivateScope, Public, HideBySig, SpecialName
+    set_State(MOOD): PrivateScope, Public, HideBySig, SpecialName
     get_In_Rect(): PrivateScope, Public, HideBySig, SpecialName
     set_In_Rect(Rect<int>*): PrivateScope, Public, HideBySig, SpecialName
     Draw(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
@@ -496,6 +499,26 @@ Class GameController.Movement: AutoLayout, AnsiClass, Class, Public, BeforeField
     Move(GameObject, Time, RectangleShape*): PrivateScope, Public, Static, HideBySig
     Move(GameObject, Time): PrivateScope, Public, Static, HideBySig
     ShotDinamics(Power): PrivateScope, Public, Static, HideBySig
+Class GameModel.Coords: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+    Void .ctor(Single, Single): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Single y   'get set' : 
+    Single x   'get set' : 
+  Methods:
+    get_x(): PrivateScope, Public, HideBySig, SpecialName
+    set_x(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_y(): PrivateScope, Public, HideBySig, SpecialName
+    set_y(Single): PrivateScope, Public, HideBySig, SpecialName
+Class GameModel.Behavior: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    GameModel.Coords Destiny : Public, Static
+    Boolean DestinationReached : Public, Static
+    Boolean Loaded : Public, Static
+  Methods:
+    Load(): PrivateScope, Public, Static, HideBySig
+    Move(Beast, Time, RectangleShape*): PrivateScope, Public, Static, HideBySig
+    UpdateBehavior(Beast): PrivateScope, Public, Static, HideBySig
 Class GameModel.Arena: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
   :GameModel.GameObject
     Void .ctor(GameModel.Beast): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -517,10 +540,6 @@ Class GameController.Fight: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
   Methods:
     Hunt(Map, Arena, RenderWindow* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
     Battle(Beast, Tamer): PrivateScope, Public, Static, HideBySig
-Class GameModel.Behavior: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Fields:
-    Beast_State State : Public, Static
 Class GameController.Hack: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class GameView.LogInSc: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit

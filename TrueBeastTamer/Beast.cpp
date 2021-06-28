@@ -106,6 +106,7 @@ GameModel::Beast::Beast(BeastName name)
 			 setStat(Cooldown, BeastSource::Cooldown[0], BeastSource::Cooldown[1], BeastSource::Cooldown[2]);
 			 break;
 	}
+	State = Calm;
 }
 
 void GameModel::Beast::SetDrawables(sf::String s, sf::String a1, sf::String a2)

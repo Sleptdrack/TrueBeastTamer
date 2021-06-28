@@ -60,6 +60,8 @@ void GameModel::Arena::Show(Map^ M){
 				}
 			}
 			Movement::Move(M->Player->Bag->Beast[0], t, Tspace);
+			Behavior::UpdateBehavior(B);
+			Behavior::Move(B, t, Tspace);
 			if (t2.asMilliseconds() > 200) {
 				M->Player->Bag->Beast[0]->Update();
 				clk2.restart();
@@ -78,9 +80,10 @@ void GameModel::Arena::Show(Map^ M){
 			Screen->W->clear();
 			Draw();
 			M->Player->Draw(*Screen->W);
-			for (int i = 0; i < M->Player->Bag->Beast->Count; i++) {
+			/*for (int i = 0; i < M->Player->Bag->Beast->Count; i++) {
 				M->Player->Bag->Beast[i]->Draw(*Screen->W);
-			}
+			}*/
+			M->Player->Bag->Beast[0]->Draw(*Screen->W);
 			if (M->Player->Bag->Beast[0]->Power[0]->InUse) {
 				M->Player->Bag->Beast[0]->Power[0]->Shot[0]->Draw(*Screen->W);
 			}
