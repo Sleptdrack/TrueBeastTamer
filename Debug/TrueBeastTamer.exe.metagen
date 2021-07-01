@@ -324,6 +324,7 @@ Class GameModel.Bag: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeF
   :GameModel.GameObject
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
+    Boolean erase 'get set' : 
     Boolean changing 'get set' : 
     Boolean moving 'get set' : 
     Boolean open 'get set' : 
@@ -361,11 +362,14 @@ Class GameModel.Bag: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeF
     set_moving(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
     get_changing(): PrivateScope, Public, HideBySig, SpecialName
     set_changing(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    get_erase(): PrivateScope, Public, HideBySig, SpecialName
+    set_erase(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
     setDrawables(String*): PrivateScope, Public, HideBySig
     setEditMode(Int32): PrivateScope, Public, HideBySig
     Draw(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     AddBeast(Beast): PrivateScope, Public, HideBySig
     Move(Single, Single): PrivateScope, Public, HideBySig
+    DeleteBeast(Int32): PrivateScope, Public, HideBySig
 Class GameModel.Pause: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
   :GameModel.GameObject
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
