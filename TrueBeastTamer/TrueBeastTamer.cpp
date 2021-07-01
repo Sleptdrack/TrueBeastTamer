@@ -17,11 +17,11 @@
 using namespace sf;
 using namespace System;
 using namespace GameModel;
-using namespace GameController;
 using namespace GameView;
 int main() {
     srand(time(NULL));
     float x = 50, y = 0;
+    bool life=false;
     sf::Vector2f* rtv = new sf::Vector2f();
     //path
     PathSource::LoadFromFile("../Path/Path.txt");
@@ -130,9 +130,19 @@ int main() {
                     }
                 }
             }
-            M->Player->HealthObj->SelectOption(window);
+            M->Player->HealthObj->SelectOption(window,life);
             M->Player->PauseObj->SelectOption(window, pause2);
-         
+            if (life)
+            {
+                ;
+                for (int i =0; i < M->Player->Bag->Beast->Count ;i++)
+                {
+                    M->Player->Bag->Beast[i]->Health[3] = M->Player->Bag->Beast[i]->Health[2];
+                }
+                
+                life = false;
+            }
+            
             Interraction::MovePause(M->Player, window, rtv);
             Interraction::MoveHealth(M->Player, window, rtv);
             window.clear();

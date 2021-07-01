@@ -84,6 +84,7 @@ void GameModel::Pause::SelectOption(RenderWindow& rt, bool& pause)
 {
 	if (m_flagPause == true) {
 		if (Word_Pause[1]->Click(rt)) {
+
 			pause = false;
 			m_flagPause = false;
 		}

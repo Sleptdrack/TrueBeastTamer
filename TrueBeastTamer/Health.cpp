@@ -31,17 +31,19 @@ void GameModel::Health::OpenHealth(bool pause)
 	m_flagHealth = pause;
 }
 
-void GameModel::Health::SelectOption(RenderWindow& rt)
+void GameModel::Health::SelectOption(RenderWindow& rt,bool&life)
 {
 	if (m_flagHealth == true) {
 		if (Word_Health[1]->Click(rt)) {
 			// Make some option for live
 			//HealUp
+			life = true;
 			m_flagHealth = false;
 		}
 		if (Word_Health[2]->Click(rt))
 		{
 			// Make some option for live
+			life = false;
 			m_flagHealth = false;
 		}
 	}
