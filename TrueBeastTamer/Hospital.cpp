@@ -9,4 +9,12 @@ GameModel::Hospital::Hospital(float x, float y) {
     Height = 100;
     FrameSize = 160;
     setDrawables(PathSource::SystoStd(PathSource::Hospital[0]));
+    HealthObj = gcnew GameModel::Health();
 }
+
+void GameModel::Hospital::Draw(RenderTarget& rt)
+{
+    rt.draw(*Sprite);
+    HealthObj->DrawPause(rt);
+}
+
