@@ -17,21 +17,21 @@ void GameController::Fight::Hunt(Map^ M, Arena^ A, RenderWindow& W){
 	}
 }
 
-void GameController::Fight::Battle(Beast^ B, Tamer^ T){
-	if (T->Bag->Beast[0]->Power[0]->InUse) {
-		if (T->Bag->Beast[0]->Power[0]->Shot[0]->Contains(B)) {
+void GameController::Fight::Battle(Beast^ B, Tamer^ T,int c){
+	if (T->Bag->Beast[c]->Power[0]->InUse) {
+		if (T->Bag->Beast[c]->Power[0]->Shot[0]->Contains(B)) {
 			std::cout << B->Health[3] << "\n";
-			if (T->Bag->Beast[0]->Attack[3] - B->Defense[3] <= 0) {
+			if (T->Bag->Beast[c]->Attack[3] - B->Defense[3] <= 0) {
 				B->Health[3] -= 1;
 			}
 			else {
-				B->Health[3] -= T->Bag->Beast[0]->Attack[3] - B->Defense[3];//el tercer elemento es el valor real que posee
+				B->Health[3] -= T->Bag->Beast[c]->Attack[3] - B->Defense[3];//el tercer elemento es el valor real que posee
 			}
 			//agregar metodo para definir daño por elemento
-			T->Bag->Beast[0]->Power[0]->Move->stop();
-			T->Bag->Beast[0]->Power[0]->Hit->play();
-			T->Bag->Beast[0]->Power[0]->Shot->Clear();
-			T->Bag->Beast[0]->Power[0]->InUse = false;
+			T->Bag->Beast[c]->Power[0]->Move->stop();
+			T->Bag->Beast[c]->Power[0]->Hit->play();
+			T->Bag->Beast[c]->Power[0]->Shot->Clear();
+			T->Bag->Beast[c]->Power[0]->InUse = false;
 		}
 	}
 	if (B->Health[3] <= 0) {

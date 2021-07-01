@@ -14,7 +14,7 @@ namespace GameController {
 		static void MoveHealth(Tamer^ T, RenderWindow& rt, sf::Vector2f* t);
 		static void UsePower(Beast^ b, RenderWindow& rt);
 		static void RenameBeast(Tamer^ T, RenderWindow& rt, Event e);
-		static void ChangeBeast(Tamer^ T, int c);
+		static void ChangeBeast(Tamer^ T, int *c);
 	};
 }
 
