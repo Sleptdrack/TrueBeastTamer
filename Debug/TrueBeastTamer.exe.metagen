@@ -493,6 +493,7 @@ Class GameController.Interraction: AutoLayout, AnsiClass, Class, Public, BeforeF
     MoveHealth(Tamer, RenderWindow* IsImplicitlyDereferenced, Vector2<float>*): PrivateScope, Public, Static, HideBySig
     UsePower(Beast, RenderWindow* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
     RenameBeast(Tamer, RenderWindow* IsImplicitlyDereferenced, Event): PrivateScope, Public, Static, HideBySig
+    ChangeBeast(Tamer, Int32): PrivateScope, Public, Static, HideBySig
 Class GameController.Movement: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
@@ -517,7 +518,7 @@ Class GameModel.Behavior: AutoLayout, AnsiClass, Class, Public, Serializable, Be
     Boolean Loaded : Public, Static
   Methods:
     Load(): PrivateScope, Public, Static, HideBySig
-    Move(Beast, Time, RectangleShape*): PrivateScope, Public, Static, HideBySig
+    Move(Beast, Time, RectangleShape*, Beast): PrivateScope, Public, Static, HideBySig
     UpdateBehavior(Beast): PrivateScope, Public, Static, HideBySig
 Class GameModel.Arena: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
   :GameModel.GameObject

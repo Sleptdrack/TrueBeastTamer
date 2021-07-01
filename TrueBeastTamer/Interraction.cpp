@@ -195,7 +195,7 @@ void GameController::Interraction::ChangeBeast(Tamer^ T, int c)
 			}
 		}
 	}
-	else 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+	else 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
 		while (!done) {
 			if (c - con >= 0) {
 				if (T->Bag->Beast[c - con]->Health[3] > 0) {
