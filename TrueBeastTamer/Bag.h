@@ -21,6 +21,7 @@ namespace GameModel {
         property GameView::Stat^ Stat;
         property bool open;
         property bool moving;
+        property bool changing;
     public:
         Bag();
         void setDrawables(sf::String t);

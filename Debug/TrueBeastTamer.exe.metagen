@@ -324,6 +324,7 @@ Class GameModel.Bag: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeF
   :GameModel.GameObject
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
+    Boolean changing 'get set' : 
     Boolean moving 'get set' : 
     Boolean open 'get set' : 
     GameView.Stat Stat 'get set' : 
@@ -358,6 +359,8 @@ Class GameModel.Bag: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeF
     set_open(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
     get_moving(): PrivateScope, Public, HideBySig, SpecialName
     set_moving(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    get_changing(): PrivateScope, Public, HideBySig, SpecialName
+    set_changing(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
     setDrawables(String*): PrivateScope, Public, HideBySig
     setEditMode(Int32): PrivateScope, Public, HideBySig
     Draw(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
@@ -497,7 +500,7 @@ Class GameController.Interraction: AutoLayout, AnsiClass, Class, Public, BeforeF
     MoveHealth(Tamer, RenderWindow* IsImplicitlyDereferenced, Vector2<float>*): PrivateScope, Public, Static, HideBySig
     UsePower(Beast, RenderWindow* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
     RenameBeast(Tamer, RenderWindow* IsImplicitlyDereferenced, Event): PrivateScope, Public, Static, HideBySig
-    ChangeBeast(Tamer, Int32): PrivateScope, Public, Static, HideBySig
+    ChangeBeast(Tamer, Int32*): PrivateScope, Public, Static, HideBySig
 Class GameController.Movement: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
@@ -544,7 +547,7 @@ Class GameController.Fight: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
     Hunt(Map, Arena, RenderWindow* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
-    Battle(Beast, Tamer): PrivateScope, Public, Static, HideBySig
+    Battle(Beast, Tamer, Int32): PrivateScope, Public, Static, HideBySig
 Class GameController.Hack: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class GameView.LogInSc: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit

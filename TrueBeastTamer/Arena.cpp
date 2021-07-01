@@ -66,15 +66,15 @@ void GameModel::Arena::Show(Map^ M){
 				M->Player->Bag->Beast[Chosen]->Update();
 				clk2.restart();
 			}
-			Interraction::UsePower(M->Player->Bag->Beast[0], *Screen->W);
+			Interraction::UsePower(M->Player->Bag->Beast[Chosen], *Screen->W);
 			if (t1.asMilliseconds() > 100) {
-				Movement::ShotDinamics(M->Player->Bag->Beast[0]->Power[0]);
+				Movement::ShotDinamics(M->Player->Bag->Beast[Chosen]->Power[0]);
 				clk1.restart();
 			}
-			Interraction::ChangeBeast(M->Player, Chosen);
-			Fight::Battle(B, M->Player);
+			Interraction::ChangeBeast(M->Player, &Chosen);
+			Fight::Battle(B, M->Player,Chosen);
 			if (B->Health[3] <= 0) {
-				M->Player->Bag->Beast[0]->Exp += 10;
+				M->Player->Bag->Beast[Chosen]->Exp += 10;
 				M->Player->Bag->AddBeast(B);
 				Screen->W->close();
 			}//reemplazar por metodo para atrapar o liberar Beast
@@ -85,8 +85,8 @@ void GameModel::Arena::Show(Map^ M){
 				M->Player->Bag->Beast[i]->Draw(*Screen->W);
 			}*/
 			M->Player->Bag->Beast[Chosen]->Draw(*Screen->W);
-			if (M->Player->Bag->Beast[0]->Power[0]->InUse) {
-				M->Player->Bag->Beast[0]->Power[0]->Shot[0]->Draw(*Screen->W);
+			if (M->Player->Bag->Beast[Chosen]->Power[0]->InUse) {
+				M->Player->Bag->Beast[Chosen]->Power[0]->Shot[0]->Draw(*Screen->W);
 			}
 			
 		}

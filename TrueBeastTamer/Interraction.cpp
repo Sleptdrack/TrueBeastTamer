@@ -167,55 +167,65 @@ void GameController::Interraction::RenameBeast(Tamer^ T, RenderWindow& rt, Event
 	}
 }
 
-void GameController::Interraction::ChangeBeast(Tamer^ T, int c)
+void GameController::Interraction::ChangeBeast(Tamer^ T, int *c)
 {
 	float x;
 	float y;
 	int con = 1;
 	bool done = false;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
-		while (!done) {
-			if (c + con <= T->Bag->Beast->Count - 1) {
-				if (T->Bag->Beast[c + con]->Health[3] > 0) {
-					x = T->Bag->Beast[c]->X;
-					y = T->Bag->Beast[c]->Y;
-					T->Bag->Beast[c]->X = T->Bag->Beast[c + con]->X;
-					T->Bag->Beast[c]->Y = T->Bag->Beast[c + con]->Y;
-					T->Bag->Beast[c + con]->X = x;
-					T->Bag->Beast[c + con]->Y = y;
-					c += con;
-					done = true;
+	if (!T->Bag->changing) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
+			T->Bag->changing = true;
+			while (!done) {
+				if (*c + con <= T->Bag->Beast->Count - 1) {
+					if (T->Bag->Beast[*c + con]->Health[3] > 0) {
+						x = T->Bag->Beast[*c]->X;
+						y = T->Bag->Beast[*c]->Y;
+						T->Bag->Beast[*c]->X = T->Bag->Beast[*c + con]->X;
+						T->Bag->Beast[*c]->Y = T->Bag->Beast[*c + con]->Y;
+						T->Bag->Beast[*c + con]->X = x;
+						T->Bag->Beast[*c + con]->Y = y;
+						*c += con;
+						done = true;
+					}
+					else {
+						con += 1;
+					}
 				}
 				else {
-					con += 1;
+					con = -*c;
 				}
 			}
-			else {
-				con = -c;
+		}
+		else 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
+			T->Bag->changing = true;
+			while (!done) {
+				if (*c - con >= 0) {
+					if (T->Bag->Beast[*c - con]->Health[3] > 0) {
+						x = T->Bag->Beast[*c]->X;
+						y = T->Bag->Beast[*c]->Y;
+						T->Bag->Beast[*c]->X = T->Bag->Beast[*c - con]->X;
+						T->Bag->Beast[*c]->Y = T->Bag->Beast[*c - con]->Y;
+						T->Bag->Beast[*c - con]->X = x;
+						T->Bag->Beast[*c - con]->Y = y;
+						*c -= con;
+						done = true;
+					}
+					else {
+						con += 1;
+					}
+				}
+				else {
+					con = -(T->Bag->Beast->Count - 1);
+				}
 			}
 		}
 	}
-	else 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
-		while (!done) {
-			if (c - con >= 0) {
-				if (T->Bag->Beast[c - con]->Health[3] > 0) {
-					x = T->Bag->Beast[c]->X;
-					y = T->Bag->Beast[c]->Y;
-					T->Bag->Beast[c]->X = T->Bag->Beast[c - con]->X;
-					T->Bag->Beast[c]->Y = T->Bag->Beast[c - con]->Y;
-					T->Bag->Beast[c - con]->X = x;
-					T->Bag->Beast[c - con]->Y = y;
-					c -=con;
-					done = true;
-				}
-				else {
-					con += 1;
-				}
-			}
-			else {
-				con = T->Bag->Beast->Count-1;
-			}
+	else {
+		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !(sf::Keyboard::isKeyPressed(sf::Keyboard::E))) {
+			T->Bag->changing = false;
 		}
 	}
+
 
 }
