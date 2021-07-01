@@ -10,6 +10,15 @@ GameModel::Power::Power(Element t, Attack k)
     InUse = false;
     Shot = gcnew List<GameModel::Shot^>();
 }
+void GameModel::Power::Stop()
+{
+    if (InUse) {
+        InUse = false;
+        Shot->RemoveAt(0);
+        Move->stop();
+        Hit->stop();
+    }
+}
 GameModel::Shot::Shot(sf::Vector2f e, sf::Vector2f s)
 {
     start = new sf::Vector2f(s);

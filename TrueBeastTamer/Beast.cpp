@@ -119,9 +119,9 @@ void GameModel::Beast::SetDrawables(sf::String s, sf::String a1, sf::String a2)
 	Power[0]->SHit->loadFromFile(a1);
 	Power[0]->SMove->loadFromFile(a2);
 	Power[0]->Hit->setBuffer(*Power[0]->SHit);
-	Power[0]->Hit->setVolume(50);
+	Power[0]->Hit->setVolume(30);
 	Power[0]->Move->setBuffer(*Power[0]->SMove);
-	Power[0]->Move->setVolume(50);
+	Power[0]->Move->setVolume(30);
 }
 
 
