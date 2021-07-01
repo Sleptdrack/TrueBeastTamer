@@ -81,6 +81,7 @@ Class GameModel.GameObject: AutoLayout, AnsiClass, Class, Public, Serializable, 
     AnimationIndex CurrentAnimation : Public
   Properties:
     sf.Rect<int>* In_Rect 'get set' : 
+    MOOD State 'get set' : 
     Int32 FrameSize 'get set' : 
     System.Collections.Generic.List`1[Animate] Animation 'get set' : 
     Single Speed 'get set' : 
@@ -109,6 +110,8 @@ Class GameModel.GameObject: AutoLayout, AnsiClass, Class, Public, Serializable, 
     set_Animation(List`1): PrivateScope, Public, HideBySig, SpecialName
     get_FrameSize(): PrivateScope, Public, HideBySig, SpecialName
     set_FrameSize(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_State(): PrivateScope, Public, HideBySig, SpecialName
+    set_State(MOOD): PrivateScope, Public, HideBySig, SpecialName
     get_In_Rect(): PrivateScope, Public, HideBySig, SpecialName
     set_In_Rect(Rect<int>*): PrivateScope, Public, HideBySig, SpecialName
     Draw(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
@@ -292,12 +295,38 @@ Class GameModel.Beast: AutoLayout, AnsiClass, Class, Public, Serializable, Befor
     LevelUp(): PrivateScope, Public, HideBySig
     UpdateStats(List`1, Int32): PrivateScope, Public, HideBySig
     setStat(List`1, Single, Single, Single): PrivateScope, Public, HideBySig
+Class GameView.Stat: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+    Void .ctor(GameModel.Beast): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Single Y   'get set' : 
+    Single X   'get set' : 
+    System.Collections.Generic.List`1[GameView.Word] Word 'get set' : 
+    sf.ConvexShape* real 'get set' : 
+    sf.ConvexShape* exent 'get set' : 
+    sf.ConvexShape* base 'get set' : 
+  Methods:
+    get_base(): PrivateScope, Public, HideBySig, SpecialName
+    set_base(ConvexShape*): PrivateScope, Public, HideBySig, SpecialName
+    get_exent(): PrivateScope, Public, HideBySig, SpecialName
+    set_exent(ConvexShape*): PrivateScope, Public, HideBySig, SpecialName
+    get_real(): PrivateScope, Public, HideBySig, SpecialName
+    set_real(ConvexShape*): PrivateScope, Public, HideBySig, SpecialName
+    get_Word(): PrivateScope, Public, HideBySig, SpecialName
+    set_Word(List`1): PrivateScope, Public, HideBySig, SpecialName
+    get_X(): PrivateScope, Public, HideBySig, SpecialName
+    set_X(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_Y(): PrivateScope, Public, HideBySig, SpecialName
+    set_Y(Single): PrivateScope, Public, HideBySig, SpecialName
+    Move(Single, Single): PrivateScope, Public, HideBySig
+    Draw(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Scale(Single, Single): PrivateScope, Public, HideBySig
 Class GameModel.Bag: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
   :GameModel.GameObject
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
     Boolean moving 'get set' : 
     Boolean open 'get set' : 
+    GameView.Stat Stat 'get set' : 
     System.Collections.Generic.List`1[GameView.Word] Word_Edit 'get set' : 
     System.Collections.Generic.List`1[GameView.Word] Word_Setting 'get set' : 
     System.Collections.Generic.List`1[GameView.Word] Word_Item 'get set' : 
@@ -323,6 +352,8 @@ Class GameModel.Bag: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeF
     set_Word_Setting(List`1): PrivateScope, Public, HideBySig, SpecialName
     get_Word_Edit(): PrivateScope, Public, HideBySig, SpecialName
     set_Word_Edit(List`1): PrivateScope, Public, HideBySig, SpecialName
+    get_Stat(): PrivateScope, Public, HideBySig, SpecialName
+    set_Stat(Stat): PrivateScope, Public, HideBySig, SpecialName
     get_open(): PrivateScope, Public, HideBySig, SpecialName
     set_open(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
     get_moving(): PrivateScope, Public, HideBySig, SpecialName
@@ -472,6 +503,26 @@ Class GameController.Movement: AutoLayout, AnsiClass, Class, Public, BeforeField
     Move(GameObject, Time, RectangleShape*): PrivateScope, Public, Static, HideBySig
     Move(GameObject, Time): PrivateScope, Public, Static, HideBySig
     ShotDinamics(Power): PrivateScope, Public, Static, HideBySig
+Class GameModel.Coords: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+    Void .ctor(Single, Single): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Single y   'get set' : 
+    Single x   'get set' : 
+  Methods:
+    get_x(): PrivateScope, Public, HideBySig, SpecialName
+    set_x(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_y(): PrivateScope, Public, HideBySig, SpecialName
+    set_y(Single): PrivateScope, Public, HideBySig, SpecialName
+Class GameModel.Behavior: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    GameModel.Coords Destiny : Public, Static
+    Boolean DestinationReached : Public, Static
+    Boolean Loaded : Public, Static
+  Methods:
+    Load(): PrivateScope, Public, Static, HideBySig
+    Move(Beast, Time, RectangleShape*): PrivateScope, Public, Static, HideBySig
+    UpdateBehavior(Beast): PrivateScope, Public, Static, HideBySig
 Class GameModel.Arena: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
   :GameModel.GameObject
     Void .ctor(GameModel.Beast): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -493,10 +544,6 @@ Class GameController.Fight: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
   Methods:
     Hunt(Map, Arena, RenderWindow* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
     Battle(Beast, Tamer): PrivateScope, Public, Static, HideBySig
-Class GameModel.Behavior: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Fields:
-    Beast_State State : Public, Static
 Class GameController.Hack: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class GameView.LogInSc: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit

@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "Beast.h"
 #include "Word.h"
+#include "Stat.h"
 using namespace System::Collections::Generic;
 using namespace System;
 typedef enum {Menu, Items, Beasts,Setting,Edit} Window_Bag;
@@ -17,6 +18,7 @@ namespace GameModel {
         property List<GameView::Word^>^ Word_Item;
         property List<GameView::Word^>^ Word_Setting;
         property List<GameView::Word^>^ Word_Edit;
+        property GameView::Stat^ Stat;
         property bool open;
         property bool moving;
     public:

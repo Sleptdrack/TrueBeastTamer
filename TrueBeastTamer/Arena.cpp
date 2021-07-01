@@ -32,7 +32,7 @@ void GameModel::Arena::Show(Map^ M){
 	B->Move(947, 157);
 	Time t,t1,t2;
 	Clock clk,clk1,clk2;
-
+	int Chosen = 0;
 	//julio
 	bool pause = false;
 
@@ -59,9 +59,11 @@ void GameModel::Arena::Show(Map^ M){
 					B->Health[3] = 0;
 				}
 			}
-			Movement::Move(M->Player->Bag->Beast[0], t, Tspace);
+			Movement::Move(M->Player->Bag->Beast[Chosen], t, Tspace);
+			Behavior::UpdateBehavior(B);
+			Behavior::Move(B, t, Tspace,M->Player->Bag->Beast[Chosen]);
 			if (t2.asMilliseconds() > 200) {
-				M->Player->Bag->Beast[0]->Update();
+				M->Player->Bag->Beast[Chosen]->Update();
 				clk2.restart();
 			}
 			Interraction::UsePower(M->Player->Bag->Beast[0], *Screen->W);
@@ -69,14 +71,20 @@ void GameModel::Arena::Show(Map^ M){
 				Movement::ShotDinamics(M->Player->Bag->Beast[0]->Power[0]);
 				clk1.restart();
 			}
+			Interraction::ChangeBeast(M->Player, Chosen);
 			Fight::Battle(B, M->Player);
-			if (B->Health[3] <= 0)Screen->W->close();//reemplazar por metodo para atrapar o liberar Beast
+			if (B->Health[3] <= 0) {
+				M->Player->Bag->Beast[0]->Exp += 10;
+				M->Player->Bag->AddBeast(B);
+				Screen->W->close();
+			}//reemplazar por metodo para atrapar o liberar Beast
 			Screen->W->clear();
 			Draw();
 			M->Player->Draw(*Screen->W);
-			for (int i = 0; i < M->Player->Bag->Beast->Count; i++) {
+			/*for (int i = 0; i < M->Player->Bag->Beast->Count; i++) {
 				M->Player->Bag->Beast[i]->Draw(*Screen->W);
-			}
+			}*/
+			M->Player->Bag->Beast[Chosen]->Draw(*Screen->W);
 			if (M->Player->Bag->Beast[0]->Power[0]->InUse) {
 				M->Player->Bag->Beast[0]->Power[0]->Shot[0]->Draw(*Screen->W);
 			}

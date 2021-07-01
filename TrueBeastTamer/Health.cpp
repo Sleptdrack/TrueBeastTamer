@@ -36,6 +36,7 @@ void GameModel::Health::SelectOption(RenderWindow& rt)
 	if (m_flagHealth == true) {
 		if (Word_Health[1]->Click(rt)) {
 			// Make some option for live
+			//HealUp
 			m_flagHealth = false;
 		}
 		if (Word_Health[2]->Click(rt))

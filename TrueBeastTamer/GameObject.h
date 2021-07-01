@@ -9,6 +9,7 @@ const float TileSize = 50;
 using namespace sf;
 using namespace System;
 typedef enum { Water, Fire, Air, Ligthing, Earth, Neutral } Element;
+typedef enum { Calm, Annoyed, Angry, Mad, Furious } MOOD;
 static std::string ElementString[] = {"Water","Fire","Air","Ligthing","Earth","Neutral"};
 namespace GameModel {
 	[Serializable]
@@ -26,6 +27,7 @@ namespace GameModel {
 		AnimationIndex CurrentAnimation;
 		property int FrameSize;
 		//
+		property MOOD State;
 		property sf::IntRect* In_Rect;
 
 	public:

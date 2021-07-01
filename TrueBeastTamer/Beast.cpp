@@ -106,6 +106,7 @@ GameModel::Beast::Beast(BeastName name)
 			 setStat(Cooldown, BeastSource::Cooldown[0], BeastSource::Cooldown[1], BeastSource::Cooldown[2]);
 			 break;
 	}
+	State = Calm;
 }
 
 void GameModel::Beast::SetDrawables(sf::String s, sf::String a1, sf::String a2)
@@ -154,4 +155,5 @@ void GameModel::Beast::setStat(List<float>^ s, float base, float particularidad,
 	s->Add(s[0] + s[1]);//valor max actual
 	s->Add(s[2]);//valor actual
 	s->Add(radio);//razon de cambio
+	s->Add(particularidad);//Limite particular
 }

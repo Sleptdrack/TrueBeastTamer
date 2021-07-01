@@ -37,7 +37,17 @@ void GameController::Interraction::SetStateBag(Tamer^ T, RenderWindow& rt)
 					T->Bag->setEditMode(i);
 					T->Bag->State = Edit;
 				}
+			}//repetir codigo, buscar simplificacion
+			/*if (T->Bag->Word_Beast[3]->Click(rt)) {
+				T->Bag->setEditMode(0);
+				T->Bag->State = Edit;
 			}
+			if (T->Bag->Beast->Count > 1) {
+				if (T->Bag->Word_Beast[6]->Click(rt)) {
+					T->Bag->setEditMode(1);
+					T->Bag->State = Edit;
+				}
+			}*/
 		}
 		if (T->Bag->State == Items) {
 			if (T->Bag->Word_Item[1]->Click(rt)) {
@@ -155,4 +165,57 @@ void GameController::Interraction::RenameBeast(Tamer^ T, RenderWindow& rt, Event
 			T->Bag->Beast[System::Int16::Parse(T->Bag->Word_Edit[0]->T)]->TagName = T->Bag->Word_Edit[2]->T;
 		}
 	}
+}
+
+void GameController::Interraction::ChangeBeast(Tamer^ T, int c)
+{
+	float x;
+	float y;
+	int con = 1;
+	bool done = false;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
+		while (!done) {
+			if (c + con <= T->Bag->Beast->Count - 1) {
+				if (T->Bag->Beast[c + con]->Health[3] > 0) {
+					x = T->Bag->Beast[c]->X;
+					y = T->Bag->Beast[c]->Y;
+					T->Bag->Beast[c]->X = T->Bag->Beast[c + con]->X;
+					T->Bag->Beast[c]->Y = T->Bag->Beast[c + con]->Y;
+					T->Bag->Beast[c + con]->X = x;
+					T->Bag->Beast[c + con]->Y = y;
+					c += con;
+					done = true;
+				}
+				else {
+					con += 1;
+				}
+			}
+			else {
+				con = -c;
+			}
+		}
+	}
+	else 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+		while (!done) {
+			if (c - con >= 0) {
+				if (T->Bag->Beast[c - con]->Health[3] > 0) {
+					x = T->Bag->Beast[c]->X;
+					y = T->Bag->Beast[c]->Y;
+					T->Bag->Beast[c]->X = T->Bag->Beast[c - con]->X;
+					T->Bag->Beast[c]->Y = T->Bag->Beast[c - con]->Y;
+					T->Bag->Beast[c - con]->X = x;
+					T->Bag->Beast[c - con]->Y = y;
+					c -=con;
+					done = true;
+				}
+				else {
+					con += 1;
+				}
+			}
+			else {
+				con = T->Bag->Beast->Count-1;
+			}
+		}
+	}
+
 }

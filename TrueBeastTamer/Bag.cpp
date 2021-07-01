@@ -52,6 +52,7 @@ GameModel::Bag::Bag()
 	Word_Setting->Add(S1);
 	Word_Setting->Add(S2);
 	//State Edit
+	Stat = nullptr;
 	Word_Edit = gcnew List<GameView::Word^>();
 
 	Word_Edit->Add(gcnew GameView::Word(0, 0, "", 24, sf::Color::Black));
@@ -108,10 +109,13 @@ void GameModel::Bag::setDrawables(sf::String t){
 	for (int i = 0; i < Word_Edit->Count; i++) {
 		Word_Edit[i]->SetParameters(PathSource::SystoStd(PathSource::Word[0]), PathSource::SystoStd(PathSource::Word[1]), Word_Edit[i]->Code);
 	}
+	Stat = nullptr;
 }
 
 void GameModel::Bag::setEditMode(int t)
 {
+	Stat = gcnew GameView::Stat(Beast[t]);
+	Stat->Scale(0.5, 0.5);
 	Word_Edit[0]->UpdateString(std::to_string(t));
 	Word_Edit[2]->UpdateString(PathSource::SystoStd(Beast[t]->TagName));
 	Word_Edit[4]->UpdateString(PathSource::SystoStd(Beast[t]->Health[3].ToString() + "/" + Beast[t]->Health[2].ToString()));
@@ -141,14 +145,16 @@ void GameModel::Bag::Draw(sf::RenderTarget& rt)
 		Word_Beast[1]->Draw(rt);
 		for (int j = 0; j < Beast->Count; j++) {
 			//revisar posicion
+			Beast[j]->CurrentAnimation = AnimationIndex::Idle;
+			Beast[j]->Update();
 			Beast[j]->Move(X, Y + Word_Beast[0]->Rect->getGlobalBounds().height + (j + 2) * (Height / 6));
 			Beast[j]->Draw(rt);
-			for (int i = 2; i < Word_Beast->Count; i += 3) {
+			for (int i = 3*(j+1)-1; i < 3 * (j + 1)+2; i += 3) {
 				//revisar posicion
 				Word_Beast[i]->UpdateString(PathSource::SystoStd(Beast[j]->TagName));
 				Word_Beast[i]->Move(Beast[j]->X + Beast[j]->Length + 20, Beast[j]->Y);
-				Word_Beast[i + 1]->Move(Word_Beast[j]->X + 30, Beast[j]->Y - 15);
-				Word_Beast[i + 2]->Move(Word_Beast[j]->X + 30, Beast[j]->Y + 15);
+				Word_Beast[i + 1]->Move(Word_Beast[i]->X + Word_Beast[i]->Rect->getGlobalBounds().width+5, Beast[j]->Y - 15);
+				Word_Beast[i + 2]->Move(Word_Beast[i]->X + Word_Beast[i]->Rect->getGlobalBounds().width + 5, Beast[j]->Y + 15);
 				Word_Beast[i]->Draw(rt);
 				Word_Beast[i + 1]->Draw(rt);
 				Word_Beast[i + 2]->Draw(rt);
@@ -167,11 +173,12 @@ void GameModel::Bag::Draw(sf::RenderTarget& rt)
 		break;
 	case Edit:
 		rt.draw(*Sprite);
-		Beast[System::Int16::Parse(Word_Edit[0]->T)]->Move(X + 20, Y + (2) * Height / 13);
+		Beast[System::Int16::Parse(Word_Edit[0]->T)]->Move(X + 20, Y + (2) * Height / 13+25);
 		Beast[System::Int16::Parse(Word_Edit[0]->T)]->Draw(rt);
 		for (int i = 1; i < Word_Edit->Count; i++) {
 			Word_Edit[i]->Draw(rt);
 		}
+		Stat->Draw(rt);
 	}
 }
 
@@ -224,6 +231,9 @@ void GameModel::Bag::Move(float x, float y)
 	Word_Edit[16]->Move(X + 20 + Word_Edit[15]->Rect->getGlobalBounds().width, Y + (8) * Height / 13);
 	Word_Edit[17]->Move(X + 20, Y + (9) * Height / 13);
 	Word_Edit[18]->Move(X + 20 + Word_Edit[17]->Rect->getGlobalBounds().width, Y + (9) * Height / 13);
+	if (Stat != nullptr) {
+		Stat->Move(X + 350, Y + 300);
+	}
 }
 
 

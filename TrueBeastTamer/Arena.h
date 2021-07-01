@@ -8,6 +8,7 @@
 #include "Map.h"
 #include "Beast.h"
 #include "Movement.h"
+#include "Behavior.h"
 using namespace GameController;
 using namespace System;
 using namespace GameView;
