@@ -14,7 +14,7 @@ namespace GameModel {
 		property static sf::RectangleShape* Rect;
 		Health();
 		void OpenHealth(bool pause);
-		void SelectOption(RenderWindow& rt);
+		void SelectOption(RenderWindow& rt, bool& life);
 		void DrawPause(sf::RenderTarget& rt);
 		void setDrawables(sf::String t);
 		void Move(float x, float y);

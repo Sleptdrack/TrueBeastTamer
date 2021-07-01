@@ -8,7 +8,7 @@ GameModel::GameObject::GameObject()
     FrameSize = 96;
     Sprite = new sf::Sprite();
     Texture = new sf::Texture();
-    CurrentAnimation = AnimationIndex::WalkingRight;//Cambiar Idle
+    CurrentAnimation = AnimationIndex::Idle;//Cambiar Idle
    
 }
 
