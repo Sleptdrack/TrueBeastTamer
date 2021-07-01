@@ -132,6 +132,7 @@ int main() {
             }
             M->Player->HealthObj->SelectOption(window);
             M->Player->PauseObj->SelectOption(window, pause2);
+         
             Interraction::MovePause(M->Player, window, rtv);
             Interraction::MoveHealth(M->Player, window, rtv);
             window.clear();

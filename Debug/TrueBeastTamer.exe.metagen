@@ -1,5 +1,5 @@
 ImageRuntimeVersion: v4.0.30319
-Assembly TrueBeastTamer, Version=1.0.*, Culture=Todos los idiomas (todos los países): 
+Assembly TrueBeastTamer, Version=1.0.*, Culture=Invariant Language (Invariant Country): 
 	hash=SHA1, flags=PublicKey
 Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
 	hash=None, flags=None
@@ -409,10 +409,14 @@ Class GameModel.Hospital: AutoLayout, AnsiClass, Class, Public, Serializable, Be
   :GameModel.GameObject
     Void .ctor(Single, Single): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
+    GameModel.Health HealthObj 'get set' : 
     GameModel.NPC Nurse 'get set' : 
   Methods:
     get_Nurse(): PrivateScope, Public, HideBySig, SpecialName
     set_Nurse(NPC): PrivateScope, Public, HideBySig, SpecialName
+    get_HealthObj(): PrivateScope, Public, HideBySig, SpecialName
+    set_HealthObj(Health): PrivateScope, Public, HideBySig, SpecialName
+    Draw(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
 Class GameModel.Map: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
     Void .ctor(Int32, Int32, GameModel.Tamer): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:

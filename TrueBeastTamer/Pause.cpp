@@ -54,13 +54,13 @@ GameModel::Pause::Pause()
 	GameView::Word^ E2 = gcnew GameView::Word(0, 0, "Quit", 28, sf::Color(240, 240, 240, 255));
 	E2->Move(X + Length / 2 - E2->Rect->getGlobalBounds().width / 2, Y + 4 * (Height / 6) - E2->Rect->getGlobalBounds().height);
 
-	GameView::Word^ E3 = gcnew GameView::Word(0, 0, "Menu", 28, sf::Color(240, 240, 240, 255));
-	E3->Move(X + Length / 2 - E3->Rect->getGlobalBounds().width / 2, Y + 5 * (Height / 6) - E3->Rect->getGlobalBounds().height);
+	//GameView::Word^ E3 = gcnew GameView::Word(0, 0, "Menu", 28, sf::Color(240, 240, 240, 255));
+	//E3->Move(X + Length / 2 - E3->Rect->getGlobalBounds().width / 2, Y + 5 * (Height / 6) - E3->Rect->getGlobalBounds().height);
 
 	Word_Pause->Add(Message);
 	Word_Pause->Add(E1);
 	Word_Pause->Add(E2);
-	Word_Pause->Add(E3);
+	//Word_Pause->Add(E3);
 	setDrawables(PathSource::SystoStd(PathSource::Bag[0]));
 }
 
@@ -89,6 +89,7 @@ void GameModel::Pause::SelectOption(RenderWindow& rt, bool& pause)
 		}
 		if (Word_Pause[2]->Click(rt))// resume
 		{
+			rt.close();
 			pause = false;
 			m_flagPause = false;
 		}
@@ -111,6 +112,6 @@ void GameModel::Pause::Move(float x, float y)
 	Word_Pause[0]->Move(X + Length / 2 - Word_Pause[0]->Rect->getGlobalBounds().width / 2, Y + 1 * (Height / 6) - Word_Pause[0]->Rect->getGlobalBounds().height);
 	Word_Pause[1]->Move(X + Length / 2 - Word_Pause[1]->Rect->getGlobalBounds().width / 2, Y + 2 * (Height / 6) - Word_Pause[1]->Rect->getGlobalBounds().height);
 	Word_Pause[2]->Move(X + Length / 2 - Word_Pause[2]->Rect->getGlobalBounds().width / 2, Y + 3 * (Height / 6) - Word_Pause[2]->Rect->getGlobalBounds().height);
-	Word_Pause[3]->Move(X + Length / 2 - Word_Pause[3]->Rect->getGlobalBounds().width / 2, Y + 4 * (Height / 6) - Word_Pause[3]->Rect->getGlobalBounds().height);
+	//Word_Pause[3]->Move(X + Length / 2 - Word_Pause[3]->Rect->getGlobalBounds().width / 2, Y + 4 * (Height / 6) - Word_Pause[3]->Rect->getGlobalBounds().height);
 
 }
