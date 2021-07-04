@@ -33,6 +33,7 @@ namespace GameModel {
 			property sf::Sound* Move;
 	public:
 		Power(Element t, Attack k);
+		void Stop();
 		
 
 	};

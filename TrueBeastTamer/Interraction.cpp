@@ -183,6 +183,7 @@ void GameController::Interraction::ChangeBeast(Tamer^ T, int *c)
 					if (T->Bag->Beast[*c + con]->Health[3] > 0) {
 						x = T->Bag->Beast[*c]->X;
 						y = T->Bag->Beast[*c]->Y;
+						T->Bag->Beast[*c]->Power[0]->Stop();
 						T->Bag->Beast[*c]->X = T->Bag->Beast[*c + con]->X;
 						T->Bag->Beast[*c]->Y = T->Bag->Beast[*c + con]->Y;
 						T->Bag->Beast[*c + con]->X = x;

@@ -255,6 +255,7 @@ Class GameModel.Power: AutoLayout, AnsiClass, Class, Public, Serializable, Befor
     set_Hit(Sound*): PrivateScope, Public, HideBySig, SpecialName
     get_Move(): PrivateScope, Public, HideBySig, SpecialName
     set_Move(Sound*): PrivateScope, Public, HideBySig, SpecialName
+    Stop(): PrivateScope, Public, HideBySig
 Class GameModel.Beast: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
   :GameModel.GameObject
     Void .ctor(BeastName): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -530,6 +531,7 @@ Class GameModel.Behavior: AutoLayout, AnsiClass, Class, Public, Serializable, Be
   Methods:
     Load(): PrivateScope, Public, Static, HideBySig
     Move(Beast, Time, RectangleShape*, Beast): PrivateScope, Public, Static, HideBySig
+    Attack(Beast, RectangleShape*, Beast): PrivateScope, Public, Static, HideBySig
     UpdateBehavior(Beast): PrivateScope, Public, Static, HideBySig
 Class GameModel.Arena: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
   :GameModel.GameObject

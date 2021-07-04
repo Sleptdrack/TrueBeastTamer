@@ -19,7 +19,7 @@ void GameModel::Behavior::Move(Beast^ G, Time t, RectangleShape* R,Beast^ B)
 		Destiny->y = R->getPosition().y+rand() % (int)(R->getGlobalBounds().height - G->Height);
 		DestinationReached = false;
 	}
-	if (G->State == Annoyed && DestinationReached) {
+	if ((G->State == Annoyed || G->State == Angry || G->State == Mad|| G->State == Furious)&& DestinationReached) {
 		Destiny->x = B->X- 2*B->Length + rand() % (int)(4*B->Length);
 		Destiny->y = B->Y- 2 * B->Height + rand() % (int)(4*B->Height);
 		DestinationReached = false;
@@ -65,6 +65,49 @@ void GameModel::Behavior::Move(Beast^ G, Time t, RectangleShape* R,Beast^ B)
 			DestinationReached = true;
 		}
 		G->Move(G->X, G->Y);
+	}
+}
+
+void GameModel::Behavior::Attack(Beast^ G, RectangleShape* R,Beast^ B){
+	if (G->State == Annoyed) {
+		if (G->Power[0]->InUse == false) {
+			G->Power[0]->InUse = true;
+			sf::Vector2f dt;
+			dt.x = float((rand() % (int)(R->getSize().x * 100)) / 100) + R->getPosition().x;
+			dt.y = float((rand() % (int)(R->getSize().y * 100)) / 100 + R->getPosition().y);
+			GameModel::Shot^ s = gcnew GameModel::Shot(dt, sf::Vector2f(G->X + G->Length / 2, G->Y + G->Height / 2));
+			G->Power[0]->Shot->Add(s);
+		}
+	}
+	else if (G->State == Angry) {
+		if (G->Power[0]->InUse == false) {
+			G->Power[0]->InUse = true;
+			sf::Vector2f dt;
+			dt.x = B->X-200+rand()%400;
+			dt.y = B->Y - 200 + rand() % 400;
+			GameModel::Shot^ s = gcnew GameModel::Shot(dt, sf::Vector2f(G->X + G->Length / 2, G->Y + G->Height / 2));
+			G->Power[0]->Shot->Add(s);
+		}
+	}
+	else if (G->State == Mad) {
+		if (G->Power[0]->InUse == false) {
+			G->Power[0]->InUse = true;
+			sf::Vector2f dt;
+			dt.x = B->X - 100 + rand() % 200;
+			dt.y = B->Y - 100 + rand() % 200;
+			GameModel::Shot^ s = gcnew GameModel::Shot(dt, sf::Vector2f(G->X + G->Length / 2, G->Y + G->Height / 2));
+			G->Power[0]->Shot->Add(s);
+		}
+	}
+	else if (G->State == Furious) {
+		if (G->Power[0]->InUse == false) {
+			G->Power[0]->InUse = true;
+			sf::Vector2f dt;
+			dt.x = B->X;
+			dt.y = B->Y;
+			GameModel::Shot^ s = gcnew GameModel::Shot(dt, sf::Vector2f(G->X + G->Length / 2, G->Y + G->Height / 2));
+			G->Power[0]->Shot->Add(s);
+		}
 	}
 }
 

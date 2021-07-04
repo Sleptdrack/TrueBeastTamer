@@ -12,6 +12,10 @@ GameModel::Arena::Arena(Beast^ b)
 	Screen->Rect->setFillColor(sf::Color::White);
 	Tspace = new RectangleShape(sf::Vector2f(850, 480));
 	Tspace->setPosition(505, 212);
+	//erase later
+	Tspace->setOutlineThickness(1);
+	Tspace->setOutlineColor(sf::Color::Red);
+
 	//Crear clase que maneje un cuadro con valores 
 	Screen->W->setSize(sf::Vector2u(PathSource::Resolution[0], PathSource::Resolution[1]));//erase after
 	B = b;
@@ -67,13 +71,16 @@ void GameModel::Arena::Show(Map^ M){
 				clk2.restart();
 			}
 			Interraction::UsePower(M->Player->Bag->Beast[Chosen], *Screen->W);
+			Behavior::Attack(B, Tspace, M->Player->Bag->Beast[Chosen]);
 			if (t1.asMilliseconds() > 100) {
 				Movement::ShotDinamics(M->Player->Bag->Beast[Chosen]->Power[0]);
+				Movement::ShotDinamics(B->Power[0]);
 				clk1.restart();
 			}
 			Interraction::ChangeBeast(M->Player, &Chosen);
 			Fight::Battle(B, M->Player,Chosen);
 			if (B->Health[3] <= 0) {
+				B->Power[0]->Stop();
 				M->Player->Bag->Beast[Chosen]->Exp += 10;
 				M->Player->Bag->AddBeast(B);
 				Screen->W->close();
@@ -88,7 +95,9 @@ void GameModel::Arena::Show(Map^ M){
 			if (M->Player->Bag->Beast[Chosen]->Power[0]->InUse) {
 				M->Player->Bag->Beast[Chosen]->Power[0]->Shot[0]->Draw(*Screen->W);
 			}
-			
+			if (B->Power[0]->InUse) {
+				B->Power[0]->Shot[0]->Draw(*Screen->W);
+			}
 		}
 		M->Player->PauseObj->SelectOption(*Screen->W, pause);
 		M->Player->PauseObj->DrawPause(*Screen->W);
