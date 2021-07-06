@@ -24,6 +24,7 @@ void GameController::Fight::Battle(Beast^ B, Tamer^ T,int* c){
 				std::cout << B->Health[3] << "\n";
 				if (T->Bag->Beast[*c]->Attack[3] - B->Defense[3] <= 0) {
 					B->Health[3] -= 1;
+					T->Bag->Beast[*c]->Exp += 5;
 				}
 				else {
 					B->Health[3] -= T->Bag->Beast[*c]->Attack[3] - B->Defense[3];//el tercer elemento es el valor real que posee
@@ -44,6 +45,7 @@ void GameController::Fight::Battle(Beast^ B, Tamer^ T,int* c){
 	}
 	if (B->Health[3] <= 0) {
 		//reemplazar por metodo para atrapar o liberar Beast
+		T->Bag->Beast[*c]->Exp += 20;
 		B->Health[3] = 0;
 	}
 	
@@ -52,6 +54,7 @@ void GameController::Fight::Battle(Beast^ B, Tamer^ T,int* c){
 			if (B->Power[0]->Shot[0]->Contains(T->Bag->Beast[*c])) {
 				if (B->Attack[3] - T->Bag->Beast[*c]->Defense[3] <= 0) {
 					T->Bag->Beast[*c]->Health[3] -= 1;
+					B->Exp += 5;
 				}
 				else {
 					T->Bag->Beast[*c]->Health[3] -= B->Attack[3] - T->Bag->Beast[*c]->Defense[3];//el tercer elemento es el valor real que posee
@@ -71,6 +74,7 @@ void GameController::Fight::Battle(Beast^ B, Tamer^ T,int* c){
 	}
 	if (T->Bag->Beast[*c]->Health[3] <= 0) {
 		//AGREGAR CAMBIO DE BEAST O PERDIDA
+		B->Exp += 20;
 		T->Bag->Beast[*c]->Health[3] = 0;
 		if (T->Bag->Beast->Count > *c + 2) {
 			T->Bag->Beast[*c + 1]->X = T->Bag->Beast[*c]->X;
