@@ -86,6 +86,12 @@ void GameModel::Arena::Show(Map^ M){
 			//
 			Interraction::ChangeBeast(M->Player, &Chosen);
 			Fight::Battle(B, M->Player,&Chosen);
+			//
+			B->LevelUp();
+			for (int i = 0; i < M->Player->Bag->Beast->Count; i++) {
+				M->Player->Bag->Beast[i]->LevelUp();
+			}
+			//
 			if (B->Health[3] <= 0) {
 				B->Power[0]->Stop();
 				for (int i = 0; i < M->Player->Bag->Beast->Count; i++) {
