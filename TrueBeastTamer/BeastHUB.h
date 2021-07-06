@@ -1,6 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Beast.h"
+#include "Word.h"
+#include "GameObject.h"
+#include "Screen.h"
 
 using namespace GameModel;
 
@@ -14,6 +17,8 @@ namespace GameView {
 		property sf::Sprite* Exp;
 		property sf::Sprite* Hp;
 		property sf::Sprite* HUB;
+		property Word^ Tag;
+		property Word^ Lvl;
 		property float X;
 		property float Y;
 	public:

@@ -86,7 +86,7 @@ void GameModel::Arena::Show(Map^ M){
 				clk1.restart();
 			}
 			Interraction::ChangeBeast(M->Player, &Chosen);
-			Fight::Battle(B, M->Player,Chosen);
+			Fight::Battle(B, M->Player,&Chosen);
 			if (B->Health[3] <= 0) {
 				B->Power[0]->Stop();
 				M->Player->Bag->Beast[Chosen]->Exp += 10;

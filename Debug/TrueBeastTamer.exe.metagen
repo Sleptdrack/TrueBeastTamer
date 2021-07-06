@@ -1,5 +1,5 @@
 ImageRuntimeVersion: v4.0.30319
-Assembly TrueBeastTamer, Version=1.0.*, Culture=Invariant Language (Invariant Country): 
+Assembly TrueBeastTamer, Version=1.0.*, Culture=Todos los idiomas (todos los países): 
 	hash=SHA1, flags=PublicKey
 Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
 	hash=None, flags=None
@@ -538,6 +538,8 @@ Class GameView.BeastHUB: AutoLayout, AnsiClass, Class, Public, Serializable, Bef
   Properties:
     Single Y   'get set' : 
     Single X   'get set' : 
+    GameView.Word Lvl 'get set' : 
+    GameView.Word Tag 'get set' : 
     sf.Sprite* HUB 'get set' : 
     sf.Sprite* Hp 'get set' : 
     sf.Sprite* Exp 'get set' : 
@@ -557,6 +559,10 @@ Class GameView.BeastHUB: AutoLayout, AnsiClass, Class, Public, Serializable, Bef
     set_Hp(Sprite*): PrivateScope, Public, HideBySig, SpecialName
     get_HUB(): PrivateScope, Public, HideBySig, SpecialName
     set_HUB(Sprite*): PrivateScope, Public, HideBySig, SpecialName
+    get_Tag(): PrivateScope, Public, HideBySig, SpecialName
+    set_Tag(Word): PrivateScope, Public, HideBySig, SpecialName
+    get_Lvl(): PrivateScope, Public, HideBySig, SpecialName
+    set_Lvl(Word): PrivateScope, Public, HideBySig, SpecialName
     get_X(): PrivateScope, Public, HideBySig, SpecialName
     set_X(Single): PrivateScope, Public, HideBySig, SpecialName
     get_Y(): PrivateScope, Public, HideBySig, SpecialName
@@ -584,7 +590,7 @@ Class GameController.Fight: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
     Hunt(Map, Arena, RenderWindow* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
-    Battle(Beast, Tamer, Int32): PrivateScope, Public, Static, HideBySig
+    Battle(Beast, Tamer, Int32*): PrivateScope, Public, Static, HideBySig
 Class GameController.Hack: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class GameView.LogInSc: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
