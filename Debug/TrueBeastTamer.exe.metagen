@@ -210,7 +210,6 @@ Class GameModel.Shot: AutoLayout, AnsiClass, Class, Public, Serializable, Before
   :GameModel.GameObject
     Void .ctor(sf.Vector2<float>, sf.Vector2<float>): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
-    Int32 destiny 'get set' : 
     sf.Vector2<float>* end 'get set' : 
     sf.Vector2<float>* start 'get set' : 
   Methods:
@@ -218,8 +217,6 @@ Class GameModel.Shot: AutoLayout, AnsiClass, Class, Public, Serializable, Before
     set_start(Vector2<float>*): PrivateScope, Public, HideBySig, SpecialName
     get_end(): PrivateScope, Public, HideBySig, SpecialName
     set_end(Vector2<float>*): PrivateScope, Public, HideBySig, SpecialName
-    get_destiny(): PrivateScope, Public, HideBySig, SpecialName
-    set_destiny(Int32): PrivateScope, Public, HideBySig, SpecialName
     setDrawable(String*): PrivateScope, Public, HideBySig
 Class GameModel.Power: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
     Void .ctor(Element, Attack): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -228,6 +225,8 @@ Class GameModel.Power: AutoLayout, AnsiClass, Class, Public, Serializable, Befor
     sf.Sound* Hit 'get set' : 
     sf.SoundBuffer* SMove 'get set' : 
     sf.SoundBuffer* SHit 'get set' : 
+    sf.Time* time 'get set' : 
+    sf.Clock* clk 'get set' : 
     Boolean InUse 'get set' : 
     Int32 cooldown 'get set' : 
     System.Collections.Generic.List`1[GameModel.Shot] Shot 'get set' : 
@@ -247,6 +246,10 @@ Class GameModel.Power: AutoLayout, AnsiClass, Class, Public, Serializable, Befor
     set_cooldown(Int32): PrivateScope, Public, HideBySig, SpecialName
     get_InUse(): PrivateScope, Public, HideBySig, SpecialName
     set_InUse(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    get_clk(): PrivateScope, Public, HideBySig, SpecialName
+    set_clk(Clock*): PrivateScope, Public, HideBySig, SpecialName
+    get_time(): PrivateScope, Public, HideBySig, SpecialName
+    set_time(Time*): PrivateScope, Public, HideBySig, SpecialName
     get_SHit(): PrivateScope, Public, HideBySig, SpecialName
     set_SHit(SoundBuffer*): PrivateScope, Public, HideBySig, SpecialName
     get_SMove(): PrivateScope, Public, HideBySig, SpecialName
@@ -511,7 +514,7 @@ Class GameController.Movement: AutoLayout, AnsiClass, Class, Public, BeforeField
   Methods:
     Move(GameObject, Time, RectangleShape*): PrivateScope, Public, Static, HideBySig
     Move(GameObject, Time): PrivateScope, Public, Static, HideBySig
-    ShotDinamics(Power): PrivateScope, Public, Static, HideBySig
+    ShotDinamics(Beast): PrivateScope, Public, Static, HideBySig
 Class GameModel.Coords: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
     Void .ctor(Single, Single): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:

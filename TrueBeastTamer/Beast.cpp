@@ -122,6 +122,8 @@ void GameModel::Beast::SetDrawables(sf::String s, sf::String a1, sf::String a2)
 	Power[0]->Hit->setVolume(30);
 	Power[0]->Move->setBuffer(*Power[0]->SMove);
 	Power[0]->Move->setVolume(30);
+	Power[0]->clk = new sf::Clock();
+	Power[0]->time = new sf::Time();
 }
 
 

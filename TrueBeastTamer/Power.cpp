@@ -5,8 +5,8 @@ GameModel::Power::Power(Element t, Attack k)
 {
 	Type = t;
 	Kind = k;
-    Range = 300;
-    cooldown = 500;//en ms
+    Range = 500;
+    cooldown = 1000;//en ms
     InUse = false;
     Shot = gcnew List<GameModel::Shot^>();
 }
@@ -14,7 +14,9 @@ void GameModel::Power::Stop()
 {
     if (InUse) {
         InUse = false;
-        Shot->RemoveAt(0);
+        if (Shot->Count> 0) {
+            Shot->RemoveAt(0);
+        }
         Move->stop();
         Hit->stop();
     }
@@ -25,7 +27,6 @@ GameModel::Shot::Shot(sf::Vector2f e, sf::Vector2f s)
     end = new sf::Vector2f(e);
     X = start->x;
     Y = start->y;
-    destiny = 0;
     setDrawable(PathSource::SystoStd(PathSource::Power[0]));
 }
 void GameModel::Shot::setDrawable(sf::String n)

@@ -58,25 +58,26 @@ void GameController::Movement::Move(GameObject^ G, Time t, RectangleShape* R)
 	G->Move(G->X, G->Y);
 }
 
-void GameController::Movement::ShotDinamics(Power^ p)
+void GameController::Movement::ShotDinamics(Beast^ p)
 {
-	if (p->InUse) {
-		float x = p->Shot[0]->end->x - p->Shot[0]->start->x;
-		float y = p->Shot[0]->end->y - p->Shot[0]->start->y;
+	if (p->Power[0]->InUse && p->Power[0]->Shot->Count > 0) {
+		*p->Power[0]->time = p->Power[0]->clk->getElapsedTime();
+		float x = p->Power[0]->Shot[0]->end->x - p->Power[0]->Shot[0]->start->x;
+		float y = p->Power[0]->Shot[0]->end->y - p->Power[0]->Shot[0]->start->y;
 		float m = y / x;
-		float plus = p->Range / (10 * pow((1 + pow(m, 2)), 0.5));
-		if (p->Shot[0]->destiny>=10) {
-			p->InUse = false;
-			p->Shot->RemoveAt(0);
-			p->Move->stop();
-			p->Hit->play();
+		float plus = p->Power[0]->Range / (p->Power[0]->cooldown * (1- p->Cooldown[3]*.01) * pow((1 + pow(m, 2)), 0.5));
+		if (p->Power[0]->time->asMilliseconds()> p->Power[0]->cooldown*(1 - p->Cooldown[3] * .01)) {
+			p->Power[0]->clk->restart();
+			p->Power[0]->InUse = false;
+			p->Power[0]->Shot->RemoveAt(0);
+			p->Power[0]->Move->stop();
+			p->Power[0]->Hit->play();
 		}
 		else {
-			p->Move->play();
-			p->Move->setLoop(true);
-			if(x>0)p->Shot[0]->Move(p->Shot[0]->X + plus, p->Shot[0]->Y + plus * m);
-			else p->Shot[0]->Move(p->Shot[0]->X - plus, p->Shot[0]->Y - plus * m);
-			p->Shot[0]->destiny += 1;
+			p->Power[0]->Move->play();
+			p->Power[0]->Move->setLoop(true);
+			if(x>0)p->Power[0]->Shot[0]->Move(p->Power[0]->Shot[0]->X + plus, p->Power[0]->Shot[0]->Y + plus * m);
+			else p->Power[0]->Shot[0]->Move(p->Power[0]->Shot[0]->X - plus, p->Power[0]->Shot[0]->Y - plus * m);
 		}
 	}
 }

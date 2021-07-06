@@ -72,6 +72,7 @@ void GameModel::Behavior::Attack(Beast^ G, RectangleShape* R,Beast^ B){
 	if (G->State == Annoyed) {
 		if (G->Power[0]->InUse == false) {
 			G->Power[0]->InUse = true;
+			G->Power[0]->clk->restart();
 			sf::Vector2f dt;
 			dt.x = float((rand() % (int)(R->getSize().x * 100)) / 100) + R->getPosition().x;
 			dt.y = float((rand() % (int)(R->getSize().y * 100)) / 100 + R->getPosition().y);
@@ -82,6 +83,7 @@ void GameModel::Behavior::Attack(Beast^ G, RectangleShape* R,Beast^ B){
 	else if (G->State == Angry) {
 		if (G->Power[0]->InUse == false) {
 			G->Power[0]->InUse = true;
+			G->Power[0]->clk->restart();
 			sf::Vector2f dt;
 			dt.x = B->X-200+rand()%400;
 			dt.y = B->Y - 200 + rand() % 400;
@@ -92,6 +94,7 @@ void GameModel::Behavior::Attack(Beast^ G, RectangleShape* R,Beast^ B){
 	else if (G->State == Mad) {
 		if (G->Power[0]->InUse == false) {
 			G->Power[0]->InUse = true;
+			G->Power[0]->clk->restart();
 			sf::Vector2f dt;
 			dt.x = B->X - 100 + rand() % 200;
 			dt.y = B->Y - 100 + rand() % 200;
@@ -102,6 +105,7 @@ void GameModel::Behavior::Attack(Beast^ G, RectangleShape* R,Beast^ B){
 	else if (G->State == Furious) {
 		if (G->Power[0]->InUse == false) {
 			G->Power[0]->InUse = true;
+			G->Power[0]->clk->restart();
 			sf::Vector2f dt;
 			dt.x = B->X;
 			dt.y = B->Y;
