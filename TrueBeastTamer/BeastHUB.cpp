@@ -37,12 +37,12 @@ GameView::BeastHUB::BeastHUB(float x, float y, Beast^ G)
 	HUB->setPosition(X, Y);//modificar
 	Exp->setPosition(X + 118, Y + 167);
 	Hp->setPosition(X + 70, Y + 131);
-	Exp->setScale(G->Exp/100, 1);
+	Exp->setScale(G->Exp* .01, 1);
 	Hp->setScale(G->Health[3] / G->Health[2], 1);
 }
 
 void GameView::BeastHUB::Update(Beast^ G)
 {
-	Exp->setScale(G->Exp / 100, 1);
+	Exp->setScale(G->Exp* .01, 1);
 	Hp->setScale(G->Health[3] / G->Health[2], 1);
 }
