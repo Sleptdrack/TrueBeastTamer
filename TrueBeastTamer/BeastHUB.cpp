@@ -40,7 +40,7 @@ GameView::BeastHUB::BeastHUB(float x, float y, Beast^ G)
 
 
 	Tag = gcnew GameView::Word(0, 0, G->TagName, 24, sf::Color::White);
-	Tag->Move( X+105, Y+95);
+	Tag->Move( X+100, Y+95);
 
 	Lvl = gcnew GameView::Word(0, 0, G->Level.ToString(), 48, sf::Color::White);
 	Lvl->Move(X + 35, Y + 85);

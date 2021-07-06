@@ -77,9 +77,15 @@ void GameController::Fight::Battle(Beast^ B, Tamer^ T,int* c){
 		B->Exp += 20;
 		T->Bag->Beast[*c]->Health[3] = 0;
 		if (T->Bag->Beast->Count > *c + 2) {
+			T->Bag->Beast[*c + 1]->X = T->Bag->Beast[*c]->X;
+			T->Bag->Beast[*c + 1]->Y = T->Bag->Beast[*c]->Y;
 			*c += 1;
 		}
-		else *c = 0;
+		else {
+			T->Bag->Beast[*c + 1]->X = T->Bag->Beast[*c]->X;
+			T->Bag->Beast[*c + 1]->Y = T->Bag->Beast[*c]->Y;
+			*c = 0;
+		}
 
 	}
 }
