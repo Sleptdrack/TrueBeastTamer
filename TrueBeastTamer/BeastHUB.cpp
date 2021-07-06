@@ -57,6 +57,8 @@ GameView::BeastHUB::BeastHUB(float x, float y, Beast^ G)
 
 void GameView::BeastHUB::Update(Beast^ G)
 {
+	Tag->UpdateString(PathSource::SystoStd(G->TagName));
+	Lvl->UpdateString(PathSource::SystoStd(G->Level.ToString()));
 	Exp->setScale(G->Exp* .01, 1);
 	Hp->setScale(G->Health[3] / G->Health[2], 1);
 }
