@@ -37,4 +37,23 @@ void GameController::Fight::Battle(Beast^ B, Tamer^ T,int c){
 	if (B->Health[3] <= 0) {
 		//reemplazar por metodo para atrapar o liberar Beast
 	}
+	
+	if (B->Power[0]->InUse) {
+		if (B->Power[0]->Shot[0]->Contains(T->Bag->Beast[c])) {
+			if (B->Attack[3] - T->Bag->Beast[c]->Defense[3] <= 0) {
+				T->Bag->Beast[c]->Health[3] -= 1;
+			}
+			else {
+				T->Bag->Beast[c]->Health[3] -= B->Attack[3] - T->Bag->Beast[c]->Defense[3];//el tercer elemento es el valor real que posee
+			}
+			//agregar metodo para definir daño por elemento
+			B->Power[0]->Move->stop();
+			B->Power[0]->Hit->play();
+			B->Power[0]->Shot->Clear();
+			B->Power[0]->InUse = false;
+		}
+	}
+	if (T->Bag->Beast[c]->Health[3] <= 0) {
+		//AGREGAR CAMBIO DE BEAST O PERDIDA
+	}
 }
