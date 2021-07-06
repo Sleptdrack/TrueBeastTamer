@@ -88,7 +88,6 @@ void GameModel::Arena::Show(Map^ M){
 			Fight::Battle(B, M->Player,&Chosen);
 			if (B->Health[3] <= 0) {
 				B->Power[0]->Stop();
-				M->Player->Bag->Beast[Chosen]->Exp += 10;
 				for (int i = 0; i < M->Player->Bag->Beast->Count; i++) {
 					M->Player->Bag->Beast[i]->Power[0]->Stop();
 				}
