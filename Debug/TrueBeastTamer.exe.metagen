@@ -1,5 +1,5 @@
 ImageRuntimeVersion: v4.0.30319
-Assembly TrueBeastTamer, Version=1.0.*, Culture=Invariant Language (Invariant Country): 
+Assembly TrueBeastTamer, Version=1.0.*, Culture=Todos los idiomas (todos los países): 
 	hash=SHA1, flags=PublicKey
 Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
 	hash=None, flags=None
@@ -533,6 +533,37 @@ Class GameModel.Behavior: AutoLayout, AnsiClass, Class, Public, Serializable, Be
     Move(Beast, Time, RectangleShape*, Beast): PrivateScope, Public, Static, HideBySig
     Attack(Beast, RectangleShape*, Beast): PrivateScope, Public, Static, HideBySig
     UpdateBehavior(Beast): PrivateScope, Public, Static, HideBySig
+Class GameView.BeastHUB: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+    Void .ctor(Single, Single, GameModel.Beast): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Single Y   'get set' : 
+    Single X   'get set' : 
+    sf.Sprite* HUB 'get set' : 
+    sf.Sprite* Hp 'get set' : 
+    sf.Sprite* Exp 'get set' : 
+    sf.Texture* hubT 'get set' : 
+    sf.Texture* hpT 'get set' : 
+    sf.Texture* expT 'get set' : 
+  Methods:
+    get_expT(): PrivateScope, Public, HideBySig, SpecialName
+    set_expT(Texture*): PrivateScope, Public, HideBySig, SpecialName
+    get_hpT(): PrivateScope, Public, HideBySig, SpecialName
+    set_hpT(Texture*): PrivateScope, Public, HideBySig, SpecialName
+    get_hubT(): PrivateScope, Public, HideBySig, SpecialName
+    set_hubT(Texture*): PrivateScope, Public, HideBySig, SpecialName
+    get_Exp(): PrivateScope, Public, HideBySig, SpecialName
+    set_Exp(Sprite*): PrivateScope, Public, HideBySig, SpecialName
+    get_Hp(): PrivateScope, Public, HideBySig, SpecialName
+    set_Hp(Sprite*): PrivateScope, Public, HideBySig, SpecialName
+    get_HUB(): PrivateScope, Public, HideBySig, SpecialName
+    set_HUB(Sprite*): PrivateScope, Public, HideBySig, SpecialName
+    get_X(): PrivateScope, Public, HideBySig, SpecialName
+    set_X(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_Y(): PrivateScope, Public, HideBySig, SpecialName
+    set_Y(Single): PrivateScope, Public, HideBySig, SpecialName
+    setDrawables(String*, String*, String*): PrivateScope, Public, HideBySig
+    Draw(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Update(Beast): PrivateScope, Public, HideBySig
 Class GameModel.Arena: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
   :GameModel.GameObject
     Void .ctor(GameModel.Beast): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

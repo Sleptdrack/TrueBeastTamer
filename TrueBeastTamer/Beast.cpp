@@ -132,7 +132,7 @@ void GameModel::Beast::Learn()
 
 void GameModel::Beast::LevelUp()
 {
-	if (Exp > 100) {
+	if (Exp >= 100) {
 		Level += 1;
 		Exp -= 100;
 		UpdateStats(Health, Level);

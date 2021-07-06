@@ -138,6 +138,7 @@
     <ClInclude Include="Arena.h" />
     <ClInclude Include="Bag.h" />
     <ClInclude Include="Beast.h" />
+    <ClInclude Include="BeastHUB.h" />
     <ClInclude Include="Behavior.h" />
     <ClInclude Include="Fight.h" />
     <ClInclude Include="GameManager.h" />
@@ -172,6 +173,7 @@
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Bag.cpp" />
     <ClCompile Include="Beast.cpp" />
+    <ClCompile Include="BeastHUB.cpp" />
     <ClCompile Include="Behavior.cpp" />
     <ClCompile Include="Fight.cpp" />
     <ClCompile Include="GameManager.cpp" />

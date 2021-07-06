@@ -19,12 +19,15 @@ GameModel::Arena::Arena(Beast^ b)
 	//Crear clase que maneje un cuadro con valores 
 	Screen->W->setSize(sf::Vector2u(PathSource::Resolution[0], PathSource::Resolution[1]));//erase after
 	B = b;
+	
+
 }
 
 void GameModel::Arena::Draw()
 {
 	Screen->Draw();
 	B->Draw(*Screen->W);
+	//
 }
 
 void GameModel::Arena::Show(Map^ M){
@@ -39,6 +42,11 @@ void GameModel::Arena::Show(Map^ M){
 	int Chosen = 0;
 	//julio
 	bool pause = false;
+
+	//
+	GameView::BeastHUB^ B1 = gcnew GameView::BeastHUB(100, 0, B);
+	//
+	GameView::BeastHUB^ B2 = gcnew GameView::BeastHUB(1100, 0, M->Player->Bag->Beast[Chosen]);
 
 	while (Screen->W->isOpen()) {
 		sf::Event event;
@@ -85,7 +93,13 @@ void GameModel::Arena::Show(Map^ M){
 				M->Player->Bag->AddBeast(B);
 				Screen->W->close();
 			}//reemplazar por metodo para atrapar o liberar Beast
+			B1->Update(B);
+			B2->Update(M->Player->Bag->Beast[Chosen]);
 			Screen->W->clear();
+
+			//
+
+			//
 			Draw();
 			M->Player->Draw(*Screen->W);
 			/*for (int i = 0; i < M->Player->Bag->Beast->Count; i++) {
@@ -101,6 +115,8 @@ void GameModel::Arena::Show(Map^ M){
 		}
 		M->Player->PauseObj->SelectOption(*Screen->W, pause);
 		M->Player->PauseObj->DrawPause(*Screen->W);
+		B1->Draw(*Screen->W);
+		B2->Draw(*Screen->W);
 		Screen->W->display();
 	}
 	

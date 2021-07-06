@@ -114,6 +114,11 @@ int main() {
                     Fight::Hunt(M, A, window);
                     c1.restart();
                 }
+                for (int i = 0; i < M->Player->Bag->Beast->Count; i++) {
+
+                    M->Player->Bag->Beast[i]->LevelUp();               
+                
+                }
                 if (t1.asSeconds() > 1) {
                     if (M->Hospital->Contains(M->Player))
                     {
