@@ -17,7 +17,7 @@ void GameController::Fight::Hunt(Map^ M, Arena^ A, RenderWindow& W){
 	}
 }
 
-void GameController::Fight::Battle(Beast^ B, Tamer^ T,int c){
+void GameController::Fight::Battle(Beast^ B, Tamer^ T,int c, Beast^ E){
 	if (T->Bag->Beast[c]->Power[0]->InUse) {
 		if (T->Bag->Beast[c]->Power[0]->Shot[0]->Contains(B)) {
 			std::cout << B->Health[3] << "\n";
@@ -35,6 +35,26 @@ void GameController::Fight::Battle(Beast^ B, Tamer^ T,int c){
 		}
 	}
 	if (B->Health[3] <= 0) {
+		//reemplazar por metodo para atrapar o liberar Beast
+	}
+	
+	if (E->Power[0]->InUse) {
+		if (E->Power[0]->Shot[0]->Contains(T->Bag->Beast[c])) {
+			std::cout << B->Health[3] << "\n";
+			if (E->Attack[3] - T->Bag->Beast[c]->Defense[3] <= 0) {
+				T->Bag->Beast[c]->Health[3] -= 1;
+			}
+			else {
+				T->Bag->Beast[c]->Health[3] -= E->Attack[3] - T->Bag->Beast[c]->Defense[3];//el tercer elemento es el valor real que posee
+			}
+			//agregar metodo para definir daño por elemento
+			E->Power[0]->Move->stop();
+			E->Power[0]->Hit->play();
+			E->Power[0]->Shot->Clear();
+			E->Power[0]->InUse = false;
+		}
+	}
+	if (E->Health[3] <= 0) {
 		//reemplazar por metodo para atrapar o liberar Beast
 	}
 }
