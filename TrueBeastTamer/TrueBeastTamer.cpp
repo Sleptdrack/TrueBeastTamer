@@ -30,6 +30,9 @@ int main() {
     Clock clk,clk2;
     Clock c1;
     RectangleShape* rec = new RectangleShape(sf::Vector2f(1920, 1080));
+    //textura
+    // sprite
+    // 
     //Log in screen
     while (1) {
         LogInSc^ LI = gcnew LogInSc();
@@ -147,6 +150,8 @@ int main() {
             Interraction::MovePause(M->Player, window, rtv);
             Interraction::MoveHealth(M->Player, window, rtv);
             window.clear();
+            //agregar fondo
+            //window.draw(spritefondo);
             M->Draw(window);
             window.display();
         }
