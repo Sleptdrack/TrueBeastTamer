@@ -40,10 +40,10 @@ GameView::BeastHUB::BeastHUB(float x, float y, Beast^ G)
 
 
 	Tag = gcnew GameView::Word(0, 0, G->TagName, 24, sf::Color::White);
-	Tag->Move( X+100, Y+95);
+	Tag->Move( X+95, Y+95);
 
-	Lvl = gcnew GameView::Word(0, 0, G->Level.ToString(), 48, sf::Color::White);
-	Lvl->Move(X + 35, Y + 85);
+	Lvl = gcnew GameView::Word(0, 0, G->Level.ToString(), 48, sf::Color::Black);
+	Lvl->Move(X + 32, Y + 85);
 
 	//
 
@@ -57,6 +57,8 @@ GameView::BeastHUB::BeastHUB(float x, float y, Beast^ G)
 
 void GameView::BeastHUB::Update(Beast^ G)
 {
+	Tag->UpdateString(PathSource::SystoStd(G->TagName));
+	Lvl->UpdateString(PathSource::SystoStd(G->Level.ToString()));
 	Exp->setScale(G->Exp* .01, 1);
 	Hp->setScale(G->Health[3] / G->Health[2], 1);
 }

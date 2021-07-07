@@ -4,6 +4,8 @@
 #include "Word.h"
 #include "GameObject.h"
 #include "Screen.h"
+#include "PathSource.h"
+
 
 using namespace GameModel;
 
