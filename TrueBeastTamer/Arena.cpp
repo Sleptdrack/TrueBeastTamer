@@ -44,9 +44,9 @@ void GameModel::Arena::Show(Map^ M){
 	bool pause = false;
 
 	//
-	GameView::BeastHUB^ B1 = gcnew GameView::BeastHUB(1300, 0, B);
+	GameView::BeastHUB^ B1 = gcnew GameView::BeastHUB(1450, 0, B);
 	//
-	GameView::BeastHUB^ B2 = gcnew GameView::BeastHUB(100, 0, M->Player->Bag->Beast[Chosen]);
+	GameView::BeastHUB^ B2 = gcnew GameView::BeastHUB(200, 0, M->Player->Bag->Beast[Chosen]);
 
 	while (Screen->W->isOpen()) {
 		sf::Event event;
