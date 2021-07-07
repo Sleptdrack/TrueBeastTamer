@@ -137,14 +137,10 @@ int main() {
             }
             M->Player->HealthObj->SelectOption(window,life);
             M->Player->PauseObj->SelectOption(window, pause2);
-            if (life)
-            {
-                ;
-                for (int i =0; i < M->Player->Bag->Beast->Count ;i++)
-                {
+            if (life){
+                for (int i =0; i < M->Player->Bag->Beast->Count ;i++){
                     M->Player->Bag->Beast[i]->Health[3] = M->Player->Bag->Beast[i]->Health[2];
                 }
-                
                 life = false;
             }
             

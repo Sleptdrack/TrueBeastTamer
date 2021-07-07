@@ -19,6 +19,7 @@ namespace GameModel {
 		Tamer(System::String^ U,System::String^ P,int id);
 		void OpenBag();
 		void Draw(RenderTarget& rt);
+		//bool Defeated(); 
     };
 }
 

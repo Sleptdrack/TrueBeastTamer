@@ -573,6 +573,34 @@ Class GameView.BeastHUB: AutoLayout, AnsiClass, Class, Public, Serializable, Bef
     setDrawables(String*, String*, String*): PrivateScope, Public, HideBySig
     Draw(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     Update(Beast): PrivateScope, Public, HideBySig
+Class GameView.MessageHUB: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Single Heigth 'get set' : 
+    Single Width 'get set' : 
+    Single Y   'get set' : 
+    Single X   'get set' : 
+    System.Collections.Generic.List`1[GameView.Word] Word 'get set' : 
+    sf.Texture* Texture 'get set' : 
+    sf.Sprite* Sprite 'get set' : 
+  Methods:
+    get_Sprite(): PrivateScope, Public, HideBySig, SpecialName
+    set_Sprite(Sprite*): PrivateScope, Public, HideBySig, SpecialName
+    get_Texture(): PrivateScope, Public, HideBySig, SpecialName
+    set_Texture(Texture*): PrivateScope, Public, HideBySig, SpecialName
+    get_Word(): PrivateScope, Public, HideBySig, SpecialName
+    set_Word(List`1): PrivateScope, Public, HideBySig, SpecialName
+    get_X(): PrivateScope, Public, HideBySig, SpecialName
+    set_X(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_Y(): PrivateScope, Public, HideBySig, SpecialName
+    set_Y(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_Width(): PrivateScope, Public, HideBySig, SpecialName
+    set_Width(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_Heigth(): PrivateScope, Public, HideBySig, SpecialName
+    set_Heigth(Single): PrivateScope, Public, HideBySig, SpecialName
+    setDrawables(String*): PrivateScope, Public, HideBySig
+    Stay(Boolean*, RenderWindow* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Draw(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
 Class GameModel.Arena: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
   :GameModel.GameObject
     Void .ctor(GameModel.Beast): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

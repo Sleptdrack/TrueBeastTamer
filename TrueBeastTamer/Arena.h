@@ -10,6 +10,7 @@
 #include "Movement.h"
 #include "Behavior.h"
 #include "BeastHUB.h"
+#include "MessageHUB.h"
 using namespace GameController;
 using namespace System;
 using namespace GameView;

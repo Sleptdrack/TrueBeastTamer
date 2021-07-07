@@ -43,6 +43,11 @@ void GameModel::Arena::Show(Map^ M){
 	//julio
 	bool pause = false;
 
+	bool pWin = false, pWin2 = false, pLost = false;
+	int get;
+	GameView::MessageHUB^ BeastTaken = gcnew GameView::MessageHUB("Usted a atrapado a "+B->TagName);
+	GameView::MessageHUB^ BeastEscape = gcnew GameView::MessageHUB("La Bestia se a escapado");
+	GameView::MessageHUB^ PlayerDefeated = gcnew GameView::MessageHUB("Usted a sido derrotado");
 	//
 	GameView::BeastHUB^ B1 = gcnew GameView::BeastHUB(1300, 0, B);
 	//
@@ -58,8 +63,7 @@ void GameModel::Arena::Show(Map^ M){
 			}
 		}
 
-		if (!pause)
-		{
+		if (!pause && !pWin && !pWin2 && !pLost){
 			t = clk.getElapsedTime();
 			t1 = clk1.getElapsedTime();
 			t2 = clk2.getElapsedTime();
@@ -93,37 +97,50 @@ void GameModel::Arena::Show(Map^ M){
 			}
 			//
 			if (B->Health[3] <= 0) {
+				get = rand() % 100;
 				B->Power[0]->Stop();
 				for (int i = 0; i < M->Player->Bag->Beast->Count; i++) {
 					M->Player->Bag->Beast[i]->Power[0]->Stop();
 				}
-				M->Player->Bag->AddBeast(B);
-				Screen->W->close();
+				if (get >= 50) {
+					M->Player->Bag->AddBeast(B);
+					pWin = true;
+				}
+				else {
+					pWin2 = true;
+				}
 			}//reemplazar por metodo para atrapar o liberar Beast
 			B1->Update(B);
 			B2->Update(M->Player->Bag->Beast[Chosen]);
-			Screen->W->clear();
+		}
 
-			//
-
-			//
-			Draw();
-			M->Player->Draw(*Screen->W);
-			/*for (int i = 0; i < M->Player->Bag->Beast->Count; i++) {
-				M->Player->Bag->Beast[i]->Draw(*Screen->W);
-			}*/
-			M->Player->Bag->Beast[Chosen]->Draw(*Screen->W);
-			if (M->Player->Bag->Beast[Chosen]->Power[0]->InUse && M->Player->Bag->Beast[Chosen]->Power[0]->Shot->Count>0) {
-				M->Player->Bag->Beast[Chosen]->Power[0]->Shot[0]->Draw(*Screen->W);
-			}
-			if (B->Power[0]->InUse && B->Power[0]->Shot->Count > 0) {
-				B->Power[0]->Shot[0]->Draw(*Screen->W);
-			}
+		Screen->W->clear();
+		Draw();
+		M->Player->Draw(*Screen->W);
+		/*for (int i = 0; i < M->Player->Bag->Beast->Count; i++) {
+			M->Player->Bag->Beast[i]->Draw(*Screen->W);
+		}*/
+		M->Player->Bag->Beast[Chosen]->Draw(*Screen->W);
+		if (M->Player->Bag->Beast[Chosen]->Power[0]->InUse && M->Player->Bag->Beast[Chosen]->Power[0]->Shot->Count > 0) {
+			M->Player->Bag->Beast[Chosen]->Power[0]->Shot[0]->Draw(*Screen->W);
+		}
+		if (B->Power[0]->InUse && B->Power[0]->Shot->Count > 0) {
+			B->Power[0]->Shot[0]->Draw(*Screen->W);
 		}
 		M->Player->PauseObj->SelectOption(*Screen->W, pause);
 		M->Player->PauseObj->DrawPause(*Screen->W);
 		B1->Draw(*Screen->W);
 		B2->Draw(*Screen->W);
+		if(pWin) {
+			BeastTaken->Stay(&pWin, *Screen->W);
+			if (!pWin)Screen->W->close();
+			BeastTaken->Draw(*Screen->W);
+		}
+		if (pWin2) {
+			BeastEscape->Stay(&pWin2, *Screen->W);
+			if (!pWin2)Screen->W->close();
+			BeastEscape->Draw(*Screen->W);
+		}
 		Screen->W->display();
 	}
 	

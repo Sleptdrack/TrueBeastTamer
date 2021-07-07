@@ -116,6 +116,9 @@
     <ClInclude Include="BeastHUB.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MessageHUB.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TrueBeastTamer.cpp">
@@ -215,6 +218,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BeastHUB.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MessageHUB.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
