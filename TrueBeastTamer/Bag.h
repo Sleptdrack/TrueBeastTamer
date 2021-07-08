@@ -21,6 +21,8 @@ namespace GameModel {
         property GameView::Stat^ Stat;
         property bool open;
         property bool moving;
+        property bool changing;
+        property bool erase;
     public:
         Bag();
         void setDrawables(sf::String t);
@@ -28,5 +30,6 @@ namespace GameModel {
         void Draw(sf::RenderTarget& rt);
         void AddBeast(GameModel::Beast^ b);
         void Move(float x, float y);
+        void DeleteBeast(int i);
     };
 }

@@ -1,5 +1,5 @@
 ImageRuntimeVersion: v4.0.30319
-Assembly TrueBeastTamer, Version=1.0.*, Culture=Invariant Language (Invariant Country): 
+Assembly TrueBeastTamer, Version=1.0.*, Culture=Todos los idiomas (todos los países): 
 	hash=SHA1, flags=PublicKey
 Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
 	hash=None, flags=None
@@ -210,7 +210,6 @@ Class GameModel.Shot: AutoLayout, AnsiClass, Class, Public, Serializable, Before
   :GameModel.GameObject
     Void .ctor(sf.Vector2<float>, sf.Vector2<float>): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
-    Int32 destiny 'get set' : 
     sf.Vector2<float>* end 'get set' : 
     sf.Vector2<float>* start 'get set' : 
   Methods:
@@ -218,8 +217,6 @@ Class GameModel.Shot: AutoLayout, AnsiClass, Class, Public, Serializable, Before
     set_start(Vector2<float>*): PrivateScope, Public, HideBySig, SpecialName
     get_end(): PrivateScope, Public, HideBySig, SpecialName
     set_end(Vector2<float>*): PrivateScope, Public, HideBySig, SpecialName
-    get_destiny(): PrivateScope, Public, HideBySig, SpecialName
-    set_destiny(Int32): PrivateScope, Public, HideBySig, SpecialName
     setDrawable(String*): PrivateScope, Public, HideBySig
 Class GameModel.Power: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
     Void .ctor(Element, Attack): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -228,6 +225,8 @@ Class GameModel.Power: AutoLayout, AnsiClass, Class, Public, Serializable, Befor
     sf.Sound* Hit 'get set' : 
     sf.SoundBuffer* SMove 'get set' : 
     sf.SoundBuffer* SHit 'get set' : 
+    sf.Time* time 'get set' : 
+    sf.Clock* clk 'get set' : 
     Boolean InUse 'get set' : 
     Int32 cooldown 'get set' : 
     System.Collections.Generic.List`1[GameModel.Shot] Shot 'get set' : 
@@ -247,6 +246,10 @@ Class GameModel.Power: AutoLayout, AnsiClass, Class, Public, Serializable, Befor
     set_cooldown(Int32): PrivateScope, Public, HideBySig, SpecialName
     get_InUse(): PrivateScope, Public, HideBySig, SpecialName
     set_InUse(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    get_clk(): PrivateScope, Public, HideBySig, SpecialName
+    set_clk(Clock*): PrivateScope, Public, HideBySig, SpecialName
+    get_time(): PrivateScope, Public, HideBySig, SpecialName
+    set_time(Time*): PrivateScope, Public, HideBySig, SpecialName
     get_SHit(): PrivateScope, Public, HideBySig, SpecialName
     set_SHit(SoundBuffer*): PrivateScope, Public, HideBySig, SpecialName
     get_SMove(): PrivateScope, Public, HideBySig, SpecialName
@@ -255,6 +258,7 @@ Class GameModel.Power: AutoLayout, AnsiClass, Class, Public, Serializable, Befor
     set_Hit(Sound*): PrivateScope, Public, HideBySig, SpecialName
     get_Move(): PrivateScope, Public, HideBySig, SpecialName
     set_Move(Sound*): PrivateScope, Public, HideBySig, SpecialName
+    Stop(): PrivateScope, Public, HideBySig
 Class GameModel.Beast: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
   :GameModel.GameObject
     Void .ctor(BeastName): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -324,6 +328,8 @@ Class GameModel.Bag: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeF
   :GameModel.GameObject
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
+    Boolean erase 'get set' : 
+    Boolean changing 'get set' : 
     Boolean moving 'get set' : 
     Boolean open 'get set' : 
     GameView.Stat Stat 'get set' : 
@@ -358,11 +364,16 @@ Class GameModel.Bag: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeF
     set_open(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
     get_moving(): PrivateScope, Public, HideBySig, SpecialName
     set_moving(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    get_changing(): PrivateScope, Public, HideBySig, SpecialName
+    set_changing(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    get_erase(): PrivateScope, Public, HideBySig, SpecialName
+    set_erase(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
     setDrawables(String*): PrivateScope, Public, HideBySig
     setEditMode(Int32): PrivateScope, Public, HideBySig
     Draw(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     AddBeast(Beast): PrivateScope, Public, HideBySig
     Move(Single, Single): PrivateScope, Public, HideBySig
+    DeleteBeast(Int32): PrivateScope, Public, HideBySig
 Class GameModel.Pause: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
   :GameModel.GameObject
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -413,6 +424,7 @@ Class GameModel.Tamer: AutoLayout, AnsiClass, Class, Public, Serializable, Befor
     set_HealthObj(Health): PrivateScope, Public, HideBySig, SpecialName
     OpenBag(): PrivateScope, Public, HideBySig
     Draw(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Defeated(): PrivateScope, Public, HideBySig
 Class GameModel.Garden: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
   :GameModel.GameObject
     Void .ctor(Single, Single, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -497,13 +509,13 @@ Class GameController.Interraction: AutoLayout, AnsiClass, Class, Public, BeforeF
     MoveHealth(Tamer, RenderWindow* IsImplicitlyDereferenced, Vector2<float>*): PrivateScope, Public, Static, HideBySig
     UsePower(Beast, RenderWindow* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
     RenameBeast(Tamer, RenderWindow* IsImplicitlyDereferenced, Event): PrivateScope, Public, Static, HideBySig
-    ChangeBeast(Tamer, Int32): PrivateScope, Public, Static, HideBySig
+    ChangeBeast(Tamer, Int32*): PrivateScope, Public, Static, HideBySig
 Class GameController.Movement: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
     Move(GameObject, Time, RectangleShape*): PrivateScope, Public, Static, HideBySig
     Move(GameObject, Time): PrivateScope, Public, Static, HideBySig
-    ShotDinamics(Power): PrivateScope, Public, Static, HideBySig
+    ShotDinamics(Beast): PrivateScope, Public, Static, HideBySig
 Class GameModel.Coords: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
     Void .ctor(Single, Single): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
@@ -523,7 +535,75 @@ Class GameModel.Behavior: AutoLayout, AnsiClass, Class, Public, Serializable, Be
   Methods:
     Load(): PrivateScope, Public, Static, HideBySig
     Move(Beast, Time, RectangleShape*, Beast): PrivateScope, Public, Static, HideBySig
+    Attack(Beast, RectangleShape*, Beast): PrivateScope, Public, Static, HideBySig
     UpdateBehavior(Beast): PrivateScope, Public, Static, HideBySig
+Class GameView.BeastHUB: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+    Void .ctor(Single, Single, GameModel.Beast): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Single Y   'get set' : 
+    Single X   'get set' : 
+    GameView.Word Lvl 'get set' : 
+    GameView.Word Tag 'get set' : 
+    sf.Sprite* HUB 'get set' : 
+    sf.Sprite* Hp 'get set' : 
+    sf.Sprite* Exp 'get set' : 
+    sf.Texture* hubT 'get set' : 
+    sf.Texture* hpT 'get set' : 
+    sf.Texture* expT 'get set' : 
+  Methods:
+    get_expT(): PrivateScope, Public, HideBySig, SpecialName
+    set_expT(Texture*): PrivateScope, Public, HideBySig, SpecialName
+    get_hpT(): PrivateScope, Public, HideBySig, SpecialName
+    set_hpT(Texture*): PrivateScope, Public, HideBySig, SpecialName
+    get_hubT(): PrivateScope, Public, HideBySig, SpecialName
+    set_hubT(Texture*): PrivateScope, Public, HideBySig, SpecialName
+    get_Exp(): PrivateScope, Public, HideBySig, SpecialName
+    set_Exp(Sprite*): PrivateScope, Public, HideBySig, SpecialName
+    get_Hp(): PrivateScope, Public, HideBySig, SpecialName
+    set_Hp(Sprite*): PrivateScope, Public, HideBySig, SpecialName
+    get_HUB(): PrivateScope, Public, HideBySig, SpecialName
+    set_HUB(Sprite*): PrivateScope, Public, HideBySig, SpecialName
+    get_Tag(): PrivateScope, Public, HideBySig, SpecialName
+    set_Tag(Word): PrivateScope, Public, HideBySig, SpecialName
+    get_Lvl(): PrivateScope, Public, HideBySig, SpecialName
+    set_Lvl(Word): PrivateScope, Public, HideBySig, SpecialName
+    get_X(): PrivateScope, Public, HideBySig, SpecialName
+    set_X(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_Y(): PrivateScope, Public, HideBySig, SpecialName
+    set_Y(Single): PrivateScope, Public, HideBySig, SpecialName
+    setDrawables(String*, String*, String*): PrivateScope, Public, HideBySig
+    Draw(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Update(Beast): PrivateScope, Public, HideBySig
+Class GameView.MessageHUB: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+  :GameModel.GameObject
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Single Heigth 'get set' : 
+    Single Width 'get set' : 
+    Single Y   'get set' : 
+    Single X   'get set' : 
+    System.Collections.Generic.List`1[GameView.Word] Word 'get set' : 
+    sf.Texture* Texture 'get set' : 
+    sf.Sprite* Sprite 'get set' : 
+  Methods:
+    get_Sprite(): PrivateScope, Public, HideBySig, SpecialName
+    set_Sprite(Sprite*): PrivateScope, Public, HideBySig, SpecialName
+    get_Texture(): PrivateScope, Public, HideBySig, SpecialName
+    set_Texture(Texture*): PrivateScope, Public, HideBySig, SpecialName
+    get_Word(): PrivateScope, Public, HideBySig, SpecialName
+    set_Word(List`1): PrivateScope, Public, HideBySig, SpecialName
+    get_X(): PrivateScope, Public, HideBySig, SpecialName
+    set_X(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_Y(): PrivateScope, Public, HideBySig, SpecialName
+    set_Y(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_Width(): PrivateScope, Public, HideBySig, SpecialName
+    set_Width(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_Heigth(): PrivateScope, Public, HideBySig, SpecialName
+    set_Heigth(Single): PrivateScope, Public, HideBySig, SpecialName
+    setDrawables(String*): PrivateScope, Public, HideBySig
+    Stay(Boolean*, RenderWindow* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Draw(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Move(Single, Single): PrivateScope, Public, HideBySig
 Class GameModel.Arena: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
   :GameModel.GameObject
     Void .ctor(GameModel.Beast): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -544,7 +624,7 @@ Class GameController.Fight: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
     Hunt(Map, Arena, RenderWindow* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
-    Battle(Beast, Tamer): PrivateScope, Public, Static, HideBySig
+    Battle(Beast, Tamer, Int32*): PrivateScope, Public, Static, HideBySig
 Class GameController.Hack: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class GameView.LogInSc: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit

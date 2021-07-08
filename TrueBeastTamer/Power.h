@@ -12,7 +12,6 @@ namespace GameModel {
 	public:
 		property sf::Vector2f* start;
 		property sf::Vector2f* end;
-		property int destiny;
 	public:
 		Shot(sf::Vector2f e, sf::Vector2f s);
 		void setDrawable(sf::String n);
@@ -27,12 +26,15 @@ namespace GameModel {
 			property List<Shot^>^ Shot;
 			property int cooldown;
 			property bool InUse;
+			property sf::Clock* clk;
+			property sf::Time* time;
 			property sf::SoundBuffer* SHit;
 			property sf::SoundBuffer* SMove;
 			property sf::Sound* Hit;
 			property sf::Sound* Move;
 	public:
 		Power(Element t, Attack k);
+		void Stop();
 		
 
 	};

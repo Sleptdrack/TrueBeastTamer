@@ -30,6 +30,13 @@ int main() {
     Clock clk,clk2;
     Clock c1;
     RectangleShape* rec = new RectangleShape(sf::Vector2f(1920, 1080));
+    //textura
+    Texture* Textura = new sf::Texture();
+    Textura->loadFromFile("../Imagenes/Fondo.jpg");
+    // sprite
+    // 
+    Sprite* Sprite = new sf::Sprite();
+    Sprite->setTexture(*Textura);
     //Log in screen
     while (1) {
         LogInSc^ LI = gcnew LogInSc();
@@ -114,6 +121,11 @@ int main() {
                     Fight::Hunt(M, A, window);
                     c1.restart();
                 }
+                for (int i = 0; i < M->Player->Bag->Beast->Count; i++) {
+
+                    M->Player->Bag->Beast[i]->LevelUp();               
+                
+                }
                 if (t1.asSeconds() > 1) {
                     if (M->Hospital->Contains(M->Player))
                     {
@@ -132,20 +144,18 @@ int main() {
             }
             M->Player->HealthObj->SelectOption(window,life);
             M->Player->PauseObj->SelectOption(window, pause2);
-            if (life)
-            {
-                ;
-                for (int i =0; i < M->Player->Bag->Beast->Count ;i++)
-                {
+            if (life){
+                for (int i =0; i < M->Player->Bag->Beast->Count ;i++){
                     M->Player->Bag->Beast[i]->Health[3] = M->Player->Bag->Beast[i]->Health[2];
                 }
-                
                 life = false;
             }
             
             Interraction::MovePause(M->Player, window, rtv);
             Interraction::MoveHealth(M->Player, window, rtv);
             window.clear();
+            //agregar fondo
+            window.draw(*Sprite);
             M->Draw(window);
             window.display();
         }

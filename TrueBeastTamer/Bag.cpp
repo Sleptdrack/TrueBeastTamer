@@ -8,6 +8,8 @@ GameModel::Bag::Bag()
 	X = 0;
 	Y = 0;
 	FrameSize = 774;
+	changing = false;
+	erase = false;
 	Word = gcnew List<GameView::Word^>();
 	//State Menu
 	GameView::Word^ w1 = gcnew GameView::Word(0, 0, "Bag", 24, sf::Color(255,101,80,255));
@@ -147,7 +149,7 @@ void GameModel::Bag::Draw(sf::RenderTarget& rt)
 			//revisar posicion
 			Beast[j]->CurrentAnimation = AnimationIndex::Idle;
 			Beast[j]->Update();
-			Beast[j]->Move(X, Y + Word_Beast[0]->Rect->getGlobalBounds().height + (j + 2) * (Height / 6));
+			Beast[j]->Move(X, Y +30+ (j + 1) * (Height / 6));
 			Beast[j]->Draw(rt);
 			for (int i = 3*(j+1)-1; i < 3 * (j + 1)+2; i += 3) {
 				//revisar posicion
@@ -235,6 +237,15 @@ void GameModel::Bag::Move(float x, float y)
 	if (Stat != nullptr) {
 		Stat->Move(X + 350, Y + 300);
 	}
+}
+
+void GameModel::Bag::DeleteBeast(int i){
+	
+	if (Beast->Count>1) {
+		Beast->RemoveAt(i);
+		Word_Beast->RemoveRange(3 * (i + 1) - 1, 3);
+	}
+
 }
 
 

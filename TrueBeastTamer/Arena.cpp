@@ -12,15 +12,22 @@ GameModel::Arena::Arena(Beast^ b)
 	Screen->Rect->setFillColor(sf::Color::White);
 	Tspace = new RectangleShape(sf::Vector2f(850, 480));
 	Tspace->setPosition(505, 212);
+	//erase later
+	Tspace->setOutlineThickness(1);
+	Tspace->setOutlineColor(sf::Color::Red);
+
 	//Crear clase que maneje un cuadro con valores 
 	Screen->W->setSize(sf::Vector2u(PathSource::Resolution[0], PathSource::Resolution[1]));//erase after
 	B = b;
+	
+
 }
 
 void GameModel::Arena::Draw()
 {
 	Screen->Draw();
 	B->Draw(*Screen->W);
+	//
 }
 
 void GameModel::Arena::Show(Map^ M){
@@ -36,6 +43,16 @@ void GameModel::Arena::Show(Map^ M){
 	//julio
 	bool pause = false;
 
+	bool pWin = false, pWin2 = false, pLost = false;
+	int get;
+	GameView::MessageHUB^ BeastTaken = gcnew GameView::MessageHUB("Usted a atrapado a "+B->TagName);
+	GameView::MessageHUB^ BeastEscape = gcnew GameView::MessageHUB("La Bestia se ha escapado");
+	GameView::MessageHUB^ PlayerDefeated = gcnew GameView::MessageHUB("Usted a sido derrotado");
+	//
+	GameView::BeastHUB^ B1 = gcnew GameView::BeastHUB(1450, 0, B);
+	//
+	GameView::BeastHUB^ B2 = gcnew GameView::BeastHUB(200, 0, M->Player->Bag->Beast[Chosen]);
+
 	while (Screen->W->isOpen()) {
 		sf::Event event;
 		while (Screen->W->pollEvent(event))
@@ -46,8 +63,7 @@ void GameModel::Arena::Show(Map^ M){
 			}
 		}
 
-		if (!pause)
-		{
+		if (!pause && !pWin && !pWin2 && !pLost){
 			t = clk.getElapsedTime();
 			t1 = clk1.getElapsedTime();
 			t2 = clk2.getElapsedTime();
@@ -66,32 +82,72 @@ void GameModel::Arena::Show(Map^ M){
 				M->Player->Bag->Beast[Chosen]->Update();
 				clk2.restart();
 			}
-			Interraction::UsePower(M->Player->Bag->Beast[0], *Screen->W);
-			if (t1.asMilliseconds() > 100) {
-				Movement::ShotDinamics(M->Player->Bag->Beast[0]->Power[0]);
-				clk1.restart();
+			Interraction::UsePower(M->Player->Bag->Beast[Chosen], *Screen->W);
+			Behavior::Attack(B, Tspace, M->Player->Bag->Beast[Chosen]);
+			//verificar funcionamiento
+			Movement::ShotDinamics(M->Player->Bag->Beast[Chosen]);
+			Movement::ShotDinamics(B);
+			//
+			Interraction::ChangeBeast(M->Player, &Chosen);
+			Fight::Battle(B, M->Player,&Chosen);
+			//
+			B->LevelUp();
+			for (int i = 0; i < M->Player->Bag->Beast->Count; i++) {
+				M->Player->Bag->Beast[i]->LevelUp();
 			}
-			Interraction::ChangeBeast(M->Player, Chosen);
-			Fight::Battle(B, M->Player);
+			//
 			if (B->Health[3] <= 0) {
-				M->Player->Bag->Beast[0]->Exp += 10;
-				M->Player->Bag->AddBeast(B);
-				Screen->W->close();
+				get = rand() % 100;
+				B->Power[0]->Stop();
+				for (int i = 0; i < M->Player->Bag->Beast->Count; i++) {
+					M->Player->Bag->Beast[i]->Power[0]->Stop();
+				}
+				if (get >= 50) {
+					M->Player->Bag->AddBeast(B);
+					pWin = true;
+				}
+				else {
+					pWin2 = true;
+				}
 			}//reemplazar por metodo para atrapar o liberar Beast
-			Screen->W->clear();
-			Draw();
-			M->Player->Draw(*Screen->W);
-			/*for (int i = 0; i < M->Player->Bag->Beast->Count; i++) {
-				M->Player->Bag->Beast[i]->Draw(*Screen->W);
-			}*/
-			M->Player->Bag->Beast[Chosen]->Draw(*Screen->W);
-			if (M->Player->Bag->Beast[0]->Power[0]->InUse) {
-				M->Player->Bag->Beast[0]->Power[0]->Shot[0]->Draw(*Screen->W);
-			}
-			
+			B1->Update(B);
+			B2->Update(M->Player->Bag->Beast[Chosen]);
+		}
+
+		Screen->W->clear();
+		Draw();
+		M->Player->Draw(*Screen->W);
+		/*for (int i = 0; i < M->Player->Bag->Beast->Count; i++) {
+			M->Player->Bag->Beast[i]->Draw(*Screen->W);
+		}*/
+		M->Player->Bag->Beast[Chosen]->Draw(*Screen->W);
+		if (M->Player->Bag->Beast[Chosen]->Power[0]->InUse && M->Player->Bag->Beast[Chosen]->Power[0]->Shot->Count > 0) {
+			M->Player->Bag->Beast[Chosen]->Power[0]->Shot[0]->Draw(*Screen->W);
+		}
+		if (B->Power[0]->InUse && B->Power[0]->Shot->Count > 0) {
+			B->Power[0]->Shot[0]->Draw(*Screen->W);
 		}
 		M->Player->PauseObj->SelectOption(*Screen->W, pause);
 		M->Player->PauseObj->DrawPause(*Screen->W);
+		B1->Draw(*Screen->W);
+		B2->Draw(*Screen->W);
+		pLost = M->Player->Defeated();
+
+		if (pLost) {
+			PlayerDefeated->Stay(&pLost, *Screen->W);
+			if (!pLost)Screen->W->close();
+			PlayerDefeated->Draw(*Screen->W);
+		}
+		if(pWin) {
+			BeastTaken->Stay(&pWin, *Screen->W);
+			if (!pWin)Screen->W->close();
+			BeastTaken->Draw(*Screen->W);
+		}
+		if (pWin2) {
+			BeastEscape->Stay(&pWin2, *Screen->W);
+			if (!pWin2)Screen->W->close();
+			BeastEscape->Draw(*Screen->W);
+		}
 		Screen->W->display();
 	}
 	

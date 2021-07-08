@@ -9,6 +9,8 @@
 #include "Beast.h"
 #include "Movement.h"
 #include "Behavior.h"
+#include "BeastHUB.h"
+#include "MessageHUB.h"
 using namespace GameController;
 using namespace System;
 using namespace GameView;
@@ -19,7 +21,7 @@ namespace GameModel {
 		property Screen^ Screen;
 		property RectangleShape* Tspace;
 		property Beast^ B;
-
+		
 	public:
 		Arena(Beast^ b);
 		void Draw();

@@ -138,6 +138,7 @@
     <ClInclude Include="Arena.h" />
     <ClInclude Include="Bag.h" />
     <ClInclude Include="Beast.h" />
+    <ClInclude Include="BeastHUB.h" />
     <ClInclude Include="Behavior.h" />
     <ClInclude Include="Fight.h" />
     <ClInclude Include="GameManager.h" />
@@ -151,6 +152,7 @@
     <ClInclude Include="LogInSc.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MessageBox.h" />
+    <ClInclude Include="MessageHUB.h" />
     <ClInclude Include="Movement.h" />
     <ClInclude Include="NPC.h" />
     <ClInclude Include="Obstacle.h" />
@@ -172,6 +174,7 @@
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Bag.cpp" />
     <ClCompile Include="Beast.cpp" />
+    <ClCompile Include="BeastHUB.cpp" />
     <ClCompile Include="Behavior.cpp" />
     <ClCompile Include="Fight.cpp" />
     <ClCompile Include="GameManager.cpp" />
@@ -185,6 +188,7 @@
     <ClCompile Include="LogInSc.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MessageBox.cpp" />
+    <ClCompile Include="MessageHUB.cpp" />
     <ClCompile Include="Movement.cpp" />
     <ClCompile Include="NPC.cpp" />
     <ClCompile Include="Obstacle.cpp" />

@@ -119,9 +119,11 @@ void GameModel::Beast::SetDrawables(sf::String s, sf::String a1, sf::String a2)
 	Power[0]->SHit->loadFromFile(a1);
 	Power[0]->SMove->loadFromFile(a2);
 	Power[0]->Hit->setBuffer(*Power[0]->SHit);
-	Power[0]->Hit->setVolume(50);
+	Power[0]->Hit->setVolume(30);
 	Power[0]->Move->setBuffer(*Power[0]->SMove);
-	Power[0]->Move->setVolume(50);
+	Power[0]->Move->setVolume(30);
+	Power[0]->clk = new sf::Clock();
+	Power[0]->time = new sf::Time();
 }
 
 
@@ -132,7 +134,7 @@ void GameModel::Beast::Learn()
 
 void GameModel::Beast::LevelUp()
 {
-	if (Exp > 100) {
+	if (Exp >= 100) {
 		Level += 1;
 		Exp -= 100;
 		UpdateStats(Health, Level);
