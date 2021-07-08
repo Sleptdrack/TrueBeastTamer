@@ -44,3 +44,25 @@ void GameModel::Tamer::Draw(RenderTarget& rt)
     PauseObj->DrawPause(rt);
     HealthObj->DrawPause(rt);
 }
+
+bool GameModel::Tamer::Defeated()
+{
+    int a = 0;
+    bool s;
+    for (int i = 0; i < Bag->Beast->Count; i++) {
+
+        if (Bag->Beast[i]->Health[3] <= 0) {
+            a = a;
+        }
+        else {
+            a = a + 1;
+        }
+    }
+    if (a == 0) {
+        s = true;;
+    }
+    else {
+        s = false;
+    }
+    return s;
+}

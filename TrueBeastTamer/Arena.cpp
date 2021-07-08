@@ -46,7 +46,7 @@ void GameModel::Arena::Show(Map^ M){
 	bool pWin = false, pWin2 = false, pLost = false;
 	int get;
 	GameView::MessageHUB^ BeastTaken = gcnew GameView::MessageHUB("Usted a atrapado a "+B->TagName);
-	GameView::MessageHUB^ BeastEscape = gcnew GameView::MessageHUB("La Bestia se a escapado");
+	GameView::MessageHUB^ BeastEscape = gcnew GameView::MessageHUB("La Bestia se ha escapado");
 	GameView::MessageHUB^ PlayerDefeated = gcnew GameView::MessageHUB("Usted a sido derrotado");
 	//
 	GameView::BeastHUB^ B1 = gcnew GameView::BeastHUB(1450, 0, B);
@@ -131,6 +131,13 @@ void GameModel::Arena::Show(Map^ M){
 		M->Player->PauseObj->DrawPause(*Screen->W);
 		B1->Draw(*Screen->W);
 		B2->Draw(*Screen->W);
+		pLost = M->Player->Defeated();
+
+		if (pLost) {
+			PlayerDefeated->Stay(&pLost, *Screen->W);
+			if (!pLost)Screen->W->close();
+			PlayerDefeated->Draw(*Screen->W);
+		}
 		if(pWin) {
 			BeastTaken->Stay(&pWin, *Screen->W);
 			if (!pWin)Screen->W->close();

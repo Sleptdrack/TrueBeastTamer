@@ -9,9 +9,9 @@ void GameController::Fight::Hunt(Map^ M, Arena^ A, RenderWindow& W){
 			if (A == nullptr)A = gcnew Arena(M->Garden[i]->LBeast[0]);
 			W.setActive(false);
 			A->Show(M);
-			if (A->B->Health[3] <= 0) {
-				M->Garden[i]->LBeast->RemoveAt(0);
-			}
+			//if (A->B->Health[3] <= 0) {
+		    M->Garden[i]->LBeast->RemoveAt(0);
+			//}
 		}
 
 	}
@@ -82,8 +82,8 @@ void GameController::Fight::Battle(Beast^ B, Tamer^ T,int* c){
 			*c += 1;
 		}
 		else {
-			T->Bag->Beast[*c + 1]->X = T->Bag->Beast[*c]->X;
-			T->Bag->Beast[*c + 1]->Y = T->Bag->Beast[*c]->Y;
+			T->Bag->Beast[0]->X = T->Bag->Beast[*c]->X;
+			T->Bag->Beast[0]->Y = T->Bag->Beast[*c]->Y;
 			*c = 0;
 		}
 

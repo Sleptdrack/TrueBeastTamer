@@ -1,5 +1,5 @@
 ImageRuntimeVersion: v4.0.30319
-Assembly TrueBeastTamer, Version=1.0.*, Culture=Invariant Language (Invariant Country): 
+Assembly TrueBeastTamer, Version=1.0.*, Culture=Todos los idiomas (todos los países): 
 	hash=SHA1, flags=PublicKey
 Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
 	hash=None, flags=None
@@ -424,6 +424,7 @@ Class GameModel.Tamer: AutoLayout, AnsiClass, Class, Public, Serializable, Befor
     set_HealthObj(Health): PrivateScope, Public, HideBySig, SpecialName
     OpenBag(): PrivateScope, Public, HideBySig
     Draw(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Defeated(): PrivateScope, Public, HideBySig
 Class GameModel.Garden: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
   :GameModel.GameObject
     Void .ctor(Single, Single, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -573,7 +574,8 @@ Class GameView.BeastHUB: AutoLayout, AnsiClass, Class, Public, Serializable, Bef
     setDrawables(String*, String*, String*): PrivateScope, Public, HideBySig
     Draw(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     Update(Beast): PrivateScope, Public, HideBySig
-Class GameView.MessageHUB: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+Class GameView.MessageHUB: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+  :GameModel.GameObject
     Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
     Single Heigth 'get set' : 
@@ -601,6 +603,7 @@ Class GameView.MessageHUB: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     setDrawables(String*): PrivateScope, Public, HideBySig
     Stay(Boolean*, RenderWindow* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     Draw(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Move(Single, Single): PrivateScope, Public, HideBySig
 Class GameModel.Arena: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
   :GameModel.GameObject
     Void .ctor(GameModel.Beast): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
