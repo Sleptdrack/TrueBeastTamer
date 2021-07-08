@@ -162,6 +162,7 @@ void GameModel::Bag::Draw(sf::RenderTarget& rt)
 		}
 		break;
 	case Items:
+
 		rt.draw(*Sprite);
 		Word_Item[0]->Draw(rt);
 		Word_Item[1]->Draw(rt);

@@ -595,3 +595,4 @@ Class GameView.Tutorial: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     set_T(Tamer): PrivateScope, Public, HideBySig, SpecialName
     Draw(): PrivateScope, Public, HideBySig
     ChooseBeast(Boolean*): PrivateScope, Public, HideBySig
+    DrawTutorial(): PrivateScope, Public, HideBySig

@@ -14,6 +14,7 @@ namespace GameView {
 		Tutorial(Tamer^ t);
 		void Draw();
 		void ChooseBeast(bool* t);
+		void DrawTutorial();
 	};
 }
 
