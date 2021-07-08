@@ -31,8 +31,12 @@ int main() {
     Clock c1;
     RectangleShape* rec = new RectangleShape(sf::Vector2f(1920, 1080));
     //textura
+    Texture* Textura = new sf::Texture();
+    Textura->loadFromFile("../Imagenes/Fondo.jpg");
     // sprite
     // 
+    Sprite* Sprite = new sf::Sprite();
+    Sprite->setTexture(*Textura);
     //Log in screen
     while (1) {
         LogInSc^ LI = gcnew LogInSc();
@@ -151,7 +155,7 @@ int main() {
             Interraction::MoveHealth(M->Player, window, rtv);
             window.clear();
             //agregar fondo
-            //window.draw(spritefondo);
+            window.draw(*Sprite);
             M->Draw(window);
             window.display();
         }
