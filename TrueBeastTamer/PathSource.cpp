@@ -64,7 +64,6 @@ void PathSource::LoadFromFile(std::string t)
 		}
 		myfile.close();
 	}
-	else std::cout << "Unable to open path";
 }
 
 void WordSource::LoadFromFile(std::string t)
@@ -89,7 +88,6 @@ void WordSource::LoadFromFile(std::string t)
 		}
 		myfile.close();
 	}
-	else std::cout << "Unable to open path";
 }
 
 void BeastSource::LoadFromFile(std::string t)
@@ -143,5 +141,4 @@ void BeastSource::LoadFromFile(std::string t)
 		}
 		myfile.close();
 	}
-	else std::cout << "Unable to open path";
 }

@@ -23,10 +23,9 @@ void GameController::Fight::Battle(Beast^ B, Tamer^ T,int* c){
 	if (T->Bag->Beast[*c]->Power[0]->InUse) {
 		if (T->Bag->Beast[*c]->Power[0]->Shot->Count > 0) {
 			if (T->Bag->Beast[*c]->Power[0]->Shot[0]->Contains(B)) {
-				std::cout << B->Health[3] << "\n";
+				T->Bag->Beast[*c]->Exp += 5;
 				if (T->Bag->Beast[*c]->Attack[3] - B->Defense[3] <= 0) {
 					B->Health[3] -= 1;
-					T->Bag->Beast[*c]->Exp += 5;
 				}
 				else {
 					B->Health[3] -= T->Bag->Beast[*c]->Attack[3] - B->Defense[3];//el tercer elemento es el valor real que posee
@@ -54,9 +53,9 @@ void GameController::Fight::Battle(Beast^ B, Tamer^ T,int* c){
 	if (B->Power[0]->InUse) {
 		if (B->Power[0]->Shot->Count > 0) {
 			if (B->Power[0]->Shot[0]->Contains(T->Bag->Beast[*c])) {
+				B->Exp += 5;
 				if (B->Attack[3] - T->Bag->Beast[*c]->Defense[3] <= 0) {
 					T->Bag->Beast[*c]->Health[3] -= 1;
-					B->Exp += 5;
 				}
 				else {
 					T->Bag->Beast[*c]->Health[3] -= B->Attack[3] - T->Bag->Beast[*c]->Defense[3];//el tercer elemento es el valor real que posee
