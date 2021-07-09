@@ -19,6 +19,12 @@ GameModel::Arena::Arena(Beast^ b)
 	//Crear clase que maneje un cuadro con valores 
 	Screen->W->setSize(sf::Vector2u(PathSource::Resolution[0], PathSource::Resolution[1]));//erase after
 	B = b;
+
+	MS = new sf::Music();
+
+	MS->openFromFile("../Sound/Musicafondo.ogg");
+	MS->setLoop(true);
+	MS->setVolume(10);
 	
 
 }
@@ -41,7 +47,7 @@ void GameModel::Arena::Show(Map^ M){
 	Clock clk,clk1,clk2;
 	int Chosen = 0;
 	//julio
-	bool pause = false;
+	bool pause = false, pause1 = true;
 
 	bool pWin = false, pWin2 = false, pLost = false;
 	int get;
@@ -52,8 +58,10 @@ void GameModel::Arena::Show(Map^ M){
 	GameView::BeastHUB^ B1 = gcnew GameView::BeastHUB(1450, 0, B);
 	//
 	GameView::BeastHUB^ B2 = gcnew GameView::BeastHUB(200, 0, M->Player->Bag->Beast[Chosen]);
+	MS->play();
 
 	while (Screen->W->isOpen()) {
+		
 		sf::Event event;
 		while (Screen->W->pollEvent(event))
 		{
@@ -64,16 +72,18 @@ void GameModel::Arena::Show(Map^ M){
 		}
 
 		if (!pause && !pWin && !pWin2 && !pLost){
+			if (MS->getStatus() != sf::Music::Status::Playing) {
+			
+				MS->play();
+			
+			};
 			t = clk.getElapsedTime();
 			t1 = clk1.getElapsedTime();
 			t2 = clk2.getElapsedTime();
 			clk.restart();
 			sf::Event event;
-			while (Screen->W->pollEvent(event)) {
-				if (Screen->Word[0]->Click(*Screen->W)) {
-					Screen->W->close();
-					B->Health[3] = 0;
-				}
+			while (Screen->W->pollEvent(event)) {	
+				
 			}
 			Movement::Move(M->Player->Bag->Beast[Chosen], t, Tspace);
 			Behavior::UpdateBehavior(B);
@@ -132,21 +142,35 @@ void GameModel::Arena::Show(Map^ M){
 		B1->Draw(*Screen->W);
 		B2->Draw(*Screen->W);
 		pLost = M->Player->Defeated();
+		
+		if (pause) {
+			//if (!pause)Screen->W->close();
+			if (Screen->Word[0]->Click(*Screen->W)) {
+				
+
+				Screen->W->close();
+				B->Health[3] = 0;
+			
+			}
+		}
 
 		if (pLost) {
 			PlayerDefeated->Stay(&pLost, *Screen->W);
 			if (!pLost)Screen->W->close();
 			PlayerDefeated->Draw(*Screen->W);
+			MS->stop();
 		}
 		if(pWin) {
 			BeastTaken->Stay(&pWin, *Screen->W);
 			if (!pWin)Screen->W->close();
 			BeastTaken->Draw(*Screen->W);
+			MS->stop();
 		}
 		if (pWin2) {
 			BeastEscape->Stay(&pWin2, *Screen->W);
 			if (!pWin2)Screen->W->close();
 			BeastEscape->Draw(*Screen->W);
+			MS->stop();
 		}
 		Screen->W->display();
 	}

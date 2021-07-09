@@ -608,6 +608,7 @@ Class GameModel.Arena: AutoLayout, AnsiClass, Class, Public, Serializable, Befor
   :GameModel.GameObject
     Void .ctor(GameModel.Beast): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
+    sf.Music* MS 'get set' : 
     GameModel.Beast B 'get set' : 
     sf.RectangleShape* Tspace 'get set' : 
     GameView.Screen Screen 'get set' : 
@@ -618,6 +619,8 @@ Class GameModel.Arena: AutoLayout, AnsiClass, Class, Public, Serializable, Befor
     set_Tspace(RectangleShape*): PrivateScope, Public, HideBySig, SpecialName
     get_B(): PrivateScope, Public, HideBySig, SpecialName
     set_B(Beast): PrivateScope, Public, HideBySig, SpecialName
+    get_MS(): PrivateScope, Public, HideBySig, SpecialName
+    set_MS(Music*): PrivateScope, Public, HideBySig, SpecialName
     Draw(): PrivateScope, Public, HideBySig
     Show(Map): PrivateScope, Public, HideBySig
 Class GameController.Fight: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit

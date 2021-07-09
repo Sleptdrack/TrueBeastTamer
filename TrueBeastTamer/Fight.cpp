@@ -9,7 +9,9 @@ void GameController::Fight::Hunt(Map^ M, Arena^ A, RenderWindow& W){
 			if (A == nullptr)A = gcnew Arena(M->Garden[i]->LBeast[0]);
 			W.setActive(false);
 			A->Show(M);
+			A->MS->stop();
 			//if (A->B->Health[3] <= 0) {
+			A->B->Power[0]->Stop();
 		    M->Garden[i]->LBeast->RemoveAt(0);
 			//}
 		}
