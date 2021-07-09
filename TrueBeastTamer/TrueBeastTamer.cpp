@@ -38,15 +38,7 @@ int main() {
     Sprite* Sprite = new sf::Sprite();
     Sprite->setTexture(*Textura);
     //Log in screen
-    //musica
-    Music* musica = new sf::Music();
-    musica->openFromFile("../Sound/Pausesound.ogg");
-    musica->setLoop(true);
-    musica->setVolume(30);
-    musica->play();
-
     while (1) {
-        
         LogInSc^ LI = gcnew LogInSc();
         Tutorial^ TU = nullptr;
         bool ready = false, Tready = true;
@@ -85,7 +77,6 @@ int main() {
         else {
             return 0;
         }
-        musica->pause();
         while (window.isOpen())
         {
             t1 = c1.getElapsedTime();
