@@ -71,7 +71,7 @@ void GameModel::Pause::setDrawables(sf::String t)
 	Rect->setPosition(X, Y);
 	Sprite->setColor(sf::Color(68, 66, 59, 255));
 	for (int i = 0; i < Word_Pause->Count; i++) {
-		Word_Pause[i]->SetParameters(PathSource::SystoStd(PathSource::Word[0]), PathSource::SystoStd(PathSource::Word[1]), Word_Pause[i]->Code);
+		Word_Pause[i]->SetParameters(PathSource::SystoStd(PathSource::Word[0]),Word_Pause[i]->Code);
 	}
 }
 

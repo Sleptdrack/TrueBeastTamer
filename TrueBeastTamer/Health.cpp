@@ -66,7 +66,7 @@ void GameModel::Health::setDrawables(sf::String t)
 	Rect->setPosition(X, Y);
 	Sprite->setColor(sf::Color(100, 200, 125, 255));
 	for (int i = 0; i < Word_Health->Count; i++) {
-		Word_Health[i]->SetParameters(PathSource::SystoStd(PathSource::Word[0]), PathSource::SystoStd(PathSource::Word[1]), Word_Health[i]->Code);
+		Word_Health[i]->SetParameters(PathSource::SystoStd(PathSource::Word[0]),Word_Health[i]->Code);
 	}
 }
 

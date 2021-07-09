@@ -8,14 +8,12 @@ GameView::Word::Word(float x, float y, System::String^ t, int size, sf::Color c)
     X = x;
     Y = y;
     Code = c.toInteger();
-    SetParameters(PathSource::SystoStd(PathSource::Word[0]),PathSource::SystoStd(PathSource::Word[1]),Code);
+    SetParameters(PathSource::SystoStd(PathSource::Word[0]),Code);
 }
 
-void GameView::Word::SetParameters(sf::String f, sf::String a, uint32_t c)
+void GameView::Word::SetParameters(sf::String f, uint32_t c)
 {
     Color = new sf::Color(c);
-    SB = new sf::SoundBuffer();
-    S = new sf::Sound();
     Font = new sf::Font();
     Text = new sf::Text();
     Rect = new RectangleShape();
@@ -29,9 +27,6 @@ void GameView::Word::SetParameters(sf::String f, sf::String a, uint32_t c)
     Rect->setSize(sf::Vector2f(Text->getGlobalBounds().width + 5, Text->getGlobalBounds().height + 7));
     Rect->setPosition(X, Y);
     Rect->setFillColor(sf::Color::Transparent);
-    SB->loadFromFile(a);
-    S->setBuffer(*SB);
-    S->setVolume(50);
 }
 
 void GameView::Word::Draw(sf::RenderTarget& rt){
@@ -51,7 +46,8 @@ bool GameView::Word::Click(sf::RenderWindow& rt){
     if (Rect->getGlobalBounds().contains(m)) {
         Text->setFillColor(sf::Color::Blue);
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-            S->play();
+            //S->play();
+            Music::ClickSound();
             return true;
         }
     }
@@ -65,7 +61,7 @@ void GameView::Word::UpdateString(sf::String T)
 {
     Text->setString(T);
     Rect->setSize(sf::Vector2f(Text->getGlobalBounds().width+5, Text->getGlobalBounds().height+7));
-    this->T = SFtoSys(T);
+    this->T = PathSource::StdtoSys(T);
 }
 
 void GameView::Word::Fill(sf::Event e,sf::String *U)
@@ -86,13 +82,4 @@ void GameView::Word::Fill(sf::Event e,sf::String *U)
 void GameView::Word::RectColor(sf::Color c)
 {
     Rect->setFillColor(c);
-}
-
-System::String^ GameView::Word::SFtoSys(sf::String t){
-    return msclr::interop::marshal_as<System::String^>(t.toAnsiString());
-}
-
-sf::String GameView::Word::SystoSF(System::String^ t){
-    
-    return sf::String(msclr::interop::marshal_as<std::string>(t));
 }

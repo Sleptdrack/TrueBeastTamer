@@ -91,16 +91,16 @@ void GameModel::Bag::setDrawables(sf::String t){
 	Rect->setPosition(X, Y);
 	Sprite->setColor(sf::Color(111, 29, 116, 255));
 	for (int i=0; i < Word->Count; i++) {
-		Word[i]->SetParameters(PathSource::SystoStd(PathSource::Word[0]), PathSource::SystoStd(PathSource::Word[1]), Word[i]->Code);
+		Word[i]->SetParameters(PathSource::SystoStd(PathSource::Word[0]),Word[i]->Code);
 	}
 	for (int i = 0; i < Word_Beast->Count; i++) {
-		Word_Beast[i]->SetParameters(PathSource::SystoStd(PathSource::Word[0]), PathSource::SystoStd(PathSource::Word[1]), Word_Beast[i]->Code);
+		Word_Beast[i]->SetParameters(PathSource::SystoStd(PathSource::Word[0]),Word_Beast[i]->Code);
 	}
 	for (int i = 0; i < Word_Item->Count; i++) {
-		Word_Item[i]->SetParameters(PathSource::SystoStd(PathSource::Word[0]), PathSource::SystoStd(PathSource::Word[1]), Word_Item[i]->Code);
+		Word_Item[i]->SetParameters(PathSource::SystoStd(PathSource::Word[0]), Word_Item[i]->Code);
 	}
 	for (int i = 0; i < Word_Setting->Count; i++) {
-		Word_Setting[i]->SetParameters(PathSource::SystoStd(PathSource::Word[0]), PathSource::SystoStd(PathSource::Word[1]), Word_Setting[i]->Code);
+		Word_Setting[i]->SetParameters(PathSource::SystoStd(PathSource::Word[0]),Word_Setting[i]->Code);
 	}
 	for (int i = 0; i < Beast->Count; i++) {
 		BeastSource::LoadFromFile(PathSource::SystoStd(PathSource::Beast[Beast[i]->Name]));
@@ -109,7 +109,7 @@ void GameModel::Bag::setDrawables(sf::String t){
 			PathSource::SystoStd(BeastSource::Sound[1]));
 	}
 	for (int i = 0; i < Word_Edit->Count; i++) {
-		Word_Edit[i]->SetParameters(PathSource::SystoStd(PathSource::Word[0]), PathSource::SystoStd(PathSource::Word[1]), Word_Edit[i]->Code);
+		Word_Edit[i]->SetParameters(PathSource::SystoStd(PathSource::Word[0]),Word_Edit[i]->Code);
 	}
 	Stat = nullptr;
 }

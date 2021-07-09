@@ -7,6 +7,7 @@
 #include<time.h>
 #include<string>
 #include "PathSource.h"
+#include "Music.h"
 using namespace sf;
 namespace GameView {
 	[System::Serializable]
@@ -21,20 +22,16 @@ namespace GameView {
 		property uint32_t Code;
 		property float X;
 		property float Y;
-		property sf::SoundBuffer* SB;
-		property sf::Sound* S;
 		property bool on;
 	public:
 		Word(float x,float y,System::String^ t, int size,sf::Color c);
-		void SetParameters(sf::String f, sf::String a, uint32_t c);
+		void SetParameters(sf::String f,uint32_t c);
 		void Draw(sf::RenderTarget& rt);
 		void Move(float x, float y);
 		bool Click(sf::RenderWindow& rt);
 		void UpdateString(sf::String T);
 		void Fill(sf::Event e, sf::String *U);
 		void RectColor(sf::Color c);
-		static System::String^ SFtoSys(sf::String t);
-		static sf::String SystoSF(System::String^ t);
 	};
 }
 

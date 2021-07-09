@@ -14,6 +14,7 @@
 #include "PathSource.h"
 #include "Pause.h" // julio
 #include <iostream>
+#include "Music.h"
 using namespace sf;
 using namespace System;
 using namespace GameModel;
@@ -39,12 +40,9 @@ int main() {
     Sprite->setTexture(*Textura);
     //Log in screen
     //musica
-    Music* musica = new sf::Music();
-    musica->openFromFile("../Sound/Pausesound.ogg");
-    musica->setLoop(true);
-    musica->setVolume(30);
-    musica->play();
-
+    GameView::Music::Load();
+    GameView::Music::SetVolume(20);
+    GameView::Music::Login->play();
     while (1) {
         
         LogInSc^ LI = gcnew LogInSc();
@@ -85,7 +83,7 @@ int main() {
         else {
             return 0;
         }
-        musica->pause();
+        GameView::Music::Login->pause();
         while (window.isOpen())
         {
             t1 = c1.getElapsedTime();

@@ -64,7 +64,7 @@ void GameView::LogInSc::Log(bool *r)
             Fill(event);
         }
         if (Screen->Word[1]->Click(*Screen->W)) {
-            T = GameController::GameManager::ValidatePlayer(Word::SFtoSys(*U), Word::SFtoSys(*P));
+            T = GameController::GameManager::ValidatePlayer(PathSource::StdtoSys(*U), PathSource::StdtoSys(*P));
             
             if (T!=nullptr) {
                 *r = true;
@@ -76,7 +76,7 @@ void GameView::LogInSc::Log(bool *r)
             }
         }
         if (Screen->Word[2]->Click(*Screen->W)) {
-            T = GameController::GameManager::CreateTamer(Word::SFtoSys(*U), Word::SFtoSys(*P));
+            T = GameController::GameManager::CreateTamer(PathSource::StdtoSys(*U), PathSource::StdtoSys(*P));
             if (T != nullptr) {
                 *r = true;
                 Screen->W->close();

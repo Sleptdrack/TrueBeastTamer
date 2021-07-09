@@ -119,12 +119,20 @@ Class GameModel.GameObject: AutoLayout, AnsiClass, Class, Public, Serializable, 
     Contains(GameObject): PrivateScope, Public, HideBySig
     setDrawables(String*): PrivateScope, Public, HideBySig
     Update(): PrivateScope, Public, HideBySig
+Class GameView.Music: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    sf.SoundBuffer* Click : Public, Static
+    sf.Music* Login : Public, Static
+    sf.Sound* Sound : Public, Static
+  Methods:
+    Load(): PrivateScope, Public, Static, HideBySig
+    SetVolume(Single): PrivateScope, Public, Static, HideBySig
+    ClickSound(): PrivateScope, Public, Static, HideBySig
 Class GameView.Word: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
     Void .ctor(Single, Single, System.String, Int32, sf.Color): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
     Boolean on 'get set' : 
-    sf.Sound* S 'get set' : 
-    sf.SoundBuffer* SB 'get set' : 
     Single Y   'get set' : 
     Single X   'get set' : 
     UInt32 Code 'get set' : 
@@ -153,21 +161,15 @@ Class GameView.Word: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeF
     set_X(Single): PrivateScope, Public, HideBySig, SpecialName
     get_Y(): PrivateScope, Public, HideBySig, SpecialName
     set_Y(Single): PrivateScope, Public, HideBySig, SpecialName
-    get_SB(): PrivateScope, Public, HideBySig, SpecialName
-    set_SB(SoundBuffer*): PrivateScope, Public, HideBySig, SpecialName
-    get_S(): PrivateScope, Public, HideBySig, SpecialName
-    set_S(Sound*): PrivateScope, Public, HideBySig, SpecialName
     get_on(): PrivateScope, Public, HideBySig, SpecialName
     set_on(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
-    SetParameters(String*, String*, UInt32): PrivateScope, Public, HideBySig
+    SetParameters(String*, UInt32): PrivateScope, Public, HideBySig
     Draw(RenderTarget* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     Move(Single, Single): PrivateScope, Public, HideBySig
     Click(RenderWindow* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     UpdateString(String*): PrivateScope, Public, HideBySig
     Fill(Event, String*): PrivateScope, Public, HideBySig
     RectColor(Color): PrivateScope, Public, HideBySig
-    SFtoSys(String*): PrivateScope, Public, Static, HideBySig
-    SystoSF(String*, String): PrivateScope, Public, Static, HideBySig
 Class GameView.Screen: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(Single, Single, Single, Single, sf.String*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
