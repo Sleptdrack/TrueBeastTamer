@@ -1,6 +1,5 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
 #include <stdio.h>
 #include <stdlib.h>
 #include<time.h>
@@ -22,7 +21,6 @@ namespace GameModel {
 		property Screen^ Screen;
 		property RectangleShape* Tspace;
 		property Beast^ B;
-		property sf::Music* MS;
 		
 	public:
 		Arena(Beast^ b);
